@@ -1,0 +1,216 @@
+@import '../styles/variables';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $dark;
+  color: $accent;
+  padding: 0.6rem 2rem 0.6rem 2rem;
+  border-bottom: 4px solid $accent;
+}
+.smallYellowRectangle{
+  // position: absolute;
+  // bottom: 0;
+  // left: 0;
+  width: 100%;
+  height: 4px;
+  background: #FFEA88CC;
+}
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.logo {
+  width: 48px;
+  height: 48px;
+}
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $white;
+  position: relative;
+}
+.user {
+  font-size: 1rem;
+  color: $white;
+  font-weight: 500;
+}
+.avatar {
+  background: $primary;
+  color: $dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0.4rem 0.8rem;
+  margin-left: 0.5rem;
+  width: 40px;
+  height: 40px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+.loadingUser {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $white;
+  font-size: 0.9rem;
+}
+
+// User Menu Container and Dropdown
+.userMenuContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background: $text-light;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba($dark, 0.15);
+  min-width: 280px;
+  z-index: 1000;
+  border: 1px solid rgba($dark, 0.1);
+  overflow: hidden;
+  animation: dropdownSlideIn 0.2s ease-out;
+}
+
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownHeader {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, $primary 0%, darken($primary, 10%) 100%);
+  color: $dark;
+}
+
+.dropdownUserInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dropdownAvatar {
+  background: $dark;
+  color: $primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.dropdownUserDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dropdownUserName {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: $dark;
+}
+
+.dropdownUserEmail {
+  font-size: 0.9rem;
+  color: rgba($dark, 0.7);
+  font-weight: 500;
+}
+
+.dropdownDivider {
+  height: 1px;
+  background: rgba($dark, 0.1);
+  margin: 0;
+}
+
+.dropdownItems {
+  padding: 0.5rem;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: $dark;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  
+  &:hover {
+    background: rgba($primary, 0.1);
+    color: $primary;
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+  
+  svg {
+    color: currentColor;
+  }
+}
+
+.userMenu {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+.userMenuButton {
+  background: none;
+  border: none;
+  color: $white;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+}

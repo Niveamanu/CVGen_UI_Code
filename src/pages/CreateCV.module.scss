@@ -1,0 +1,346 @@
+@import '../styles/variables';
+
+.createCVPage {
+ height: 100vh;
+ max-height: 100vh;
+ width: 100vw;
+ background: url('./BG_layer.png') center/cover no-repeat;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  margin-top: 65px;
+  background: $text-light;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba($dark, 0.08);
+  max-width: 600px;
+  width: 100%;
+  overflow: hidden;
+}
+
+// Processing State
+.processingState {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.processingTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: $dark;
+  margin-bottom: 1rem;
+}
+
+.processingSubtitle {
+  color: $gray-dark;
+  font-size: 1rem;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Progress Bar
+.progressContainer {
+  margin-bottom: 2rem;
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background: $gray-medium;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, $primary 0%, $accent 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.progressText {
+  color: $dark;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.loadingSpinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid $gray-medium;
+  border-top: 4px solid $accent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.cardHeader {
+  text-align: center;
+  padding: 3rem 2rem 1rem 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $dark;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: $gray-dark;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.cardBody {
+  padding: 2rem;
+}
+
+.uploadSection {
+  margin-bottom: 2rem;
+}
+
+.uploadTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: $dark;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.uploadArea {
+  border: 2px dashed $gray-medium;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  &.dragActive {
+    border-color: $accent;
+    background: rgba($accent, 0.05);
+  }
+  
+  &:hover {
+    border-color: $accent;
+    background: rgba($accent, 0.02);
+  }
+}
+
+.uploadIcon {
+  color: #1472ED;
+  margin-bottom: 1.5rem;
+  
+  svg {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.browseBtn {
+  color: $blue;
+  border: none;
+  border-radius: $border-radius;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.uploadText {
+  color: $dark;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.supportedFormats {
+  color: $gray;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+// File Selected State
+.fileSelected {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  background: rgba($gray-medium, 0.1);
+  border: 1px solid $gray-medium;
+  border-radius: 12px;
+  position: relative;
+}
+
+.fileIcon {
+  background: #1472ED;
+  color: $text-light;
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  min-width: 60px;
+  text-align: center;
+}
+
+.fileType {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.fileInfo {
+  flex: 1;
+}
+
+.fileName {
+  font-weight: 600;
+  color: $primary;
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+}
+
+.fileSize {
+  color: $gray-dark;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.removeFile {
+  background: none;
+  border: none;
+  color: $gray-dark;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background: rgba($gray-dark, 0.1);
+  }
+}
+
+.selectedFile {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba($accent, 0.1);
+  border-radius: $border-radius;
+  text-align: center;
+  
+  p {
+    margin: 0 0 1rem 0;
+    color: $primary;
+    font-weight: 600;
+  }
+}
+
+.uploadBtn {
+  background: $primary;
+  color: $accent;
+  border: none;
+  border-radius: $border-radius;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  
+  &:hover {
+    background: darken($primary, 10%);
+  }
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+  
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: $gray-medium;
+  }
+  
+  span {
+    padding: 0 1rem;
+    color: $gray-dark;
+    font-size: 0.9rem;
+    background: $text-light;
+  }
+}
+
+.createNewBtn {
+  width: 100%;
+  background: $dark;
+  color: $white;
+  border: none;
+  border-radius: $border-radius;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: darken($primary, 5%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($primary, 0.3);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .card {
+    margin: 0;
+  }
+  
+  .cardHeader {
+    padding: 2rem 1.5rem 1rem 1.5rem;
+  }
+  
+  .cardBody {
+    padding: 1.5rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .uploadArea {
+    padding: 2rem 1rem;
+  }
+  
+  .processingState {
+    padding: 3rem 1.5rem;
+  }
+  
+  .processingTitle {
+    font-size: 1.5rem;
+  }
+}

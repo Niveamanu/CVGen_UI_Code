@@ -1,0 +1,1190 @@
+{
+    "Personal Information": {
+        "First Name": "Ana Maria",
+        "Middle Name": "",
+        "Last Name": "Corregidor",
+        "Degree Title": "MD",
+        "Certifications": "asdasads",
+        "Business Number": "(904) 680-0871",
+        "Business Email Address": "acorregidor@encoredocs.com"
+    },
+    "Flourish Site Affiliations": [
+        {
+            "Site Name": "ASD",
+            "CTMS Site Name": "ENCORE Borland-Groover Clinical Research",
+            "Site Address": "4800 Belfort Road, Suite 301",
+            "City": "Jacksonville",
+            "State": "FL",
+            "Zipcode": "32256"
+        },
+        {
+            "Site Name": "aSasa",
+            "CTMS Site Name": "Borland-Groover Clinic",
+            "Site Address": "4800 Belfort Road",
+            "City": "Jacksonville",
+            "State": "FL",
+            "Zipcode": "32256"
+        },
+        {
+            "Site Name": "daSa",
+            "CTMS Site Name": "Jacksonville Center for Endoscopy",
+            "Site Address": "4800 Belfort Road, 1st Floor",
+            "City": "Jacksonville",
+            "State": "FL",
+            "Zipcode": "32256"
+        }
+    ],
+    "Hospital Affiliations": [{"Hospital Name":"asdasd","From Date":"2026","To Date":"2026","City":"asdasas","State":"asdas","Country":"","city":"asdasd","state":"asdasd","country":"Åland Islands"}],
+    "Education": [
+        {
+            "startYear": "1985",
+            "endYear": "1991",
+            "degree": "Doctor of Medicine",
+            "universityName": "Universidad Complutense",
+            "city": "Madrid",
+            "state": "",
+            "country": "Spain"
+        },
+        {
+            "startYear": "1998",
+            "endYear": "2001",
+            "degree": "Fellowship: Gastroenterology",
+            "universityName": "University of Florida, Shands",
+            "city": "Jacksonville",
+            "state": "",
+            "country": "United States of America"
+        },
+        {
+            "startYear": "1995",
+            "endYear": "1998",
+            "degree": "Internship and Residency: Internal Medicine",
+            "universityName": "St. Lukes Hospital University of Columbia, MO",
+            "city": "St. Louis",
+            "state": "",
+            "country": "United States of America"
+        }
+    ],
+    "License": [
+        {
+            "issueDate": "",
+            "exiryDate": "",
+            "licenseName": "Florida Medical License",
+            "issuingAuthority": "State of Florida",
+            "licenseNumber": "ME82838"
+        }
+    ],
+    "Certifications": [
+        {
+            "issueDate": "2010",
+            "expiryDate": "",
+            "certificateTitle": "Board Certified- Transplant Hepatology",
+            "issuingOrganization": "",
+            "certificateID": ""
+        },
+        {
+            "issueDate": "2004",
+            "expiryDate": "",
+            "certificateTitle": "Board Certified Gastroenterology",
+            "issuingOrganization": "",
+            "certificateID": "184667"
+        },
+        {
+            "issueDate": "2014",
+            "expiryDate": "",
+            "certificateTitle": "Board Certified Gastroenterology",
+            "issuingOrganization": "",
+            "certificateID": "184667"
+        },
+        {
+            "issueDate": "1998",
+            "expiryDate": "",
+            "certificateTitle": "Board Certified Internal Medicine",
+            "issuingOrganization": "",
+            "certificateID": "184667"
+        },
+        {
+            "issueDate": "1995",
+            "expiryDate": "",
+            "certificateTitle": "ECFMG",
+            "issuingOrganization": "",
+            "certificateID": "0-508-751-5"
+        }
+    ],
+    "Publications": [
+        {
+            "Publications / Presentations": "Simeprevir plus sofosbuvir, with or without ribavirin, to treat chronic infection with hepatitis C virus genotype 1 in non-responders to pegylated interferon and ribavirin and treatment-naive patients: the COSMOS randomised study",
+            "Authors": "Lawitz E1, Sulkowski MS2, Ghalib R3, Rodriguez-Torres M4, Younossi ZM5, Corregidor A6, Delesus E7, Pearlman B8, Rabinovitz M9, Gitlin N10, Lim JK11, Pockros PJ12, Scott JD13, Fevery B14, Lambrecht T15, Ouwerkerk-Mahadevan S14, Callewaert K14, Symonds WT16, Picchio G17, Lindsay KL17, Beumont M14, Jacobson IM18",
+            "Journal / Source": "",
+            "Publication Date": "",
+            "Volume / Issue / Pages": "",
+            "DOI / Link": "",
+            "Description / Summary": ""
+        },
+        {
+            "Publications / Presentations": "45 year old woman with lower abdominal pain and constipation",
+            "Authors": "",
+            "Journal / Source": "",
+            "Publication Date": "",
+            "Volume / Issue / Pages": "",
+            "DOI / Link": "",
+            "Description / Summary": ""
+        },
+        {
+            "Publications / Presentations": "Oral presentation at ACG National Fellows Forum",
+            "Authors": "",
+            "Journal / Source": "ACG National Fellows Forum",
+            "Publication Date": "1999",
+            "Volume / Issue / Pages": "",
+            "DOI / Link": "",
+            "Description / Summary": "San Diego, California"
+        },
+        {
+            "Publications / Presentations": "ELATIVE trial",
+            "Authors": "",
+            "Journal / Source": "NEJM",
+            "Publication Date": "Nov 13, 2023",
+            "Volume / Issue / Pages": "",
+            "DOI / Link": "https://www.nejm.org/doi/full/10.1056/NEJMoa2306185",
+            "Description / Summary": ""
+        },
+        {
+            "Publications / Presentations": "Simeprevir plus sofosbuvir, with or without ribavirin, to treat chronic infection with hepatitis C virus genotype 1 in non-responders to pegylated interferon and ribavirin and treatment-naive patients: the COSMOS randomised study",
+            "Authors": "Llawitz E, Sulkowski MS, Ghalib R, Rodriguez-Torres M, Younossi ZM, Corregidor A, et al.",
+            "Journal / Source": "Lancet",
+            "Publication Date": "2014",
+            "Volume / Issue / Pages": "384:1756-1765",
+            "DOI / Link": "",
+            "Description / Summary": ""
+        }
+    ],
+    "Clinical Research Trials Conducted": [
+        {
+            "Trial Title": "89bio BI089-100-131 ENLIGHTEN-Fibrosis, NASH",
+            "Trial ID / Registration Number": "BI089-100-131",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2024",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "Hepion HEPA-CRV431-207, NASH",
+            "Trial ID / Registration Number": "HEPA-CRV431-207",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2022",
+            "End Date": "2024"
+        },
+        {
+            "Trial Title": "Kowa K-001-201, NASH",
+            "Trial ID / Registration Number": "K-001-201",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2022",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "Salix RNLC3131, CIRRHOSIS",
+            "Trial ID / Registration Number": "RNLC3131",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2022",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "Genfit GFT505B-319-1, Primary Biliary Cholangitis",
+            "Trial ID / Registration Number": "GFT505B-319-1",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2021",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "Metacrine MET642-201, NASH",
+            "Trial ID / Registration Number": "MET642-201",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2020",
+            "End Date": "2022"
+        },
+        {
+            "Trial Title": "Enanta EDP305-102, NASH",
+            "Trial ID / Registration Number": "EDP305-102",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2020",
+            "End Date": "2022"
+        },
+        {
+            "Trial Title": "Pfizer C1061011, NAFLD",
+            "Trial ID / Registration Number": "C1061011",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2019",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Enanta EDP305-301, NASH",
+            "Trial ID / Registration Number": "EDP305-301",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2018",
+            "End Date": "2019"
+        },
+        {
+            "Trial Title": "Pfizer C1171002, NASH",
+            "Trial ID / Registration Number": "C1171002",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2017",
+            "End Date": "2019"
+        },
+        {
+            "Trial Title": "Novartis CLIN452A2202, Liver Disease",
+            "Trial ID / Registration Number": "CLIN452A2202",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2016",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Eisai E5501-G000-30, Liver Disease",
+            "Trial ID / Registration Number": "E5501-G000-30",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2016",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "AbbVie M13-590, Hepatitis C",
+            "Trial ID / Registration Number": "M13-590",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2015",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "AbbVie M15-410, Hepatitis C",
+            "Trial ID / Registration Number": "M15-410",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2015",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Janssen TMC435HPC2013, Hepatitis C",
+            "Trial ID / Registration Number": "TMC435HPC2013",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2015",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Janssen TMC435HPC2002, Hepatitis C",
+            "Trial ID / Registration Number": "TMC435HPC2002",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2012",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Janssen TMC435HPC3007A, Hepatitis C",
+            "Trial ID / Registration Number": "TMC435HPC3007A",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2011",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Janssen TMC435-TiDP16-C216A, Hepatitis C",
+            "Trial ID / Registration Number": "TMC435-TiDP16-C216A",
+            "Role / Position": "Principal Investigator",
+            "Start Date": "2011",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "ALPCO CSP-2025-010, Inflammatory Bowel Disease (IBD)",
+            "Trial ID / Registration Number": "CSP-2025-010",
+            "Role / Position": "Sub-Investigator",
+            "Start Date": "2025",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "EXTEND, Hepatitis C",
+            "Trial ID / Registration Number": "Vertex VX08-950-112",
+            "Role / Position": "",
+            "Start Date": "2011",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Genotype 1 Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-256-0148",
+            "Role / Position": "",
+            "Start Date": "2011",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Crohn's Disease",
+            "Trial ID / Registration Number": "Millennium C13007",
+            "Role / Position": "",
+            "Start Date": "2010",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Collection of Clinical Sample Sets for the Detection of HBV DNA and HCV RNA in Serum and Plasma from Subjects with Clinically Defined Disease",
+            "Trial ID / Registration Number": "DLS 1D20100308",
+            "Role / Position": "",
+            "Start Date": "2010",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Hepatitis C",
+            "Trial ID / Registration Number": "Vertex VX06-950-107",
+            "Role / Position": "",
+            "Start Date": "2007",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Genotype 1 Hepatitis C",
+            "Trial ID / Registration Number": "Valeant RNA003142-204",
+            "Role / Position": "",
+            "Start Date": "2007",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Crohn's Disease",
+            "Trial ID / Registration Number": "BMS IM101084",
+            "Role / Position": "",
+            "Start Date": "2007",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Crohn's Disease",
+            "Trial ID / Registration Number": "BMS IM101108",
+            "Role / Position": "",
+            "Start Date": "2007",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Ulcerative Colitis",
+            "Trial ID / Registration Number": "Shire SPD476-404",
+            "Role / Position": "",
+            "Start Date": "2007",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Hepatitis C Virus Genotype 1 Infection",
+            "Trial ID / Registration Number": "Valeant RNA003142-204",
+            "Role / Position": "",
+            "Start Date": "2007",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Hepatitis C",
+            "Trial ID / Registration Number": "Roche NV17317",
+            "Role / Position": "",
+            "Start Date": "2004",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "EOE-201, Eosinophilic Esophagitis",
+            "Trial ID / Registration Number": "EOE-201",
+            "Role / Position": "",
+            "Start Date": "2025",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "NSI-8226-201, Eosinophilic Esophagitis",
+            "Trial ID / Registration Number": "NSI-8226-201",
+            "Role / Position": "",
+            "Start Date": "2024",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "Nerd-302 Gastroenterology",
+            "Trial ID / Registration Number": "Nerd-302",
+            "Role / Position": "",
+            "Start Date": "2024",
+            "End Date": "2025"
+        },
+        {
+            "Trial Title": "VE303-003, Clostridium Difficile",
+            "Trial ID / Registration Number": "VE303-003",
+            "Role / Position": "",
+            "Start Date": "2024",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "2021-01 ALTUS, Hepatocellular Carcinoma",
+            "Trial ID / Registration Number": "2021-01 ALTUS",
+            "Role / Position": "",
+            "Start Date": "2024",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "000417, Ulcerative Colitis",
+            "Trial ID / Registration Number": "000417",
+            "Role / Position": "",
+            "Start Date": "2024",
+            "End Date": "2024"
+        },
+        {
+            "Trial Title": "R668-EGE-2213, Eosinophilic Gastroenteritis",
+            "Trial ID / Registration Number": "R668-EGE-2213",
+            "Role / Position": "",
+            "Start Date": "2023",
+            "End Date": "2025"
+        },
+        {
+            "Trial Title": "AK-US-001-0105, NASH",
+            "Trial ID / Registration Number": "AK-US-001-0105",
+            "Role / Position": "",
+            "Start Date": "2023",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "AK-US-001-0107, NASH",
+            "Trial ID / Registration Number": "AK-US-001-0107",
+            "Role / Position": "",
+            "Start Date": "2023",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "D6581C00001 COSMOS, NASH",
+            "Trial ID / Registration Number": "D6581C00001 COSMOS",
+            "Role / Position": "",
+            "Start Date": "2023",
+            "End Date": "2024"
+        },
+        {
+            "Trial Title": "D7000C00001 SUPERNOVA, COVID-19 for Immune Compromised",
+            "Trial ID / Registration Number": "D7000C00001 SUPERNOVA",
+            "Role / Position": "",
+            "Start Date": "2023",
+            "End Date": "2024"
+        },
+        {
+            "Trial Title": "I6T-MC-AMBZ, Ulcerative Colitis",
+            "Trial ID / Registration Number": "I6T-MC-AMBZ",
+            "Role / Position": "",
+            "Start Date": "2023",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "D5244C00001 CROSSING, Eosinophilic Esophagitis",
+            "Trial ID / Registration Number": "D5244C00001 CROSSING",
+            "Role / Position": "",
+            "Start Date": "2023",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "CDX0159-08, Eosinophilic Esophagitis",
+            "Trial ID / Registration Number": "CDX0159-08",
+            "Role / Position": "",
+            "Start Date": "2022",
+            "End Date": "2024"
+        },
+        {
+            "Trial Title": "AK002-027, Urticaria",
+            "Trial ID / Registration Number": "AK002-027",
+            "Role / Position": "",
+            "Start Date": "2022",
+            "End Date": "2023"
+        },
+        {
+            "Trial Title": "PR2053 PATENT-B, Bowel Stricture",
+            "Trial ID / Registration Number": "PR2053 PATENT-B",
+            "Role / Position": "",
+            "Start Date": "2022",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "PR2052 PATENT-E, Esophageal Stricture",
+            "Trial ID / Registration Number": "PR2052 PATENT-E",
+            "Role / Position": "",
+            "Start Date": "2022",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "GS-US-454-6075, NASH",
+            "Trial ID / Registration Number": "GS-US-454-6075",
+            "Role / Position": "",
+            "Start Date": "2022",
+            "End Date": "2023"
+        },
+        {
+            "Trial Title": "AK002-018, Atopic Dermatitis",
+            "Trial ID / Registration Number": "AK002-018",
+            "Role / Position": "",
+            "Start Date": "2022",
+            "End Date": "2024"
+        },
+        {
+            "Trial Title": "CC-93538-EE-002, Eosinophilic Esophagitis",
+            "Trial ID / Registration Number": "CC-93538-EE-002",
+            "Role / Position": "",
+            "Start Date": "2022",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "AXA1125-101, NASH",
+            "Trial ID / Registration Number": "AXA1125-101",
+            "Role / Position": "",
+            "Start Date": "2022",
+            "End Date": "2022"
+        },
+        {
+            "Trial Title": "2021-02 TENEO, Liver Cancer",
+            "Trial ID / Registration Number": "2021-02 TENEO",
+            "Role / Position": "",
+            "Start Date": "2022",
+            "End Date": "2022"
+        },
+        {
+            "Trial Title": "NERD-301, Non-Erosive Gastroesophageal Reflux Disease",
+            "Trial ID / Registration Number": "NERD-301",
+            "Role / Position": "",
+            "Start Date": "2021",
+            "End Date": "2023"
+        },
+        {
+            "Trial Title": "AK002-023, Eosinophilic Gastritis and/or Eosinophilic Duodenitis",
+            "Trial ID / Registration Number": "AK002-023",
+            "Role / Position": "",
+            "Start Date": "2021",
+            "End Date": "2022"
+        },
+        {
+            "Trial Title": "ALN-HSD-001, NASH",
+            "Trial ID / Registration Number": "ALN-HSD-001",
+            "Role / Position": "",
+            "Start Date": "2021",
+            "End Date": "2022"
+        },
+        {
+            "Trial Title": "AK002-021, Eosinophilic Duodenitis",
+            "Trial ID / Registration Number": "AK002-021",
+            "Role / Position": "",
+            "Start Date": "2021",
+            "End Date": "2023"
+        },
+        {
+            "Trial Title": "CC-93538-EE-001, Eosinophilic Esophagitis",
+            "Trial ID / Registration Number": "CC-93538-EE-001",
+            "Role / Position": "",
+            "Start Date": "2021",
+            "End Date": "2024"
+        },
+        {
+            "Trial Title": "APD334-202, Crohn's Disease",
+            "Trial ID / Registration Number": "APD334-202",
+            "Role / Position": "",
+            "Start Date": "2021",
+            "End Date": "2023"
+        },
+        {
+            "Trial Title": "NERD-201, Non-Erosive Gastroesophageal Reflux Disease",
+            "Trial ID / Registration Number": "NERD-201",
+            "Role / Position": "",
+            "Start Date": "2021",
+            "End Date": "2022"
+        },
+        {
+            "Trial Title": "CDI-301, C-Difficile",
+            "Trial ID / Registration Number": "CDI-301",
+            "Role / Position": "",
+            "Start Date": "2021",
+            "End Date": "2023"
+        },
+        {
+            "Trial Title": "AK002-016X EXT to Eosinophilic Gastritis and/or Eosinophilic Gastroenteritis",
+            "Trial ID / Registration Number": "AK002-016X",
+            "Role / Position": "",
+            "Start Date": "2020",
+            "End Date": "2023"
+        },
+        {
+            "Trial Title": "SERES-013, C-difficile",
+            "Trial ID / Registration Number": "SERES-013",
+            "Role / Position": "",
+            "Start Date": "2020",
+            "End Date": "2022"
+        },
+        {
+            "Trial Title": "NG101-201, Gastroparesis",
+            "Trial ID / Registration Number": "NG101-201",
+            "Role / Position": "",
+            "Start Date": "2020",
+            "End Date": "2022"
+        },
+        {
+            "Trial Title": "EG-CL-102, Adenocarcinoma",
+            "Trial ID / Registration Number": "EG-CL-102",
+            "Role / Position": "",
+            "Start Date": "2020",
+            "End Date": "2021"
+        },
+        {
+            "Trial Title": "EG-CL-101, Barrett's Esophagus",
+            "Trial ID / Registration Number": "EG-CL-101",
+            "Role / Position": "",
+            "Start Date": "2020",
+            "End Date": "2021"
+        },
+        {
+            "Trial Title": "AK002-014, Eosinophilic Esophagitis",
+            "Trial ID / Registration Number": "AK002-014",
+            "Role / Position": "",
+            "Start Date": "2020",
+            "End Date": "2023"
+        },
+        {
+            "Trial Title": "AK002-016, Eosinophilic Gastritis and/or Eosinophilic Gastroenteritis",
+            "Trial ID / Registration Number": "AK002-016",
+            "Role / Position": "",
+            "Start Date": "2020",
+            "End Date": "2022"
+        },
+        {
+            "Trial Title": "AK002-019, Eosinophilic Gastrointestinal Diseases",
+            "Trial ID / Registration Number": "AK002-019",
+            "Role / Position": "",
+            "Start Date": "2020",
+            "End Date": "2020"
+        },
+        {
+            "Trial Title": "HP-301, H. Pylori",
+            "Trial ID / Registration Number": "HP-301",
+            "Role / Position": "",
+            "Start Date": "2020",
+            "End Date": "2021"
+        },
+        {
+            "Trial Title": "EE-301, Erosive Esophagitis",
+            "Trial ID / Registration Number": "EE-301",
+            "Role / Position": "",
+            "Start Date": "2020",
+            "End Date": "2021"
+        },
+        {
+            "Trial Title": "M14-234, Ulcerative Colitis",
+            "Trial ID / Registration Number": "M14-234",
+            "Role / Position": "",
+            "Start Date": "2019",
+            "End Date": "2022"
+        },
+        {
+            "Trial Title": "M14-533, Ulcerative Colitis",
+            "Trial ID / Registration Number": "M14-533",
+            "Role / Position": "",
+            "Start Date": "2019",
+            "End Date": "Present"
+        },
+        {
+            "Trial Title": "M14-675, Ulcerative Colitis",
+            "Trial ID / Registration Number": "M14-675",
+            "Role / Position": "",
+            "Start Date": "2019",
+            "End Date": "2021"
+        },
+        {
+            "Trial Title": "M14-430, Crohn's Disease",
+            "Trial ID / Registration Number": "M14-430",
+            "Role / Position": "",
+            "Start Date": "2019",
+            "End Date": "2024"
+        },
+        {
+            "Trial Title": "M14-431, Crohn's Disease",
+            "Trial ID / Registration Number": "M14-431",
+            "Role / Position": "",
+            "Start Date": "2019",
+            "End Date": "2022"
+        },
+        {
+            "Trial Title": "M14-433, Crohn's Disease",
+            "Trial ID / Registration Number": "M14-433",
+            "Role / Position": "",
+            "Start Date": "2019",
+            "End Date": "2022"
+        },
+        {
+            "Trial Title": "GS-US-365-4237 FALCON, Ulcerative Colitis",
+            "Trial ID / Registration Number": "GS-US-365-4237 FALCON",
+            "Role / Position": "",
+            "Start Date": "2019",
+            "End Date": "2021"
+        },
+        {
+            "Trial Title": "BLI4S00-302, Colon Prep",
+            "Trial ID / Registration Number": "BLI4S00-302",
+            "Role / Position": "",
+            "Start Date": "2019",
+            "End Date": "2021"
+        },
+        {
+            "Trial Title": "SP-1011-003, Eosinophilic Esophagitis",
+            "Trial ID / Registration Number": "SP-1011-003",
+            "Role / Position": "",
+            "Start Date": "2019",
+            "End Date": "2023"
+        },
+        {
+            "Trial Title": "PRISM Ext, C-Difficile",
+            "Trial ID / Registration Number": "Finch CP101-CDI-E0O2",
+            "Role / Position": "",
+            "Start Date": "2019",
+            "End Date": "2021"
+        },
+        {
+            "Trial Title": "C-difficile",
+            "Trial ID / Registration Number": "Finch CDI-001",
+            "Role / Position": "",
+            "Start Date": "2019",
+            "End Date": "2021"
+        },
+        {
+            "Trial Title": "Ulcerative Colitis",
+            "Trial ID / Registration Number": "Shire SHP647-302",
+            "Role / Position": "",
+            "Start Date": "2017",
+            "End Date": "2020"
+        },
+        {
+            "Trial Title": "Severe Ulcerative Colitis",
+            "Trial ID / Registration Number": "Shire SHP647-303",
+            "Role / Position": "",
+            "Start Date": "2017",
+            "End Date": "2021"
+        },
+        {
+            "Trial Title": "Ulcerative Colitis",
+            "Trial ID / Registration Number": "Shire SHP-647-304",
+            "Role / Position": "",
+            "Start Date": "2017",
+            "End Date": "2024"
+        },
+        {
+            "Trial Title": "Crohn's Disease",
+            "Trial ID / Registration Number": "Celgene GED-0301-CD-002",
+            "Role / Position": "",
+            "Start Date": "2017",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Crohn's Disease",
+            "Trial ID / Registration Number": "Boehringer Ingelheim 1297.4",
+            "Role / Position": "",
+            "Start Date": "2016",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Ulcerative Colitis",
+            "Trial ID / Registration Number": "SERES 101",
+            "Role / Position": "",
+            "Start Date": "2016",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-337-1431",
+            "Role / Position": "",
+            "Start Date": "2015",
+            "End Date": "2020"
+        },
+        {
+            "Trial Title": "Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-342-1446",
+            "Role / Position": "",
+            "Start Date": "2015",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-367-1168",
+            "Role / Position": "",
+            "Start Date": "2015",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-367-1169",
+            "Role / Position": "",
+            "Start Date": "2015",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Lysosomal Acid Lipase Deficiency",
+            "Trial ID / Registration Number": "Synageva LAL-CSS01",
+            "Role / Position": "",
+            "Start Date": "2014",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "TOPAZ II - Hepatitis C",
+            "Trial ID / Registration Number": "AbbVie M14-222",
+            "Role / Position": "",
+            "Start Date": "2014",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "TURQUOISE III - Hepatitis C and Cirrhosis",
+            "Trial ID / Registration Number": "AbbVie M14-490",
+            "Role / Position": "",
+            "Start Date": "2014",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-342-1553",
+            "Role / Position": "",
+            "Start Date": "2014",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Hepatitis C and Child-Pugh Class B Cirrhosis",
+            "Trial ID / Registration Number": "Gilead GS-US-342-1137",
+            "Role / Position": "",
+            "Start Date": "2014",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-342-1138",
+            "Role / Position": "",
+            "Start Date": "2014",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Genotype 2 Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-342-1139",
+            "Role / Position": "",
+            "Start Date": "2014",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Genotype 3 Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-342-1140",
+            "Role / Position": "",
+            "Start Date": "2014",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Genotype 1 Chronic Hepatitis C",
+            "Trial ID / Registration Number": "Janssen TMC435HPC3017",
+            "Role / Position": "",
+            "Start Date": "2014",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Genotype 1 Chronic Hepatitis C",
+            "Trial ID / Registration Number": "BMS Al443-102",
+            "Role / Position": "",
+            "Start Date": "2013",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Genotype 1 Chronic Hepatitis C",
+            "Trial ID / Registration Number": "BMS Al443-113",
+            "Role / Position": "",
+            "Start Date": "2013",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Hepatitis C",
+            "Trial ID / Registration Number": "AbbVie M13-102",
+            "Role / Position": "",
+            "Start Date": "2013",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "TURQUOISE I - Genotype 1 Chronic Hepatitis C",
+            "Trial ID / Registration Number": "AbbVie M14-004",
+            "Role / Position": "",
+            "Start Date": "2013",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Genotype 1 Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-337-0108A",
+            "Role / Position": "",
+            "Start Date": "2013",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-342-0102",
+            "Role / Position": "",
+            "Start Date": "2013",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Hepatitis C",
+            "Trial ID / Registration Number": "Janssen TMC435-TIDP16",
+            "Role / Position": "",
+            "Start Date": "2013",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-342-0109",
+            "Role / Position": "",
+            "Start Date": "2013",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Hepatitis",
+            "Trial ID / Registration Number": "BMS Al444058",
+            "Role / Position": "",
+            "Start Date": "2012",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "SAPPHIRE II - Genotype 1 Chronic Hepatitis C",
+            "Trial ID / Registration Number": "AbbVie M13-098",
+            "Role / Position": "",
+            "Start Date": "2012",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Bowel Cleansing Treatments",
+            "Trial ID / Registration Number": "Braintree BLI800-440",
+            "Role / Position": "",
+            "Start Date": "2012",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US248-0122",
+            "Role / Position": "",
+            "Start Date": "2012",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "IMUNITI - Crohn's Disease",
+            "Trial ID / Registration Number": "Janssen CNTO1275CRD3003",
+            "Role / Position": "",
+            "Start Date": "2012",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "UNITI 2 - Crohn's Disease",
+            "Trial ID / Registration Number": "Janssen CNTO1275CRD3002",
+            "Role / Position": "",
+            "Start Date": "2012",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Genotype 1, 4, 5, or 6 Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-334-0110",
+            "Role / Position": "",
+            "Start Date": "2012",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Genotype Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-337-0109",
+            "Role / Position": "",
+            "Start Date": "2012",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Genotype 1 Chronic Hepatitis C IL28B CC and Genotype",
+            "Trial ID / Registration Number": "Vertex VX11-950-114",
+            "Role / Position": "",
+            "Start Date": "2012",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Genotype 1 Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-337-0108",
+            "Role / Position": "",
+            "Start Date": "2012",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Genotype 1 Hepatitis C",
+            "Trial ID / Registration Number": "Tibotec TMC435-TiDP16-C213",
+            "Role / Position": "",
+            "Start Date": "2011",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Genotype 1 Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-248-0120",
+            "Role / Position": "",
+            "Start Date": "2011",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Hepatitis C",
+            "Trial ID / Registration Number": "Janssen TMC435-HPC-3002",
+            "Role / Position": "",
+            "Start Date": "2011",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Genotype 2 or 3 Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-334-0107",
+            "Role / Position": "",
+            "Start Date": "2011",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "UNITI 1 - Crohn's Disease",
+            "Trial ID / Registration Number": "Janssen CNTO1275CRD3001",
+            "Role / Position": "",
+            "Start Date": "2011",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Chronic Genotype 2 or 3 Hepatitis C",
+            "Trial ID / Registration Number": "Gilead GS-US-334-0108",
+            "Role / Position": "",
+            "Start Date": "2011",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Genotype 1 Chronic Hepatitis C",
+            "Trial ID / Registration Number": "AbbVie M11-652",
+            "Role / Position": "",
+            "Start Date": "2011",
+            "End Date": ""
+        },
+        {
+            "Trial Title": "Genotype 1 Hepatitis C and HIV Type 1",
+            "Trial ID / Registration Number": "Vertex VX11-950-115",
+            "Role / Position": "",
+            "Start Date": "2011",
+            "End Date": ""
+        }
+    ],
+    "Training": [
+        {
+            "Training Program / Course Name": "NIDA Good Clinical Practice",
+            "Institution / Provider": "NIDA",
+            "Start": "1/31/2024"
+        },
+        {
+            "Training Program / Course Name": "NIDA Good Clinical Practice",
+            "Institution / Provider": "NIDA",
+            "Start": "1/25/2021"
+        },
+        {
+            "Training Program / Course Name": "CITI Good Clinical Practice",
+            "Institution / Provider": "CITI",
+            "Start": "1/9/2018"
+        },
+        {
+            "Training Program / Course Name": "Pfizer SIRIUS for Safety Reporting Training v1.0",
+            "Institution / Provider": "Pfizer",
+            "Start": "9/22/2017"
+        },
+        {
+            "Training Program / Course Name": "Pfizer C1171002 Protocol Specific Training v1.0",
+            "Institution / Provider": "Pfizer",
+            "Start": "9/21/2017"
+        },
+        {
+            "Training Program / Course Name": "Fibroscan 530 Training Certificate",
+            "Institution / Provider": "asshs",
+            "Start": "9/14/2017"
+        },
+        {
+            "Training Program / Course Name": "TransCelerate ICH GCP",
+            "Institution / Provider": "TransCelerate",
+            "Start": "4/19/2016"
+        },
+        {
+            "Training Program / Course Name": "Rave EDC Essentials for Clinical Research Coordinators",
+            "Institution / Provider": "askn a",
+            "Start": "5/8/2015"
+        },
+        {
+            "Training Program / Course Name": "TransCelerate ICH GCP",
+            "Institution / Provider": "TransCelerate",
+            "Start": "4/25/2014"
+        },
+        {
+            "Training Program / Course Name": "CITI Good Clinical Practice",
+            "Institution / Provider": "CITI",
+            "Start": "4/24/2012"
+        }
+    ],
+    "Professional Experience": [
+        {
+            "Job Title": "Clinical Research Investigator",
+            "Organization/Hospital Name": "ENCORE Borland-Groover Clinical Research",
+            "Start Date": "3/2019",
+            "End Date": "Present",
+            "City": "Jacksonville",
+            "State": "FL",
+            "Country": "USA",
+            "country": "United States of America"
+        },
+        {
+            "Job Title": "Director of Hepatology Liver Clinic",
+            "Organization/Hospital Name": "Borland-Groover Clinic",
+            "Start Date": "2004",
+            "End Date": "Present",
+            "City": "Jacksonville",
+            "State": "Florida",
+            "Country": "USA",
+            "country": "United States of America"
+        },
+        {
+            "Job Title": "Chief of Gastroenterology",
+            "Organization/Hospital Name": "St. Lukes Hospital",
+            "Start Date": "2008",
+            "End Date": "2014",
+            "City": "Jacksonville",
+            "State": "FL",
+            "Country": "USA",
+            "country": "United States of America"
+        },
+        {
+            "Job Title": "Ambulatory Care Physician",
+            "Organization/Hospital Name": "Outpatient Clinics",
+            "Start Date": "2002",
+            "End Date": "2004",
+            "City": "Madrid",
+            "State": "",
+            "Country": "Spain",
+            "country": "Spain"
+        },
+        {
+            "Job Title": "Ambulatory Care Physician",
+            "Organization/Hospital Name": "Outpatient Clinics",
+            "Start Date": "1991",
+            "End Date": "1992",
+            "City": "Madrid",
+            "State": "",
+            "Country": "Spain",
+            "country": "Spain"
+        }
+    ],
+    "Professional Active Memberships": [
+        {
+            "Organization Name": "American Association for the Study of Liver Diseases",
+            "Membership Type": "Member",
+            "Start Date": "",
+            "End Date": "",
+            "Status": ""
+        },
+        {
+            "Organization Name": "Duval County Medical Society",
+            "Membership Type": "Member",
+            "Start Date": "",
+            "End Date": "",
+            "Status": ""
+        },
+        {
+            "Organization Name": "Speaker Bureau for Schering Company",
+            "Membership Type": "Speaker",
+            "Start Date": "",
+            "End Date": "",
+            "Status": ""
+        }
+    ],
+    "Achievements or Awards": [
+        {
+            "Award / Achievement Name": "Selected AASLD/Shering Advanced Hepatology Fellow",
+            "Awarding Organization/Institution": "AASLD/Shering",
+            "Awarded / Achieved Month": "",
+            "Awarded / Achieved Year": "2001-2002",
+            "Description / Details": ""
+        }
+    ],
+    "Languages": [
+        {
+            "Language Name": "English",
+            "Proficiency": "Native"
+        },
+        {
+            "Language Name": "Spanish",
+            "Proficiency": "Conversational"
+        }
+    ]
+}

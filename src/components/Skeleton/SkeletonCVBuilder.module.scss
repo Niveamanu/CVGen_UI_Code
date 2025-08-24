@@ -1,0 +1,143 @@
+.cvBuilderSkeletonPage {
+  display: flex;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.sidebar {
+  width: 320px;
+  background: #fffbe6;
+  padding: 32px 16px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  border-radius: 16px;
+  margin: 24px 24px 24px 0;
+}
+
+.progressCard {
+  background: #fffde7;
+  border-radius: 16px;
+  padding: 24px 16px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+.progressTitle {
+  width: 160px;
+  height: 20px;
+  background: #ffe066;
+  border-radius: 8px;
+}
+.progressBarWrapper {
+  width: 100%;
+  height: 8px;
+  background: #f0e68c;
+  border-radius: 4px;
+}
+.progressBar {
+  width: 60%;
+  height: 8px;
+  background: #ffd600;
+  border-radius: 4px;
+  transition: width 0.5s;
+}
+.progressPercent {
+  width: 48px;
+  height: 16px;
+  background: #ffe066;
+  border-radius: 8px;
+}
+
+.stepsList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.stepCircle {
+  width: 32px;
+  height: 32px;
+  background: #ffd600;
+  border-radius: 50%;
+}
+.stepLine {
+  width: 4px;
+  height: 32px;
+  background: #ffe066;
+  border-radius: 2px;
+}
+.stepLabel {
+  width: 120px;
+  height: 18px;
+  background: #fffde7;
+  border-radius: 6px;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px 24px 24px 0;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.headerLeft {
+  width: 220px;
+  height: 32px;
+  background: #ffe066;
+  border-radius: 8px;
+}
+.headerRight {
+  width: 180px;
+  height: 32px;
+  background: #ffd600;
+  border-radius: 16px;
+}
+.formCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin-bottom: 24px;
+}
+.formTitle {
+  width: 180px;
+  height: 28px;
+  background: #ffe066;
+  border-radius: 8px;
+  margin-bottom: 32px;
+}
+.formFields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.formField {
+  width: 320px;
+  height: 40px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+.formNav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+.navBtn {
+  width: 120px;
+  height: 40px;
+  background: #ffd600;
+  border-radius: 12px;
+}

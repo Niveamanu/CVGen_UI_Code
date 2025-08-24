@@ -1,0 +1,70 @@
+export const FlourishSteps = [
+  {
+    id: 1,
+    title: "Personal Information",
+    completed: false,
+    keyName: "Personal Information",
+  },
+  {
+    id: 2,
+    title: "Flourish Site Affiliations",
+    completed: false,
+    keyName: "Flourish Site Affiliations",
+  },
+  {
+    id: 3,
+    title: "Hospital Affiliations",
+    completed: false,
+    keyName: "Hospital Affiliations",
+  },
+  {
+    id: 4,
+    title: "Research Affiliations",
+    completed: false,
+    keyName: "Research Affiliations",
+  },
+  { id: 5, title: "Education", completed: false, keyName: "Education" },
+  {
+    id: 6,
+    title: "Licenses & Certifications",
+    completed: false,
+    keyName: "Licenses & Certifications",
+  },
+  { id: 7, title: "Publications", completed: false, keyName: "Publications" },
+  {
+    id: 8,
+    title: "Professional Experience",
+    completed: false,
+    keyName: "Professional Experience",
+  },
+  {
+    id: 9,
+    title: "Professional Active Memberships",
+    completed: false,
+    keyName: "Professional Active Memberships",
+  },
+  {
+    id: 10,
+    title: "Psychometric Rating/ Scales Experience",
+    completed: false,
+    keyName: "Psychometric Rating/Scales Experiences",
+  },
+  {
+    id: 11,
+    title: "Clinical Research Trials Conducted",
+    completed: false,
+    keyName: "Clinical Research Trials Conducted",
+  },
+  {
+    id: 12,
+    title: "Training",
+    completed: false,
+    keyName: "Training",
+  },
+  {
+    id: 13,
+    title: "Achievements or Awards",
+    completed: false,
+    keyName: "Achievements or Awards",
+  },
+];

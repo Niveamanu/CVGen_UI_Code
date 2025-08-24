@@ -1,0 +1,75 @@
+@import "../../styles/_variables.scss";
+
+.skeletonPageWrapper {
+  min-height: 100vh;
+  background: $secondary;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.skeletonHeader {
+  width: 100%;
+  height: 56px;
+  background: $dark;
+  display: flex;
+  align-items: center;
+  padding: 0 2.5rem;
+  color: $white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-bottom: 3px solid $primary;
+}
+
+.skeletonTabs {
+  width: 100%;
+  background: $white;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+  border-radius: $border-radius $border-radius 0 0;
+  border-bottom: 1.5px solid $gray-200;
+  margin-bottom: 0.5rem;
+}
+
+.skeletonTab {
+  height: 22px;
+  width: 120px;
+  background: $gray-100;
+  border-radius: 8px 8px 0 0;
+  margin-right: 2rem;
+  animation: skeleton-loading 1.2s infinite linear;
+}
+.skeletonTab.active {
+  background: $white;
+  border-bottom: 3px solid $primary;
+}
+
+.skeletonMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 2rem 2.5rem 1rem 2.5rem;
+}
+
+.skeletonBottomBar {
+  width: 100%;
+  height: 56px;
+  background: $white;
+  border-radius: 0 0 $border-radius $border-radius;
+  box-shadow: 0 -2px 8px rgba($dark, 0.04);
+  margin-top: 1.5rem;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}

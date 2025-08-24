@@ -1,0 +1,60 @@
+@import "../../styles/_variables.scss";
+
+.skeletonTableWrapper {
+  width: 100%;
+  min-height: 320px;
+  background: $secondary;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 12px rgba($dark, 0.04);
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.skeletonTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.skeletonHeaderCell {
+  height: 38px;
+  background: $gray-300;
+  border-bottom: 1px solid $gray-200;
+  padding: 0.75rem 0.5rem;
+}
+
+.skeletonRow {
+  height: 36px;
+}
+
+.skeletonCell {
+  background: linear-gradient(90deg, $primary-100 25%, $primary-200 50%, $primary-300 75%);
+  border-radius: 4px;
+  height: 16px;
+  margin: 8px 0;
+  animation: skeleton-loading 1.2s infinite linear;
+}
+
+.skeletonCell.short {
+  width: 60%;
+}
+.skeletonCell.medium {
+  width: 80%;
+}
+.skeletonCell.long {
+  width: 100%;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}

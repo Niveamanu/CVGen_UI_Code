@@ -1,0 +1,931 @@
+{
+  "content": {
+  "response": {
+    "Personal Information": {
+      "Email Address": "rdenis@flourishresearch.com",
+      "Full Name": "Rimsky Denis",
+      "Credentials": "MD, MPH, MBA, FACC",
+      "Contact Number": "(786) 772-1510",
+      "Address": "8260 NE 2nd Avenue",
+      "City": "Miami",
+      "State": "Florida",
+      "Zipcode": "33138",
+      "Country": "USA"
+    },
+    "Flourish Site Affiliations": [
+      {
+        "Site Name": "Flourish Research – North Miami",
+        "CTMS Site Name": "Flourish Research Acquisition, LLC",
+        "Site Address": "8260 NE 2 Avenue",
+        "City": "Miami",
+        "State": "Florida",
+        "Zipcode": "33138",
+        "Country": "USA",
+        "Description of Affiliation": ""
+      },
+      {
+        "Site Name": "Flourish Research",
+        "CTMS Site Name": "Suncoast Research Group, LLC",
+        "Site Address": "2128 West Flagler Street, First Floor",
+        "City": "Miami",
+        "State": "Florida",
+        "Zipcode": "33135",
+        "Country": "USA",
+        "Description of Affiliation": ""
+      },
+      {
+        "Site Name": "Flourish Research",
+        "CTMS Site Name": "Clinical Site Partners, LLC",
+        "Site Address": "12600 SW 120th Street, Suites 116/117",
+        "City": "Miami",
+        "State": "Florida",
+        "Zipcode": "33186",
+        "Country": "USA",
+        "Description of Affiliation": ""
+      },
+      {
+        "Site Name": "Flourish Research",
+        "CTMS Site Name": "Excel Medical Clinical Trials, LLC",
+        "Site Address": "7900 Glades Road, Suite 400",
+        "City": "Boca Raton",
+        "State": "Florida",
+        "Zipcode": "33434",
+        "Country": "USA",
+        "Description of Affiliation": ""
+      }
+    ],
+    "Hospital Affiliations": [
+      {
+        "Hospital Name": "Jackson North Hospital",
+        "Department / Specialty": "",
+        "Position / Role": "",
+        "Contact Details": "Miami, Florida",
+        "From Date": "",
+        "To Date": ""
+      },
+      {
+        "Hospital Name": "Mercy Hospital",
+        "Department / Specialty": "",
+        "Position / Role": "",
+        "Contact Details": "Miami, Florida",
+        "From Date": "",
+        "To Date": ""
+      },
+      {
+        "Hospital Name": "Aventura Hospital",
+        "Department / Specialty": "",
+        "Position / Role": "",
+        "Contact Details": "Miami, Florida",
+        "From Date": "",
+        "To Date": ""
+      },
+      {
+        "Hospital Name": "Florida University Hospital",
+        "Department / Specialty": "",
+        "Position / Role": "",
+        "Contact Details": "Davie, Florida",
+        "From Date": "",
+        "To Date": ""
+      },
+      {
+        "Hospital Name": "Kendall Regional Hospital",
+        "Department / Specialty": "",
+        "Position / Role": "",
+        "Contact Details": "Miami, Florida",
+        "From Date": "",
+        "To Date": ""
+      }
+    ],
+    "Research Affiliations": [
+      {
+        "Institution Name": "Flourish Research",
+        // "Research Area / Focus": "",
+        "Position / Role": "Investigator",
+        "Start Date": "2024(Year)",
+        "End Date": "Present",
+        "Project Title / Description": ""
+      },
+      {
+        "Institution Name": "Johns Hopkins University/Johns Hopkins Hospital",
+        "Research Area / Focus": "",
+        "Position / Role": "",
+        "Start Date": "2019(Year)",
+        "End Date": "2023(Year)",
+        "Project Title / Description": ""
+      },
+      {
+        "Institution Name": "University of Miami Department of OB/GYN Research",
+        "Research Area / Focus": "OB/GYN",
+        "Position / Role": "Research Coordinator/Clinical Educator",
+        "Start Date": "2008(Year)",
+        "End Date": "2009(Year)",
+        "Project Title / Description": ""
+      }
+    ],
+    "Education": [
+      {
+        "Start Year": "2009",
+        "End Year": "2014",
+        "Degree": "Medical Doctorate (M.D.)",
+        "Unviersity Name": "University of Miami Miller School of Medicine",
+        "City": "Miami",
+        "State": "Florida",
+        "Country": "USA"
+      },
+      {
+        "Start Year": "2012",
+        "End Year": "2013",
+        "Degree": "Master of Business Administration (M.B.A.)",
+        "Unviersity Name": "University of Miami",
+        "City": "Miami",
+        "State": "Florida",
+        "Country": "USA"
+      },
+      {
+        "Start Year": "2006",
+        "End Year": "2008",
+        "Degree": "Master of Public Health (M.P.H.)",
+        "Unviersity Name": "Florida International University",
+        "City": "Miami",
+        "State": "Florida",
+        "Country": "USA"
+      },
+      {
+        "Start Year": "2003",
+        "End Year": "2006",
+        "Degree": "Bachelor of Science (B.S.) – Biological Science",
+        "Unviersity Name": "Florida International University",
+        "City": "Miami",
+        "State": "Florida",
+        "Country": "USA"
+      }
+    ],
+    "License": [
+      {
+        "Issue Date": "2017",
+        "Exiry Date": "Present",
+        "License Name": "State of Florida Medical License",
+        "Issuing Authority": "State of Florida",
+        "License Number": "ME137480"
+      }
+    ],
+    "Certifications": [
+      {
+        "Issue Date": "Mar 2023",
+        "Expiry Date": "",
+        "Certificate Title": "Advanced Cardiovascular Life Support (ACLS)",
+        "Issuing Organization": "American Heart Association",
+        "Certificate ID": ""
+      },
+      {
+        "Issue Date": "Mar 2023",
+        "Expiry Date": "",
+        "Certificate Title": "Basic Life Support (BLS)",
+        "Issuing Organization": "American Heart Association",
+        "Certificate ID": ""
+      },
+      {
+        "Issue Date": "",
+        "Expiry Date": "Aug 2024",
+        "Certificate Title": "Internal Medicine",
+        "Issuing Organization": "American Board of Internal Medicine",
+        "Certificate ID": ""
+      },
+      {
+        "Issue Date": "",
+        "Expiry Date": "Sep 2023",
+        "Certificate Title": "Interventional Cardiology",
+        "Issuing Organization": "American Board of Internal Medicine",
+        "Certificate ID": ""
+      },
+      {
+        "Issue Date": "",
+        "Expiry Date": "Sep 2022",
+        "Certificate Title": "Cardiovascular Disease",
+        "Issuing Organization": "American Board of Internal Medicine",
+        "Certificate ID": ""
+      }
+    ],
+    "Professional Experience": [
+      {
+        "Job Title": "Investigator",
+        "Organization/Hospital Name": "Flourish Research Acquisition, LLC dba Flourish Research – North Miami",
+        "Start Date": "2024",
+        "End Date": "Present",
+        "City": "Miami",
+        "State": "Florida",
+        "Country": "USA"
+      },
+      {
+        "Job Title": "Structural & Interventional Cardiologist",
+        "Organization/Hospital Name": "Cardiovascular Health Institute",
+        "Start Date": "2024",
+        "End Date": "Present",
+        "City": "Miami",
+        "State": "Florida",
+        "Country": "USA"
+      },
+      {
+        "Job Title": "Structural & Interventional Cardiologist",
+        "Organization/Hospital Name": "HCA Aventura Hospital",
+        "Start Date": "2023",
+        "End Date": "2024",
+        "City": "Miami",
+        "State": "Florida",
+        "Country": "USA"
+      },
+      {
+        "Job Title": "Fellow – Structural Cardiology",
+        "Organization/Hospital Name": "Johns Hopkins Hospital",
+        "Start Date": "2022",
+        "End Date": "2023",
+        "City": "Baltimore",
+        "State": "Maryland",
+        "Country": "USA"
+      },
+      {
+        "Job Title": "Fellow – Interventional Cardiology",
+        "Organization/Hospital Name": "Johns Hopkins Hospital",
+        "Start Date": "2021",
+        "End Date": "2022",
+        "City": "Baltimore",
+        "State": "Maryland",
+        "Country": "USA"
+      },
+      {
+        "Job Title": "Fellow – Cardiovascular Disease",
+        "Organization/Hospital Name": "Johns Hopkins Hospital",
+        "Start Date": "2020",
+        "End Date": "2021",
+        "City": "Baltimore",
+        "State": "Maryland",
+        "Country": "USA"
+      },
+      {
+        "Job Title": "T-32 NIH Cardiovascular Disease Research Fellow",
+        "Organization/Hospital Name": "Johns Hopkins Hospital",
+        "Start Date": "2019",
+        "End Date": "2020",
+        "City": "Baltimore",
+        "State": "Maryland",
+        "Country": "USA"
+      },
+      {
+        "Job Title": "Fellow – Cardiovascular Disease",
+        "Organization/Hospital Name": "University of Miami",
+        "Start Date": "2017",
+        "End Date": "2019",
+        "City": "Miami",
+        "State": "Florida",
+        "Country": "USA"
+      },
+      {
+        "Job Title": "Resident Physician",
+        "Organization/Hospital Name": "Brown University",
+        "Start Date": "2014",
+        "End Date": "2017",
+        "City": "Providence",
+        "State": "Rhode Island",
+        "Country": "USA"
+      },
+      {
+        "Job Title": "Assistant Director and Consultant",
+        "Organization/Hospital Name": "Center for Haitian Studies, Health & Human Services",
+        "Start Date": "2014",
+        "End Date": "2014",
+        "City": "",
+        "State": "",
+        "Country": "USA"
+      },
+      {
+        "Job Title": "Research Coordinator/Clinical Educator",
+        "Organization/Hospital Name": "University of Miami Department of OB/GYN Research",
+        "Start Date": "2008",
+        "End Date": "2009",
+        "City": "",
+        "State": "",
+        "Country": "USA"
+      },
+      {
+        "Job Title": "Certified Nurses Aide",
+        "Organization/Hospital Name": "The Palace at Home",
+        "Start Date": "2004",
+        "End Date": "2008",
+        "City": "",
+        "State": "",
+        "Country": "USA"
+      }
+    ],
+    "Psychometric Rating/Scales Experiences": [],
+    "Professional Active Memberships": "",
+    "Publications": [
+      {
+        "Publication Title": "Racial Differences in Aortic Valve Calcium Volume Among Patients With Severe Aortic Stenosis Who Underwent Transcatheter Aortic Valve Replacement",
+        "Authors": "Denis R., MD, Hasan R.K., MD, Post, W.S., MD, Resar, J.R., MD, Zimmerman, S.L., MD, Czarny, M.J., MD",
+        "Journal / Source": "American Journal of Cardiology",
+        "Publication Date": "2023 Dec 1",
+        "Volume / Issue / Pages": "208:116-117",
+        "DOI / Link": "10.1016/j.amjcard.2023.09.018",
+        "Description / Summary": ""
+      },
+      {
+        "Publication Title": "Racial/Ethnic Differences in the Prevalence of Aortic Valve Stenosis and Aortic Valve Replacement by Echocardiography: The Multi-Ethnic Study of Atherosclerosis (MESA)",
+        "Authors": "Czarny, MJ, Shah, SJ, Whelton, SP, Blaha, MJ, Tsai, MY, Denis, R, Bertoni, A, Post, WS",
+        "Journal / Source": "Journal of American College of Cardiology",
+        "Publication Date": "2021 July 13",
+        "Volume / Issue / Pages": "78(2):195-197",
+        "DOI / Link": "",
+        "Description / Summary": ""
+      },
+      {
+        "Publication Title": "Statin Therapy Increases Coronary Artery Calcification Scores",
+        "Authors": "Rivner H. MD, Denis R. MD, Tang F., Marzouka G. MD",
+        "Journal / Source": "American Heart Association (AHA) Annual Meeting",
+        "Publication Date": "2018",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at the American Heart Association (AHA) Annual Meeting. Chicago, Illinois, November 10, 2018."
+      },
+      {
+        "Publication Title": "A Large Left Ventricle Thrombus with Vascular Sequelae: A Case Report",
+        "Authors": "Saint Croix G. MD, Ibrahim M. MD, Zablah G. MD, Ashinne B. MD, Taveras M. MD, Denis R. MD",
+        "Journal / Source": "Florida American College of Cardiology (ACC) Annual Meeting",
+        "Publication Date": "2018",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at the Florida American College of Cardiology (ACC) Annual Meeting. Orlando, Florida, August 19, 2019."
+      },
+      {
+        "Publication Title": "Is aortic stenosis associated with subclavian steal syndrome?",
+        "Authors": "Saint Croix G. MD, Denis R. MD, Okobi D. MD, Bornak A. MD",
+        "Journal / Source": "Miami Valves Conference",
+        "Publication Date": "2018",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at Miami Valves Conference. Miami, Florida, February 1, 2018."
+      },
+      {
+        "Publication Title": "TAKOTSUBO CARDIOMYOPATHY IN THE SETTING OF MYASTHENIA GRAVIS CRISIS",
+        "Authors": "Denis R. MD, O'Connor M. MD, O'brien J. MD, Dapaah-Afriyie K.MD",
+        "Journal / Source": "Rhode Island American College of Physicians (ACP) Annual Meeting",
+        "Publication Date": "2015",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at Rhode Island American College of Physicians (ACP) Annual Meeting. Cranston, Rhode Island, May 7, 2015."
+      },
+      {
+        "Publication Title": "Clinical Manifestations of Human Ehrlichiosis",
+        "Authors": "Vazquez R. MD, Denis R. MD, Stulick E. MD",
+        "Journal / Source": "Rhode Island American College of Physicians (ACP) Annual Meeting",
+        "Publication Date": "2015",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at Rhode Island American College of Physicians (ACP) Annual Meeting. Cranston, Rhode Island, May 7, 2015."
+      },
+      {
+        "Publication Title": "Meaningful Use of Perioperative Informatics in Orthopedics",
+        "Authors": "Barton M., Chmiolek N., Denis R., Shaurya K., Srivastava K., Ramaprasad A., PhD",
+        "Journal / Source": "Center for Health Information and Decision Systems (CHIDS) 4th Annual Workshop on Health IT and Economics (WHITE 2013)",
+        "Publication Date": "2013",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster presented at: Center for Health Information and Decision Systems (CHIDS) 4th Annual Workshop on Health IT and Economics (WHITE 2013); Washington, DC."
+      },
+      {
+        "Publication Title": "Professional Development Course During Medical School: Implications for Potentially More Effective Residents Later",
+        "Authors": "Denis R., Srivastava K., Mechaber A., MD, Zhang C., Ph.D.",
+        "Journal / Source": "AAMC- OSR/GSA Southern Regional Meeting",
+        "Publication Date": "2013",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at 2013 AAMC- OSR/GSA Southern Regional Meeting. Savannah, Georgia, April 19, 2013."
+      },
+      {
+        "Publication Title": "Professional Development Course During Medical School: Implications for Potentially More Effective Residents Later",
+        "Authors": "Denis R., Srivastava K., Mechaber A., MD, Zhang C., Ph.D.",
+        "Journal / Source": "39th Annual Eastern Atlantic Student Research Forum (ESRF)",
+        "Publication Date": "2013",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at 2013 39th Annual Eastern Atlantic Student Research Forum (ESRF). Miami, Florida, March 1, 2013."
+      },
+      {
+        "Publication Title": "Prevention of Venous Thrombotic Event in Brain Injury: Review of Current Practices",
+        "Authors": "Glassner S., DO, Srivastava K., Cofnas P., Deegan B., DeMaria P., Denis R., Ginzburg E., MD",
+        "Journal / Source": "Rambam Maimonides Medical Journal",
+        "Publication Date": "January 2013",
+        "Volume / Issue / Pages": "Vol. 4, Issue 1",
+        "DOI / Link": "",
+        "Description / Summary": ""
+      },
+      {
+        "Publication Title": "Medical Student Externship: An Opportunity to Improve Cross-Cultural Care through Medical Education",
+        "Authors": "Denis R., Clemetson N., Dalembert G., Imran T, Lan M., Nguyen L.",
+        "Journal / Source": "3rd Annual Delta Omega Scientific Poster Competition",
+        "Publication Date": "2012",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at 3rd Annual Delta Omega Scientific Poster Competition. Miami, Florida, April 18, 2012."
+      },
+      {
+        "Publication Title": "Cross Cultural Medical Experience: The Creation of a Medical Student Externship Elective in Jiaxing China",
+        "Authors": "Denis R., Zhang C., Ph.D.",
+        "Journal / Source": "AAMC- OSR/GSA Southern/Central Regional Meeting",
+        "Publication Date": "2012",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at 2012 AAMC- OSR/GSA Southern/Central Regional Meeting. Clearwater, Florida, March 31, 2012."
+      },
+      {
+        "Publication Title": "Building the Bridge to Success: MCAT Preparation and Health Careers Motivation Programs",
+        "Authors": "Denis R., Henry R., Mack A., Ph.D.",
+        "Journal / Source": "AAMC- OSR/GSA Southern/NE Regional Meeting",
+        "Publication Date": "2011",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at 2011 AAMC- OSR/GSA Southern/NE Regional Meeting. Nashville, Tennessee, April 10, 2011."
+      },
+      {
+        "Publication Title": "ETHICS, PROFESSIONALISM, AND HONOR ISSUES IN MEDICAL SCHOOL",
+        "Authors": "Denis R., Sassine J.",
+        "Journal / Source": "AAMC- OSR/GSA Southern/NE Regional Meeting",
+        "Publication Date": "2011",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Oral Presentation at the 2011 AAMC- OSR/GSA Southern/NE Regional Meeting. Nashville, Tennessee, April 8, 2011."
+      },
+      {
+        "Publication Title": "INTESTINAL WORM INFECTION: A COMMUNITY BASED APPROACH IN ERADICATING CHILD ILLNESSES IN RURAL GHANA",
+        "Authors": "Denis R., Rickard D, MD.",
+        "Journal / Source": "37th Annual Eastern Atlantic Student Research Forum (ESRF)",
+        "Publication Date": "2011",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at 2011 37th Annual Eastern Atlantic Student Research Forum (ESRF). Miami, Florida, February 25, 2011."
+      },
+      {
+        "Publication Title": "Chhota Udaipur Health Fair: A Cross Sectional Analysis of Health Indicators in Rural Gujarat, India",
+        "Authors": "Peschansky V, Parikh PP, Parikh TP, Srivastava K, Denis R, Alsina L, Changela K.",
+        "Journal / Source": "37th Annual Eastern Atlantic Student Research Forum (ESRF)",
+        "Publication Date": "2011",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at 2011 37th Annual Eastern Atlantic Student Research Forum (ESRF). Miami, Florida, February 25, 2011."
+      },
+      {
+        "Publication Title": "INTESTINAL WORM INFECTION: A COMMUNITY BASED APPROACH IN ERADICATING CHILD ILLNESSES IN RURAL GHANA",
+        "Authors": "Denis R., Rickard D, MD.",
+        "Journal / Source": "2nd Annual Jay Weiss Social Medicine Advocacy Research and Training (SMART) Forum",
+        "Publication Date": "2010",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Oral Presentation at 2nd Annual Jay Weiss Social Medicine Advocacy Research and Training (SMART) Forum. Miami, Florida, October 8, 2010."
+      },
+      {
+        "Publication Title": "INTESTINAL WORM INFECTION: A COMMUNITY BASED APPROACH IN ERADICATING CHILD ILLNESSES IN RURAL GHANA",
+        "Authors": "Denis R., Rickard D, MD.",
+        "Journal / Source": "American Academy of Family Physicians (AAFP) Family Medicine Global Health Conference",
+        "Publication Date": "2010",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at American Academy of Family Physicians (AAFP) Family Medicine Global Health Conference. Miami, Florida, September 9, 2010."
+      },
+      {
+        "Publication Title": "Florida AHEC SEARCH Experience 2010: Pediatrics in North Miami Beach",
+        "Authors": "Denis R., Mckay E, Freiberg S, Fontoura J.",
+        "Journal / Source": "Florida Area Health Education Centers Regional Meeting",
+        "Publication Date": "2010",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Oral Presentation at Florida Area Health Education Centers Regional Meeting. Marco Island, Florida, July 13, 2010."
+      },
+      {
+        "Publication Title": "Project Prevent: CERVICAL CANCER SCREENING THROUGH SERVICE LEARNING",
+        "Authors": "Denis R., Chakhtoura N, MD.",
+        "Journal / Source": "American Public Health Association Delta Omega Honor Society",
+        "Publication Date": "2010",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at American Public Health Association Delta Omega Honor Society. Miami, Florida, April 5, 2010."
+      },
+      {
+        "Publication Title": "Project Prevent: CERVICAL CANCER SCREENING THROUGH SERVICE LEARNING",
+        "Authors": "Denis R., Chakhtoura N, MD.",
+        "Journal / Source": "36th Annual Eastern Atlantic Student Research Forum (ESRF)",
+        "Publication Date": "2010",
+        "Volume / Issue / Pages": "",
+        "DOI / Link": "",
+        "Description / Summary": "Poster Presentation at 2010 36th Annual Eastern Atlantic Student Research Forum (ESRF). Miami, Florida, February 19, 2010."
+      }
+    ],
+    "Clinical Research Trials Conducted": {
+      "Indication Alzheimer's Disease": [
+        {
+          "Trial Title": "A Randomized, Double-Blind Study to Evaluate the Efficacy and Safety of \"Study Drug\" in Patients with Alzheimer's Disease",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Multicenter, Randomized, Placebo-Controlled, Double-Blind, Parallel-Group Study, to Assess Efficacy, Safety, and Immunogenicity of \"Study Drug,\" a Phosphorylated Tau Targeted Active Immunotherapy, in Participants with Preclinical Alzheimer's Disease",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        }
+      ],
+      "Indication Asthma": [
+        {
+          "Trial Title": "A Phase 2, Randomized, Double-blind, Placebo-controlled, Multi-center, Dose-ranging Study to Evaluate the Efficacy and Safety of \"Study Drug\" in Adult Participants with Severe Asthma",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A 4-Week, Double-Blind, Placebo-Controlled, Parallel-Group, Efficacy and Safety Trial of \"Study Drug 1/Study Drug 2\" Combination compared to \"Study Drug 1, Study Drug 2\" or Placebo delivered by Multidose Dry Powder Inhaler in Participants 12 Years and Older with Asthma",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        }
+      ],
+      "Indication Atherosclerotic Cardiovascular Disease (ASCVD)": [
+        {
+          "Trial Title": "A Phase II, Randomized, Double-blind, Placebo-controlled, Crossover Study to Assess the Effect of \"Study Drug\" on Ambulatory Blood Pressure in Participants with Atherosclerotic Cardiovascular Disease or Risk Equivalents and Elevated Lor-density Lipoprotein Cholesterol",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Placebo-controlled, Double-blind, Randomized, Phase 3 Study to Evaluate the Effect of \"Study Drug\" Fixed Dose Combination Daily on Coronary Plaque Characteristics in Participants with Atherosclerotic Cardiovascular Disease on Coronary CT Angiography",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Phase 3 Randomized, Placebo-Controlled Clinical Study to Evaluate the Efficacy and Safety of \"Study Drug\" in Reducing Major Adverse Cardiovascular Events in Participants at High Cardiovascular Risk",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A randomized double-blind, placebo-controlled, multicenter study to evaluate the efficacy, safety and tolerability of \"Study Drug\" in US Black/African American & Hispanic patient populations with elevated Lp(a) and established atherosclerotic cardiovascular disease",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Phase 3, Randomized, Double-Blind, Placebo-Controlled, Event-Driven Study to Investigate the Effect of \"Study Drug\" on the Incidence of Major Adverse Cardiovascular Events and Major Adverse Kidney Events in Participants with Body Mass Index ≥27 kg/m2 and Atherosclerotic Cardiovascular Disease and/or Chronic Kidney Disease",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Phase 3, Randomized, Double-Blind, Placebo-Controlled Study to Investigate the Effect of \"Study Drug\" on the Reduction of Major Adverse Cardiovascular Events in Adults with Elevated Lipoprotein(a) who have Established Atherosclerotic Cardiovascular Disease or Are at Risk for a First Cardiovascular Event",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        }
+      ],
+      "Indication Cardiovascular Risks": [
+        {
+          "Trial Title": "A randomized double-blind, placebo-controlled, multicenter trial assessing the impact of lipoprotein(a) lowering with \"Study Drug\" on the progression of calcific aortic valve stenosis",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Double-blind, Randomized, Placebo-controlled, Multicenter Study Assessing the Impact of \"Study Drug\" on Major Cardiovascular Events in Patients with Atherosclerotic Cardiovascular Disease and Elevated Lipoprotein (a)",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Phase 3, Open-Label Study of Once Daily \"Study Drug\" Compared with \"Comparator Drug\" in Adult Participants with Type 2 Diabetes and Obesity or Overweight at Increased Cardiovascular Risk",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        }
+      ],
+      "Indication Diabetic Peripheral Neuropathy (DPN)": [
+        {
+          "Trial Title": "A multicentre randomized, double-blind, placebo-controlled Phase 2a study to evaluate efficacy, safety, tolerability, pharmacokinetics and target engagement of \"Study Drug\" in adult patients with Chronic Diabetic Neuropathic Pain (DPNP)",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Phase 2, Randomized, Double-Blind, Placebo-Controlled, Dose-Ranging Study to Evaluate \"Study Drug\" in Adult Participants with Diabetic Peripheral Neuropathic Pain",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        }
+      ],
+      "Indication Dyslipidemia": [
+        {
+          "Trial Title": "A Phase 2, Randomized, Double-Blind, Placebo-Controlled, Parallel Study to Evaluate the Efficacy and Safety of Subcutaneously Administered \"Study Drug\" in Patients with Mixed Dyslipidemia",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        }
+      ],
+      "Indication Hypercholesterolemia": [
+        {
+          "Trial Title": "A Phase 3, Open-label Extension Study to Evaluate the Safety and Efficacy of \"Study Drug\" in Adults With Hypercholesterolemia",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        }
+      ],
+      "Indication Heart Failure": [
+        {
+          "Trial Title": "A Phase III double-blind, randomised, parallel-group superiority trial to evaluate efficacy and safety of the combined use of oral \"Study Drug 1 and Study Drug 2\" compared with placebo and \"Study Drug 2\" in participants with symptomatic heart failure and left ventricular ejection fraction",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        }
+      ],
+      "Indication Influenza": [
+        {
+          "Trial Title": "A Phase 2b Randomized, Double-blind, Placebo-controlled, Multicenter Dose Ranging Study to Evaluate The Efficacy and Safety of \"Study Drug\", a Novel Long-acting Antiviral Conjugate, for the Prevention of Influenza in Subjects not at Risk for Influenza Complications",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        }
+      ],
+      "Indication Shift Work Disorder": [
+        {
+          "Trial Title": "A Multi-center, Randomized, Double-blind, Placebo-controlled Trial to Assess the Efficacy and Safety of \"Study Drug\" in Excessive Sleepiness Associated with Shift Work Disorder",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        }
+      ],
+      "Indication Sleep Apnea": [
+        {
+          "Trial Title": "A Phase 3 Open Label Continuation Protocol of a Fixed Dose Combination of \"Study Drug\" in Obstructive Sleep Apnea",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        }
+      ],
+      "Indication Overweight or Obesity": [
+        {
+          "Trial Title": "A Phase 3, Randomized, Double-Blind, Placebo-Controlled Study to Investigate the Effect of \"Study Drug\" on the Reduction of Morbidity and Mortality in Adults with Obesity",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Phase 3, randomised, double-blind, parallel-group, event-driven, cardiovascular safety study with \"Study Drug\" administered subcutaneously compared with placebo in participants with overweight or obesity with established cardiovascular disease (CVD) or chronic kidney disease, and/or at least two weight-related complications or risk factors for CVD",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Master Protocol to Investigate the Efficacy and Safety of \"Study Drug\" Once Weekly in Participants with Type 2 Diabetes Mellitus who have Obesity or Overweight: A Randomized, Double-Blind, Placebo-Controlled Trial",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Phase 3, Randomized, Double-Blind Study to Evaluate the Efficacy and Safety of \"Study Drug\" Compared to \"Comparator Drug\" in Adults Who Have Obesity",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Phase 2, Double-Blind, Randomized, Placebo-Controlled Study of \"Study Drug 1\" and \"Study Drug 2\", Alone or in Combination, to Investigate the Efficacy and Safety in Adult Participants with Obesity or Overweight without Type 2 Diabetes",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Phase 3 Study to Investigate the Efficacy and Safety of \"Study Drug\" Once Weekly in Participants who have Obesity or Overweight and Osteoarthritis of the Knee: A Randomized, Double-blind, Placebo-Controlled Trial",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Master Protocol to Investigate the Efficacy and Safety of \"Study Drug\" Once Weekly in Participants without Type 2 Diabetes who have Obesity or Overweight: A Randomized, Double-Blind, Placebo-Controlled Trial",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        }
+      ],
+      "Indication Urinary Tract Infection (UTI)": [
+        {
+          "Trial Title": "A Double-Blind, Double Dummy, Randomized, Phase 1b, Nitrofurantoin Controlled, Repeat Oral Dose Study to Investigate the Safety, Tolerability, Pharmacokinetics and Microbiological Response of \"Study Drug\" in Female Participants with Acute Uncomplicated Urinary Tract Infection",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        },
+        {
+          "Trial Title": "A Phase 3b, open-label, single-arm study in adolescent and adult female participants to evaluate clinical symptom improvement and the safety of \"Study Drug\" during treatment of uncomplicated urinary tract infections (acute cystitis)",
+          "Trial ID / Registration Number": "",
+          "Institution / Organization": "",
+          "Role / Position": "",
+          "Start Date": "",
+          "End Date": "",
+          "Brief Description / Outcome": ""
+        }
+      ]
+    },
+    "Achievements or Awards": [
+      {
+        "Date Awarded / Achieved(Year)": "2014",
+        "Award / Achievement Name": "John K. Robinson- Medical Student Dean's Award",
+        "Awarding Organization/Institution": "University of Miami",
+        "Description / Details": ""
+      },
+      {
+        "Date Awarded / Achieved(Year)": "2014",
+        "Award / Achievement Name": "University of Miami Department of Medicine Professionalism Award",
+        "Awarding Organization/Institution": "University of Miami Department of Medicine",
+        "Description / Details": ""
+      },
+      {
+        "Date Awarded / Achieved(Year)": "2014",
+        "Award / Achievement Name": "University of Miami Medical Parents Association Award",
+        "Awarding Organization/Institution": "University of Miami Medical Parents Association",
+        "Description / Details": ""
+      },
+      {
+        "Date Awarded / Achieved(Year)": "2014",
+        "Award / Achievement Name": "George Paff Teaching Award: Thomas Crowder 4th Year Medical Student of the Year Award",
+        "Awarding Organization/Institution": "University of Miami",
+        "Description / Details": ""
+      },
+      {
+        "Date Awarded / Achieved(Year)": "2013",
+        "Award / Achievement Name": "Jackie Tuckfield Graduate Business Student Award",
+        "Awarding Organization/Institution": "",
+        "Description / Details": ""
+      },
+      {
+        "Date Awarded / Achieved(Year)": "2012",
+        "Award / Achievement Name": "1st Place Delta Omega Scientific Poster Competition",
+        "Awarding Organization/Institution": "Delta Omega",
+        "Description / Details": ""
+      },
+      {
+        "Date Awarded / Achieved(Year)": "2011",
+        "Award / Achievement Name": "Iron Arrow Honor Society University of Miami",
+        "Awarding Organization/Institution": "University of Miami",
+        "Description / Details": "The Highest Honor Attained at the University of Miami"
+      },
+      {
+        "Date Awarded / Achieved(Year)": "2011",
+        "Award / Achievement Name": "National Medical Association Medical Student Award",
+        "Awarding Organization/Institution": "National Medical Association",
+        "Description / Details": ""
+      },
+      {
+        "Date Awarded / Achieved(Year)": "2009",
+        "Award / Achievement Name": "Thomas Brown McClelland Rotary Club of Miami Award",
+        "Awarding Organization/Institution": "Rotary Club of Miami",
+        "Description / Details": ""
+      },
+      {
+        "Date Awarded / Achieved(Year)": "2009",
+        "Award / Achievement Name": "University of Miami Trustee Award",
+        "Awarding Organization/Institution": "University of Miami",
+        "Description / Details": ""
+      },
+      {
+        "Date Awarded / Achieved(Year)": "2008",
+        "Award / Achievement Name": "Golden Key Honor Society Award",
+        "Awarding Organization/Institution": "Golden Key Honor Society",
+        "Description / Details": ""
+      }
+    ],
+    "Training": [
+      {
+        "Training Program / Course Name": "Health Insurance Portability and Accountability Act (HIPAA)",
+        "Institution / Provider": "Collaborative Institutional Training Initiative (CITI)",
+        "Duration / Dates": "Sep 2024",
+        "Certification / Qualification": "",
+        "Description / Details": ""
+      },
+      {
+        "Training Program / Course Name": "Good Clinical Practice E6 (GCP)",
+        "Institution / Provider": "Global Health Network (GHN)",
+        "Duration / Dates": "Aug 2024",
+        "Certification / Qualification": "",
+        "Description / Details": ""
+      },
+      {
+        "Training Program / Course Name": "Human Subject Protection (HSP)",
+        "Institution / Provider": "Collaborative Institutional Training Initiative (CITI)",
+        "Duration / Dates": "Sep 2024",
+        "Certification / Qualification": "",
+        "Description / Details": ""
+      },
+      {
+        "Training Program / Course Name": "Clinical Trials Research: Upping Your Game",
+        "Institution / Provider": "American College of Cardiology (ACC)",
+        "Duration / Dates": "2024-2025",
+        "Certification / Qualification": "",
+        "Description / Details": ""
+      }
+    ],
+    "Languages": [
+      {
+        "Language Name": "English",
+        "Proficiency Level": "Fluent",
+        "Certification / Qualification": ""
+      },
+      {
+        "Language Name": "Haitian-Creole",
+        "Proficiency Level": "Fluent",
+        "Certification / Qualification": ""
+      }
+    ]
+  }
+}
+}

@@ -1,0 +1,172 @@
+@import '../styles/variables';
+
+.loginPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('../assets/login.png') center/cover no-repeat;
+  position: relative;
+}
+
+.loginPage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(38, 50, 56, 0.7) 0%, rgba(38, 50, 56, 0) 60%);
+  opacity: 1;
+  z-index: 1;
+}
+
+.loginContainer,
+.rightPanel {
+  position: relative;
+  z-index: 2;
+  margin: 0 3rem 0 0;
+}
+
+.loginContainer {
+  max-width: 420px;
+  min-width: 600px;
+  background: $text-light;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba($primary, 0.08);
+  padding: 2.5rem 4rem 2.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 250px;
+  margin-bottom: 1.5rem;
+}
+
+.loginTitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: $dark;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.loginSubtitle {
+  color: $gray-dark;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.formControl {
+  border-radius: 8px !important;
+  border: 1px solid $gray-medium;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+}
+.loginForm {
+  width: 100%;
+  .form-label {
+    color: $primary;
+    font-weight: 600;
+  }
+  .form-control {
+    border-radius: 8px !important;
+    border: 1px solid $gray-medium;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+  }
+  .form-check {
+    margin-bottom: 1rem;
+    .form-check-input {
+      accent-color: $primary;
+    }
+    .form-check-label {
+      color: $primary;
+      font-size: 0.95rem;
+    }
+  }
+  .forgot {
+    float: right;
+    font-size: 0.95rem;
+    color: $blue;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  .btn-primary {
+    background: $primary;
+    color: $text-light;
+    border-radius: $border-radius;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    &:hover {
+      background: darken($primary, 10%);
+      color: $accent;
+    }
+  }
+}
+
+.divider {
+  width: 100%;
+  border-top: 1px solid $gray-medium;
+  margin: 1.5rem 0;
+}
+
+.loginWith {
+  width: 100%;
+  text-align: center;
+  font-size: 0.95rem;
+  color: $gray-dark;
+  margin-bottom: 1rem;
+}
+
+.microsoftBtn {
+  width: 100%;
+  background: $text-light;
+  border: 1px solid $gray-medium;
+  border-radius: $border-radius;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  &:hover {
+    box-shadow: 0 2px 8px rgba($primary, 0.08);
+  }
+}
+
+.rightPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  padding-left: 2rem;
+  margin-top: 400px;
+  h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.2rem;
+    max-width: 400px;
+  }
+}
+
+// Responsive
+@media (max-width: 900px) {
+  .loginPage {
+    flex-direction: column;
+    background: $gray-light;
+  }
+}

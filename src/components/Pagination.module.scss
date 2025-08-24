@@ -1,0 +1,31 @@
+@import '../styles/variables';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  button {
+    background: none;
+    border: none;
+    color: $dark;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.5rem .8rem;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    &.active {
+      background: $primary;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      color: $dark;
+    }
+    &:disabled {
+      color: $gray-medium;
+      cursor: not-allowed;
+    }
+    &.border {
+      border: 1.5px solid $dark !important;
+    }
+  }
+}

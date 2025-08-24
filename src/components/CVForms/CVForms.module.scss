@@ -1,0 +1,288 @@
+@import '../../styles/variables';
+
+.formSection {
+  max-width: 100%;
+  width: 100%;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $dark;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  
+  label {
+    font-size: 0.95rem;
+    color: $dark;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    
+    .required {
+      color: #dc3545;
+    }
+  }
+  
+  input, select, textarea {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    background: $text-light;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+    }
+    
+    &::placeholder {
+      color: #999;
+    }
+    
+    &.error {
+      border-color: #dc3545;
+      box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+    }
+  }
+  
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+  
+  select {
+    cursor: pointer;
+  }
+}
+
+.nameInput {
+  display: flex;
+  gap: 0.5rem;
+  
+  select {
+    width: 80px;
+    flex-shrink: 0;
+  }
+  
+  input {
+    flex: 1;
+  }
+  
+  .fullNameInput {
+    flex: 1;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    background: $text-light;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+    
+    &.error {
+      border-color: #dc3545;
+    }
+  }
+}
+
+.errorText {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+// Languages Section
+.languagesSection {
+  margin-bottom: 2rem;
+  overflow: hidden;
+  background: rgba(0, 123, 255, 0.02);
+}
+
+.languagesHeader {
+  background: #FFEA88CC;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  
+  h3 {
+    font-size: 1rem;
+    color: $dark;
+    margin: 0;
+    font-weight: 600;
+  }
+}
+
+.toggleBtn {
+  background: none;
+  border: none;
+  color: $dark;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.nestedGrid {
+  margin-top: 1.5rem;
+}
+
+.nestedRow {
+  display: grid;
+  padding: 1.5rem;
+  border: 2px solid gray;
+  border-radius: 8px;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  align-items: end;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.removeBtn {
+  background: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  height: fit-content;
+  font-size: 8px;
+}
+
+.addLanguageBtn, .addBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid $dark;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  color: $dark;
+  cursor: pointer;
+  margin: 1rem 1.5rem 1.5rem 1.5rem;
+  
+  &:hover {
+    border-color: $primary;
+    color: $dark;
+    background: rgba($primary, 0.05);
+  }
+}
+
+// Affiliation Cards
+.affiliationCard {
+  background: rgba(0, 123, 255, 0.02);
+  border: 2px solid $gray;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.removeCard {
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.875rem;
+  
+  &:hover {
+    background: #c82333;
+  }
+}
+
+.addButton {
+  background: none;
+  border: 1px solid $dark;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  color: $dark;
+  cursor: pointer;
+  margin: 1rem 1.5rem 1.5rem 1.5rem;
+  
+  &:hover {
+    border-color: $primary;
+    color: $dark;
+    background: rgba($primary, 0.05);
+  }
+}
+
+// Expandable Sections
+.expandableSection {
+  margin-bottom: 2rem;
+  border: 2px dashed $gray;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(0, 123, 255, 0.02);
+}
+
+.sectionHeader {
+  background: rgba(255, 235, 59, 0.8);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  
+  h3 {
+    font-size: 1rem;
+    color: $dark;
+    margin: 0;
+    font-weight: 600;
+  }
+}
+
+.sectionContent {
+  padding: 1.5rem;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .languageRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .nameInput {
+    flex-direction: column;
+    
+    select {
+      width: 100%;
+    }
+  }
+}

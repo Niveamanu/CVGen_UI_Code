@@ -1,0 +1,212 @@
+@use "sass:math";
+
+// Options
+$enable-shadows:     true;
+$enable-gradients:   true;
+$min-contrast-ratio:   2;
+
+$bootstrap-sass-asset-helper: false !default;
+$browser-context: 16; // Default
+
+@function rem($pixels, $context: $browser-context) {
+  @return math.div($pixels, $context) * 1rem;
+}
+
+$container-max-widths: (
+  sm: 1440px,
+);
+$body-bg: #fff;
+$white-rgb: 255, 255, 255;
+$body-color: #0f1312;
+$line-height-base: 1.3;
+// $primary: #ffd600; // Dark navy (header, buttons)
+$primary: #FFEA88CC; // Dark navy (header, buttons)
+// primary variants
+$primary-light: #FFEA88CC;
+$primary-dark: #FFD600;
+$primary-100: #ffe988d4;
+$primary-200: #ffe988ae;
+$primary-300: #ffe9887a;
+$secondary: #fafafa;
+$accent: #1a1a1a; // Yellow accent (logo, highlights)
+$gray-light: #e1e0e0;
+$gray-medium: #e0e0e0;
+$gray-dark: #242424;
+$text-main: #213547;
+$text-light: #ffffff;
+$gray: #575656; // Light gray for backgrounds
+$white: #ffffff;
+// $dark: #273143;
+$dark: #1E2331;
+$blue: #0096FF;
+; // Blue for links and highlights
+$border-radius: 8px;
+$highlight:     #4aa4fe;
+$accent-1:      #fefefe;
+$accent-2:      #dee2e6;
+$accent-3:      #495057;
+$light:         #f1f3f5;
+$font-family-sans-serif: 'Open Sans', sans-serif;
+$font-family-base: 'Open Sans', sans-serif;
+$font-family-arabic: 'Open Sans', sans-serif;
+
+$font-weight-lighter: 100;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-bolder: 900;
+
+$gray-100: #f5f6f8;
+$gray-200: #dfe0eb;
+$gray-300: rgba(#6f7171, 0.2);
+$gray-400: #b8b8b8;
+$gray-500: #6f7171;
+$gray-600: #686868;
+$gray-700: #3f4241;
+$gray-800: #272b2a;
+$gray-900: #0f1312;
+
+$text-muted: $gray-500;
+
+$blue: #007bff !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+
+$border-color: #e7e8e9;
+$warning: #ff842c;
+
+$h1-font-size: rem(26);
+$h2-font-size: rem(22);
+$h3-font-size: rem(20);
+$h4-font-size: rem(18);
+$h5-font-size: rem(16);
+$h6-font-size: rem(14);
+
+// $display1-size: rem(60);
+// $display2-size: rem(60);
+// $display3-size: rem(40);
+// $display4-size: rem(35);
+
+$headings-font-weight: $font-weight-bold;
+
+$border-radius: 4px;
+$border-radius-sm: 2px;
+$border-radius-lg: 50px;
+
+$rounded-pill: 50px;
+
+$input-border-radius: 0px;
+$input-border-color: $gray-200;
+$input-focus-border-color: $gray-300;
+$input-font-size: 14px;
+$input-padding-x: 0.8rem;
+$input-btn-padding-y: 0.75rem;
+$input-btn-font-size: 13px;
+$input-btn-focus-color: $border-color;
+$input-btn-focus-width: 0;
+$input-color: $gray-900;
+$input-placeholder-color: #b8b8b8;
+$input-height-sm: 36px;
+$input-border-radius-sm: 0;
+
+$input-btn-font-size-sm: 11px;
+$input-btn-padding-y-sm: 0.1875rem;
+$input-btn-padding-x-sm: 0.75rem;
+
+$btn-padding-x: 2.375rem;
+$btn-padding-y: 0.625rem;
+$btn-line-height: 1.4;
+$btn-border-radius: 2px;
+$btn-border-radius-lg: 2px;
+$btn-border-radius-sm: 2px;
+
+$dropdown-border-radius: 0;
+$zindex-dropdown: 10000;
+$enable-shadows: false;
+
+$link-decoration: none;
+// $link-hover-color: darken($link-color, 20%);
+$link-hover-decoration: none;
+
+$footer-color: $white;
+$footer-bg: $secondary;
+$footer-hover-color: $primary;
+
+$modal-md: 640px;
+
+$breadcrumb-font-size: rem(16);
+$breadcrumb-padding-y: 0;
+$breadcrumb-padding-x: 0;
+$breadcrumb-item-padding: 0.5rem !default;
+$breadcrumb-margin-bottom: 0;
+$breadcrumb-bg: transparent;
+$breadcrumb-divider-color: $gray-500;
+$breadcrumb-active-color: $gray-900;
+$breadcrumb-divider: quote('>');
+$breadcrumb-border-radius: 0;
+
+$pagination-color: $dark;
+$pagination-bg: transparent;
+$pagination-border-width: 0;
+$pagination-border-color: transparent;
+$pagination-focus-box-shadow: none;
+$pagination-hover-color: $primary;
+$pagination-hover-bg: transparent;
+$pagination-hover-border-color: transparent;
+$pagination-active-color: $white;
+$pagination-active-bg: $primary;
+$pagination-active-border-color: transparent;
+$pagination-disabled-color: $gray-400;
+$pagination-disabled-bg: transparent;
+$pagination-disabled-border-color: transparent;
+$pagination-padding-y: 0;
+$pagination-padding-x: 5px;
+$pagination-line-height: 32px;
+
+$modal-backdrop-opacity: 0.25;
+
+$enable-prefers-reduced-motion-media-query: true !default;
+$transition: all 0.2s ease;
+
+
+
+
+:root {
+  --bs-body-bg: #{$body-bg};
+  --bs-body-color: #{$body-color};
+  --bs-primary: #{$primary};
+  --bs-secondary: #{$secondary};
+  --success-color: #{$dark};
+  --primary-color: #{rgba($dark, 0.3)};
+  --light-gray: #{$gray-light};
+}
+
+
+$font-family-base: 'Avenir', 'Helvetica', 'Arial', sans-serif;
+
+// Bootstrap overrides
+$body-bg: $secondary;
+$body-color: $text-main;
+$border-radius: $border-radius;
+$font-family-base: $font-family-base;
+$btn-primary-bg: $primary;
+$btn-primary-color: $accent;
+$btn-secondary-bg: $gray-light;
+$btn-secondary-color: $primary;
+$progress-bg: $gray-medium;
+$progress-bar-bg: $accent;
+
+
+
+.react-select__menu-portal{
+  z-index: 10000 !important;
+}

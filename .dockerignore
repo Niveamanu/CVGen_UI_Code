@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log*
+.git
+.github
+.vscode
+.env*
+.DS_Store
+Thumbs.db
+*.log
+coverage/
+.nyc_output
+.cache
+dist
+build

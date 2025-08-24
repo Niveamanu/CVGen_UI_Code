@@ -1,0 +1,29 @@
+@import '../styles/variables';
+
+.downloadBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: #fff;
+  border: 2px solid $dark;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: .9rem;
+  color: $dark;
+  padding: 0.5rem 2rem;
+  box-shadow: 0 2px 8px rgba($primary, 0.04);
+  transition: box-shadow 0.18s, border-color 0.18s;
+  cursor: pointer;
+  outline: none;
+
+  &:hover, &:focus {
+    box-shadow: 0 4px 16px rgba($primary, 0.10);
+    border-color: $primary;
+  }
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-block;
+}

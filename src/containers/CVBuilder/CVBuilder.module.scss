@@ -1,0 +1,385 @@
+@import '../../styles/variables';
+
+.cvBuilderPage {
+  height: 100vh;
+  max-height: 100vh;
+  background: url('../../pages/BG_layer.png') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.container {
+  padding: 1rem;
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: $text-light;
+  border-radius: 12px;
+  flex-shrink: 0;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: $dark;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  &:hover {
+    color: darken($dark, 10%);
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.saveDraftBtn {
+  background: #f0f0f0;
+  color: $dark;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  
+  &:hover {
+    background: #e0e0e0;
+  }
+}
+
+.previewBtn {
+  background: #FFEA88CC;
+  color: $dark;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  
+  &:hover {
+    background: darken(#FFEA88CC, 10%);
+  }
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  gap: 1rem;
+}
+
+// Sidebar
+.sidebar {
+  width: 285px;;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-shrink: 0;
+  max-height: 100%;
+}
+
+.progressCard {
+  background: #FFEA88CC;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+  
+  h3 {
+    font-size: 1rem;
+    color: $dark;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+}
+
+.stepsContainer {
+  background: #FFEA88CC;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.progressBar {
+  background: rgba($dark, 0.2);
+  border-radius: 8px;
+  height: 8px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+
+.progress {
+  background: $dark;
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.3s ease;
+}
+
+.progressText {
+  font-size: 0.9rem;
+  color: $dark;
+  font-weight: 600;
+}
+
+.stepsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  cursor: pointer;
+  transition: background 0.2s;
+  position: relative;
+  
+  &:hover {
+    background: rgba($dark, 0.05);
+    border-radius: 8px;
+    // margin: 0 -0.5rem;
+    // padding-left: 0.5rem;
+    // padding-right: 0.5rem;
+  }
+  
+  &.active {
+    // background: rgba($dark, 0.1);
+    border-radius: 8px;
+    margin: 0 -0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    &:not(:last-child)::after {
+      background-color: $dark;
+    }
+    .stepNumber {
+      background: $white;
+      color: $dark;
+      border-color: $dark;
+    }
+
+    .stepTitle {
+      color: $dark !important;
+      font-weight: 700;
+    }
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 25px !important;
+      top: 55px !important;
+      width: 2px !important;
+      height: 48px;
+    }
+
+  }
+  
+  &.completed {
+    .stepNumber {
+      background: $dark;
+      color: $text-light;
+    }
+    &:not(:last-child)::after {
+      background-color: $dark;
+    }
+  }
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 16px !important;
+    top: 50px !important;
+    width: 2px !important;
+    height: 48px;
+    background: rgba($dark, 0.3);
+    pointer-events: none; // Disable hover effect on lines
+  }
+  
+}
+
+.stepNumber {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: rgba($dark, 0.3) 2px solid;
+  background: $white;
+  color: $dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.stepTitle {
+  font-size: 0.95rem;
+  color: $dark;
+  font-weight: 500;
+  flex: 1;
+}
+
+.checkmark {
+  color: $dark;
+  font-weight: 700;
+}
+
+// Main Content
+.mainContent {
+  flex: 1;
+  background: $text-light;
+  overflow-y: auto;
+  max-height: 100%;
+  min-height: 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #e0e0e0;
+  position: relative;
+
+  &.form-section {
+    padding: 2rem;
+  }
+}
+
+.formSection {
+  max-width: 100%;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $dark;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #007bff;
+}
+
+.skipBtn {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  text-decoration: underline;
+  
+  &:hover {
+    color: $primary;
+  }
+}
+
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.prevBtn {
+  background: #f0f0f0;
+  color: $primary;
+  border: none;
+  border-radius: 6px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  
+  &:hover {
+    background: #e0e0e0;
+  }
+}
+
+.nextBtn {
+  background: $primary;
+  color: $text-light;
+  border: none;
+  border-radius: 6px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  
+  &:hover {
+    background: darken($primary, 10%);
+  }
+}
+
+// Responsive
+@media (max-width: 1024px) {
+  .content {
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .sidebar {
+    width: 100%;
+    padding: 1rem;
+    max-height: 200px;
+    flex-shrink: 0;
+  }
+  
+  .mainContent {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+  }
+  
+  .stepsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .languageRow {
+    grid-template-columns: 1fr;
+  }
+  
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+    padding: 1rem;
+  }
+  
+  .actions {
+    justify-content: center;
+  }
+  
+  .sidebar {
+    max-height: 150px;
+  }
+  
+  .mainContent {
+    padding: 1rem;
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+  }
+}
