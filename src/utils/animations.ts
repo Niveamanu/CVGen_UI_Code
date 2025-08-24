@@ -111,6 +111,16 @@ export const formFieldFocus = {
   },
 };
 
+export const overlayVariants = {
+  hidden: { opacity: 0, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.35, ease: "easeOut" },
+  },
+  exit: { opacity: 0, scale: 0.98, transition: { duration: 0.2 } },
+};
+
 export const stepTransition = {
   initial: { opacity: 0, x: 50, scale: 0.9 },
   animate: {

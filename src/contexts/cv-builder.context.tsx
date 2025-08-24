@@ -82,81 +82,6 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
   const location = useLocation();
   const navigate = useNavigate();
   console.log("CVBuilder - location.state:", location.state, isLoading);
-  useEffect(() => {
-    if (location.state) {
-      setCvData(location.state?.uploadedCVData?.data || {});
-      setFileName(location.state?.fileName || null);
-      setLoading(false);
-      if (location.state.uploadedCVData && location.state.fileName) {
-        toast.success(
-          `CV "${fileName}" processed successfully! Forms have been pre-populated with extracted information.`
-        );
-      }
-      const uploadedCVData = location.state?.uploadedCVData || {};
-      const apiData = uploadedCVData?.["data"];
-      console.log("Updating CV data from API:", apiData);
-
-      // Parse degree titles and create credentials
-      const degreeTitles = Array.isArray(
-        apiData["Personal Information"]?.["Degree Title"]
-      )
-        ? apiData["Personal Information"]["Degree Title"]
-        : (apiData["Personal Information"]?.["Degree Title"] || "")
-            .split(",")
-            .map((title: string) => title.trim())
-            .filter((title: string) => title.length > 0);
-
-      const credentials =
-        degreeTitles.length > 0 ? degreeTitles.join(", ") : "";
-
-      // Create Full Name from individual name fields
-      const fullName = [
-        apiData["Personal Information"]?.["First Name"] || "",
-        apiData["Personal Information"]?.["Middle Name"] || "",
-        apiData["Personal Information"]?.["Last Name"] || "",
-      ]
-        .filter((name) => name.trim())
-        .join(" ");
-
-      setCvData({
-        "Personal Information": {
-          "First Name": apiData["Personal Information"]?.["First Name"] || "",
-          "Middle Name": apiData["Personal Information"]?.["Middle Name"] || "",
-          "Last Name": apiData["Personal Information"]?.["Last Name"] || "",
-          "Degree Title": degreeTitles,
-          Credentials: credentials,
-          "Full Name": fullName,
-          Certifications:
-            apiData["Personal Information"]?.["Certifications"] || "",
-          "Business Number":
-            apiData["Personal Information"]?.["Business Number"] || "",
-          "Business Email Address":
-            apiData["Personal Information"]?.["Business Email Address"] || "",
-        },
-        "Flourish Site Affiliations":
-          apiData["Flourish Site Affiliations"] || [],
-        "Hospital Affiliations": apiData["Hospital Affiliations"] || [],
-        "Research Affiliations": apiData["Research Affiliations"] || [],
-        Education: apiData["Education"] || [],
-        "Licenses & Certifications": {
-          licenses: apiData["License"] || [],
-          certifications: apiData["Certifications"] || [],
-        },
-        Publications: apiData["Publications"] || [],
-        "Professional Experience": apiData["Professional Experience"] || [],
-        "Professional Active Memberships":
-          apiData["Professional Active Memberships"] || [],
-        "Psychometric Rating/Scales Experiences":
-          apiData["Psychometric Rating/Scales Experiences"] || [],
-        "Clinical Research Trials Conducted":
-          apiData["Clinical Research Trials Conducted"] || [],
-        Training: apiData["Training"] || [],
-        "Achievements or Awards": apiData["Achievements or Awards"] || [],
-        Languages: apiData["Languages"] || [],
-      });
-    }
-  }, [location.state]);
-
   const validateRequiredField = (
     val: Record<string, any>,
     fields: string[]
@@ -220,171 +145,247 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
   };
 
   useEffect(() => {
-    (async () => {
+    if (location.state) {
+      setCvData(location.state?.uploadedCVData?.data || {});
+      setFileName(location.state?.fileName || null);
       const uploadedCVData = location.state?.uploadedCVData || {};
-      setTimeout(() => {
-        if (uploadedCVData?.data && isLoading) {
-          const sectionFieldMap: Record<
-            string,
-            { type: "object" | "array" | "custom"; fields?: string[] }
-          > = {
-            "Personal Information": {
-              type: "object",
-              fields: [
-                "First Name",
-                "Last Name",
-                "Business Email Address",
-                "Degree Title",
-                "Certifications",
-                "Business Number",
-              ],
-            },
-            Languages: { type: "array", fields: ["Language Name"] },
-            "Flourish Site Affiliations": {
-              type: "array",
-              fields: ["Site Name", "CTMS Site Name", "City", "State"],
-            },
-            "Hospital Affiliations": {
-              type: "array",
-              fields: ["Hospital Name", "From Date", "city", "state"],
-            },
-            "Research Affiliations": {
-              type: "array",
-              fields: ["institutionName", "position", "start"],
-            },
-            Education: {
-              type: "array",
-              fields: [
-                "startYear",
-                "endYear",
-                "degree",
-                "universityName",
-                "city",
-              ],
-            },
-            "Licenses & Certifications": { type: "custom" },
-            // 'License': { type: 'array', fields: ["licenseName", "issuingAuthority", "issueDate", "licenseNumber"] },
-            // 'Certifications': { type: 'array', fields: ["certificateTitle", "issuingOrganization", "issueDate", "expiryDate", "certificationId"] },
-            Publications: {
-              type: "array",
-              fields: [
-                "Publications / Presentations",
-                "Authors",
-                "Journal / Source",
-                "Publication Date",
-              ],
-            },
-            "Professional Experience": {
-              type: "array",
-              fields: [
-                "Job Title",
-                "Organization/Hospital Name",
-                "Start Date",
-                "End Date",
-                "City",
-                "State",
-              ],
-            },
-            "Professional Active Memberships": {
-              type: "array",
-              fields: ["Organization Name"],
-            },
-            "Psychometric Rating/Scales Experiences": {
-              type: "array",
-              fields: ["Scale / Rating Name"],
-            },
-            "Clinical Research Trials Conducted": {
-              type: "array",
-              fields: [
-                "Trial Title",
-                "Trial ID / Registration Number",
-                "Role / Position",
-                "Start Date",
-                "End Date",
-              ],
-            },
-            Training: {
-              type: "array",
-              fields: [
-                "Training Program / Course Name",
-                "Institution / Provider",
-                "Start",
-              ],
-            },
-            "Achievements or Awards": {
-              type: "array",
-              fields: ["Award / Achievement Name"],
-            },
-          };
+      if (location.state.uploadedCVData && location.state.fileName) {
+        toast.success(
+          `CV "${fileName}" processed successfully! Forms have been pre-populated with extracted information.`
+        );
+      }
 
-          const validateLicensesCertifications = (val: any) => {
-            const licensesValid = validateRequiredArrayField(val.License, [
-              "licenseName",
-              "issuingAuthority",
-              "issueDate",
-              "licenseNumber",
-            ]);
-            const certificationsValid = validateRequiredArrayField(
-              val.Certifications,
-              ["certificateTitle", "issuingOrganization", "issueDate"]
-            );
-            return licensesValid && certificationsValid;
-          };
+      const apiData = uploadedCVData?.["data"];
 
-          setSteps((prevSteps) => {
-            const updatedSteps = prevSteps.map((step) => {
-              const section = step.keyName;
-              const config = sectionFieldMap[section];
-              const sectionData = uploadedCVData.data[section];
-              let completed = false;
-              if (config && sectionData) {
-                if (config.type === "object") {
-                  completed = validateRequiredField(
-                    sectionData,
-                    config.fields!
-                  );
-                } else if (config.type === "array") {
-                  completed = validateRequiredArrayField(
-                    sectionData,
-                    config.fields!
-                  );
-                }
-              } else if (section === "Licenses & Certifications") {
-                completed = validateLicensesCertifications(uploadedCVData.data);
-              }
-              if (!completed) {
-                console.warn(
-                  `Section '${section}' is incomplete or missing required fields.`
+      // Parse degree titles and create credentials
+      const degreeTitles = Array.isArray(
+        apiData["Personal Information"]?.["Degree Title"]
+      )
+        ? apiData["Personal Information"]["Degree Title"]
+        : (apiData["Personal Information"]?.["Degree Title"] || "")
+            .split(",")
+            .map((title: string) => title.trim())
+            .filter((title: string) => title.length > 0);
+
+      const credentials =
+        degreeTitles.length > 0 ? degreeTitles.join(", ") : "";
+
+      // Create Full Name from individual name fields
+      const fullName = [
+        apiData["Personal Information"]?.["First Name"] || "",
+        apiData["Personal Information"]?.["Middle Name"] || "",
+        apiData["Personal Information"]?.["Last Name"] || "",
+      ]
+        .filter((name) => name.trim())
+        .join(" ");
+
+      setCvData({
+        "Personal Information": {
+          "First Name": apiData["Personal Information"]?.["First Name"] || "",
+          "Middle Name": apiData["Personal Information"]?.["Middle Name"] || "",
+          "Last Name": apiData["Personal Information"]?.["Last Name"] || "",
+          "Degree Title": degreeTitles,
+          Credentials: credentials,
+          "Full Name": fullName,
+          Certifications:
+            apiData["Personal Information"]?.["Certifications"] || "",
+          "Business Number":
+            apiData["Personal Information"]?.["Business Number"] || "",
+          "Business Email Address":
+            apiData["Personal Information"]?.["Business Email Address"] || "",
+        },
+        "Flourish Site Affiliations":
+          apiData["Flourish Site Affiliations"] || [],
+        "Hospital Affiliations": apiData["Hospital Affiliations"] || [],
+        "Research Affiliations": apiData["Research Affiliations"] || [],
+        Education: apiData["Education"] || [],
+        "Licenses & Certifications": {
+          licenses: apiData["License"] || [],
+          certifications: apiData["Certifications"] || [],
+        },
+        Publications: apiData["Publications"] || [],
+        "Professional Experience": apiData["Professional Experience"] || [],
+        "Professional Active Memberships":
+          apiData["Professional Active Memberships"] || [],
+        "Psychometric Rating/Scales Experiences":
+          apiData["Psychometric Rating/Scales Experiences"] || [],
+        "Clinical Research Trials Conducted":
+          apiData["Clinical Research Trials Conducted"] || [],
+        Training: apiData["Training"] || [],
+        "Achievements or Awards": apiData["Achievements or Awards"] || [],
+        Languages: apiData["Languages"] || [],
+      });
+      if(Object.keys(uploadedCVData?.data ?? {}).length > 0){
+        (async () => {
+          setTimeout(() => {
+            if (uploadedCVData?.data) {
+              const sectionFieldMap: Record<
+                string,
+                { type: "object" | "array" | "custom"; fields?: string[] }
+              > = {
+                "Personal Information": {
+                  type: "object",
+                  fields: [
+                    "First Name",
+                    "Last Name",
+                    "Business Email Address",
+                    "Degree Title",
+                    "Certifications",
+                    "Business Number",
+                  ],
+                },
+                Languages: { type: "array", fields: ["Language Name"] },
+                "Flourish Site Affiliations": {
+                  type: "array",
+                  fields: ["Site Name", "CTMS Site Name", "City", "State"],
+                },
+                "Hospital Affiliations": {
+                  type: "array",
+                  fields: ["Hospital Name", "From Date", "city", "state"],
+                },
+                "Research Affiliations": {
+                  type: "array",
+                  fields: ["institutionName", "position", "start"],
+                },
+                Education: {
+                  type: "array",
+                  fields: [
+                    "startYear",
+                    "endYear",
+                    "degree",
+                    "universityName",
+                    "city",
+                  ],
+                },
+                "Licenses & Certifications": { type: "custom" },
+                // 'License': { type: 'array', fields: ["licenseName", "issuingAuthority", "issueDate", "licenseNumber"] },
+                // 'Certifications': { type: 'array', fields: ["certificateTitle", "issuingOrganization", "issueDate", "expiryDate", "certificationId"] },
+                Publications: {
+                  type: "array",
+                  fields: [
+                    "Publications / Presentations",
+                    "Authors",
+                    "Journal / Source",
+                    "Publication Date",
+                  ],
+                },
+                "Professional Experience": {
+                  type: "array",
+                  fields: [
+                    "Job Title",
+                    "Organization/Hospital Name",
+                    "Start Date",
+                    "End Date",
+                    "City",
+                    "State",
+                  ],
+                },
+                "Professional Active Memberships": {
+                  type: "array",
+                  fields: ["Organization Name"],
+                },
+                "Psychometric Rating/Scales Experiences": {
+                  type: "array",
+                  fields: ["Scale / Rating Name"],
+                },
+                "Clinical Research Trials Conducted": {
+                  type: "array",
+                  fields: [
+                    "Trial Title",
+                    "Trial ID / Registration Number",
+                    "Role / Position",
+                    "Start Date",
+                    "End Date",
+                  ],
+                },
+                Training: {
+                  type: "array",
+                  fields: [
+                    "Training Program / Course Name",
+                    "Institution / Provider",
+                    "Start",
+                  ],
+                },
+                "Achievements or Awards": {
+                  type: "array",
+                  fields: ["Award / Achievement Name"],
+                },
+              };
+  
+              const validateLicensesCertifications = (val: any) => {
+                const licensesValid = validateRequiredArrayField(val.License, [
+                  "licenseName",
+                  "issuingAuthority",
+                  "issueDate",
+                  "licenseNumber",
+                ]);
+                const certificationsValid = validateRequiredArrayField(
+                  val.Certifications,
+                  ["certificateTitle", "issuingOrganization", "issueDate"]
                 );
-              }
-              return { ...step, completed };
-            });
-            const firstIncomplete = updatedSteps.find(
-              (step) => !step.completed
-            );
-            if (firstIncomplete) {
-              setCurrentStep(firstIncomplete.id);
-              setTimeout(() => {
-                const stepElement = document.getElementById(
-                  `cv-step-${firstIncomplete.id}`
+                return licensesValid && certificationsValid;
+              };
+  
+              setSteps((prevSteps) => {
+                const updatedSteps = prevSteps.map((step) => {
+                  const section = step.keyName;
+                  const config = sectionFieldMap[section];
+                  const sectionData = uploadedCVData.data[section];
+                  let completed = false;
+                  if (config && sectionData) {
+                    if (config.type === "object") {
+                      completed = validateRequiredField(
+                        sectionData,
+                        config.fields!
+                      );
+                    } else if (config.type === "array") {
+                      completed = validateRequiredArrayField(
+                        sectionData,
+                        config.fields!
+                      );
+                    }
+                  } else if (section === "Licenses & Certifications") {
+                    completed = validateLicensesCertifications(uploadedCVData.data);
+                  }
+                  if (!completed) {
+                    console.warn(
+                      `Section '${section}' is incomplete or missing required fields.`
+                    );
+                  }
+                  return { ...step, completed };
+                });
+                const firstIncomplete = updatedSteps.find(
+                  (step) => !step.completed
                 );
-                if (stepElement) {
-                  stepElement.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                  });
+                if (firstIncomplete) {
+                  setCurrentStep(firstIncomplete.id);
+                  setTimeout(() => {
+                    const stepElement = document.getElementById(
+                      `cv-step-${firstIncomplete.id}`
+                    );
+                    if (stepElement) {
+                      stepElement.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center",
+                      });
+                    }
+                  }, 1400);
                 }
-              }, 1400);
+                return updatedSteps;
+              });
+              setLoading(false);
+            } else {
+              setLoading(false);
             }
-            return updatedSteps;
-          });
-          setLoading(false);
-        } else {
-          setLoading(false);
-        }
-      }, 1000);
-    })();
-  }, [location.state, isLoading]);
+          }, 1000);
+        })();
+      }else{
+        setLoading(false);
+      }
+    }else{
+      setLoading(false);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     const sectionParam = searchParams.get('section');
@@ -569,17 +570,43 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
   const handleSaveDraft = async () => {
     try {
       setIsSavingDraft(true);
-      setIsPreviewModalOpen(true);
     } catch (error) {
       console.error("Error saving CV draft:", error);
       alert("Error saving draft. Please check console for details.");
     }
   };
 
+
+  const completedSteps = useMemo(() => {
+    const total = steps.filter((step) => step.completed).length
+    const progressPercentage = Math.round((total / steps.length) * 100);
+    return { total, progressPercentage };
+  }, [steps]);
+
   const handleComplete = async () => {
     try {
-      setIsPreviewModalOpen(true);
-      setIsBase64Request(true);
+      if (completedSteps.progressPercentage >= 100) {
+        setIsBase64Request(true);
+      }else{
+        const firstIncomplete = steps.find(
+          (step) => !step.completed
+        );
+        if (firstIncomplete) {
+          setCurrentStep(firstIncomplete.id);
+          setTimeout(() => {
+            const stepElement = document.getElementById(
+              `cv-step-${firstIncomplete.id}`
+            );
+            if (stepElement) {
+              stepElement.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+            }
+          }, 1400);
+        }
+        toast.error("Please complete all sections before finalizing your CV.");
+      }
     } catch (error) {
       console.error("Error saving completed CV:", error);
       alert("Error saving completed CV. Please check console for details.");
@@ -608,11 +635,6 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
     setCurrentStep(stepId);
   }, []);
 
-  const completedSteps = useMemo(() => {
-    const total = steps.filter((step) => step.completed).length
-    const progressPercentage = Math.round((total / steps.length) * 100);
-    return { total, progressPercentage };
-  }, [steps]);
 
   const memoizedValue = useMemo(
     () => ({

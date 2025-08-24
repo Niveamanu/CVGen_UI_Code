@@ -34,9 +34,13 @@ const CVPreviewModal: React.FC = () => {
       },
     },
   };
-  const { isPreviewModalOpen, handleCloseModal, handleDownload } = cvBuilderContext();
+  const { isPreviewModalOpen, handleCloseModal, handleDownload, isBase64Request, isSavingDraft } = cvBuilderContext();
+  console.log("isPreviewModalOpen:", isPreviewModalOpen, "isBase64Request:", isBase64Request, "isSavingDraft:", isSavingDraft);
   return (
     <AnimatePresence>
+      {(isBase64Request || isSavingDraft) && (
+        <DocumentViewer />
+      )}
       {isPreviewModalOpen && (
         <motion.div
           className={styles.overlay}

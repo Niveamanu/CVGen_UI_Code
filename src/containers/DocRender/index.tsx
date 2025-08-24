@@ -9,14 +9,17 @@ import api from '@/api';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useUser } from '@/contexts/UserContext';
+import styles from './DocRenderLoading.module.scss';
+import { motion } from 'framer-motion';
+import { overlayVariants } from '@/utils/animations';
 
 const DocumentViewer: React.FC = () => {
-  const { isDownload, setIsDownload, cvData, isBase64Request, isSavingDraft, setIsPreviewModalOpen, setIsSavingDraft, setIsBase64Request } = cvBuilderContext();
+  const { isDownload, setIsDownload, cvData, isSavingDraft, setIsSavingDraft, setIsBase64Request, isBase64Request, isPreviewModalOpen } = cvBuilderContext();
   const userProfile = useSelector((state: any) => state.authUser?.profile);
   const { user: msalUser } = useUser();
-
-  console.log("isBase64Request:", isBase64Request);
   const downloadLinkRef = useRef<any>(null);
+  const pdfInProgress = useRef(false);
+
   const mappedData = cvData
 
   const onBase64PdfReady = (base64Pdf: string) => {
@@ -27,11 +30,9 @@ const DocumentViewer: React.FC = () => {
         content: cvData,
         file_encoded_content: base64Pdf
       }).then(() => {
-        setIsPreviewModalOpen(false);
         setIsSavingDraft(false);
       }).catch((err) => {
         toast.error("Error saving completed CV");
-        setIsPreviewModalOpen(false);
         setIsSavingDraft(false);
       })
     }else{
@@ -41,17 +42,15 @@ const DocumentViewer: React.FC = () => {
         content: cvData,
         base64_content: base64Pdf
       }).then(() => {
-        setIsPreviewModalOpen(false);
         setIsBase64Request(false);
       }).catch((err) => {
         toast.error("Error saving completed CV");
-        setIsPreviewModalOpen(false);
         setIsBase64Request(false);
       })
     }
   }
 
-  const generatePdfBase64 = useCallback(async () => {
+  const generatePdfBase64 = async () => {
     try {
       const doc = <CVTemplate data={mappedData} />;
       const asPdf = pdf(doc);
@@ -74,18 +73,25 @@ const DocumentViewer: React.FC = () => {
       console.error('Error generating PDF base64:', err);
       return '';
     }
-  }, [mappedData, onBase64PdfReady]);
+  };
 
   useEffect(() => {
-    if (typeof onBase64PdfReady === 'function' && isBase64Request) {
+    if ((isBase64Request || isSavingDraft) && !pdfInProgress.current) {
+      pdfInProgress.current = true;
       generatePdfBase64().then((base64) => {
         onBase64PdfReady(base64);
       }).catch((error) => {
         console.error('Error generating PDF base64:', error);
         if (onerror) onerror(error);
+      }).finally(() => {
+        pdfInProgress.current = false;
       });
     }
-  }, [generatePdfBase64, onBase64PdfReady, isBase64Request]);
+
+    if (!isBase64Request && !isSavingDraft) {
+      pdfInProgress.current = false;
+    }
+  }, [isBase64Request, isSavingDraft]);
 
   useEffect(() => {
     if(isDownload && setIsDownload) {
@@ -102,6 +108,60 @@ const DocumentViewer: React.FC = () => {
     const date = new Date().toISOString().split('T')[0];
     return `${name}_CV_${date}.pdf`;
   };
+  if (isBase64Request || isSavingDraft || !isPreviewModalOpen) {
+    const handleCancel = () => {
+      if (isBase64Request) setIsBase64Request(false);
+      if (isSavingDraft) setIsSavingDraft(false);
+    };
+    let title = "Generating your CV PDF...";
+    let subtitle = "Please wait while we prepare your document for download and preview.";
+    if (isSavingDraft) {
+      title = "Saving your CV draft...";
+      subtitle = "Please wait while we save your draft. Do not close the window.";
+    } else if (isBase64Request) {
+      title = "Generating your CV PDF...";
+      subtitle = "Please wait while we generate your document. This may take a few seconds.";
+    }
+    return (
+      <motion.div
+        className={styles.loadingOverlay}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        variants={overlayVariants as any}
+      >
+        <motion.div
+          className={styles.loadingBox}
+          initial={{ y: 40, opacity: 0 }}
+          animate={{ y: 0, opacity: 1, transition: { delay: 0.1, duration: 0.4, type: "spring" } }}
+        >
+          <div className={styles.spinner} role="status" aria-label="Loading" />
+          <div className={styles.loadingTitle}>{title}</div>
+          <div className={styles.loadingSubtitle}>{subtitle}</div>
+          <button
+            type="button"
+            className={styles.cancelButton}
+            onClick={handleCancel}
+            style={{
+              marginTop: 24,
+              padding: '0.5rem 1.5rem',
+              fontSize: 16,
+              borderRadius: 8,
+              border: 'none',
+              background: '#eee',
+              color: '#1E2331',
+              fontWeight: 600,
+              cursor: 'pointer',
+              boxShadow: '0 2px 8px rgba(30,35,49,0.06)',
+              transition: 'background 0.2s',
+            }}
+          >
+            Cancel
+          </button>
+        </motion.div>
+      </motion.div>
+    );
+  }
   return (
     <div 
       className="document-viewer-container"
@@ -134,49 +194,6 @@ const DocumentViewer: React.FC = () => {
           position: "relative"
         }}
       >
-        {/* Loading Overlay */}
-        {isBase64Request && (
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            background: 'rgba(255,255,255,0.92)',
-            zIndex: 10,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-            <div style={{
-              fontSize: 22,
-              fontWeight: 600,
-              marginBottom: 16,
-              color: '#1E2331',
-              letterSpacing: 0.5,
-            }}>
-              Generating your CV PDF...
-            </div>
-            <div style={{
-              marginBottom: 8,
-              color: '#666',
-              fontSize: 15,
-            }}>
-              Please wait while we prepare your document for download and preview.
-            </div>
-            <div style={{
-              marginTop: 24,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-              <div className="spinner-border" style={{ width: 48, height: 48, borderWidth: 5, color: '#007bff' }} role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
-            </div>
-          </div>
-        )}
         <CVTemplateHTML data={mappedData} />
       </div>
     </div>

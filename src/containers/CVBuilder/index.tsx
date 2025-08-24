@@ -27,7 +27,7 @@ import SkeletonCVBuilder from "@/components/Skeleton/SkeletonCVBuilder";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./CVBuilder.module.scss";
 import SkeletonCVForm from "@/components/Skeleton/SkeletonCVForm";
-import CVFormNavigation from "@/components/CVFormNavigation/CVFormNavigation";
+import CVFormNavigation from "./CVFormNavigation";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
@@ -45,9 +45,6 @@ export default function () {
     isNextClick,
     setIsNextClick,
   } = cvBuilderContext();
-
-  const completedSteps = steps.filter((step) => step.completed).length;
-  const progressPercentage = Math.round((completedSteps / steps.length) * 100);
 
   const lookup = useMemo(
     () => ({
@@ -133,8 +130,6 @@ export default function () {
           </AnimatePresence>
 
           <CVFormNavigation
-            currentStep={currentStep}
-            totalSteps={steps.length}
             onNext={() => {
               setIsNextClick(true);
             }}
@@ -143,8 +138,6 @@ export default function () {
             isFirstStep={currentStep === 1}
             isLastStep={currentStep === steps.length}
             showSkip={currentStep < steps.length}
-            progressPercentage={progressPercentage}
-            cvData={cvData}
             onComplete={handleComplete}
           />
         </motion.div>
