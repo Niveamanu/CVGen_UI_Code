@@ -48,6 +48,99 @@ export const postContextDefaultValue: ICVBuilderContext = {
     progressPercentage: 0,
   },
 };
+const sectionFieldMap: Record<
+  string,
+  { type: "object" | "array" | "custom"; fields?: string[] }
+> = {
+  "Personal Information": {
+    type: "object",
+    fields: [
+      "First Name",
+      "Last Name",
+      "Business Email Address",
+      "Degree Title",
+      "Certifications",
+      "Business Number",
+    ],
+  },
+  Languages: { type: "array", fields: ["Language Name"] },
+  "Flourish Site Affiliations": {
+    type: "array",
+    fields: ["Site Name", "CTMS Site Name", "City", "State"],
+  },
+  "Hospital Affiliations": {
+    type: "array",
+    fields: ["Hospital Name", "From Date", "city", "state"],
+  },
+  "Research Affiliations": {
+    type: "array",
+    fields: ["institutionName", "position", "start"],
+  },
+  Education: {
+    type: "array",
+    fields: [
+      "startYear",
+      "endYear",
+      "degree",
+      "universityName",
+      "city",
+    ],
+  },
+  "Licenses & Certifications": { type: "custom" },
+  // 'License': { type: 'array', fields: ["licenseName", "issuingAuthority", "issueDate", "licenseNumber"] },
+  // 'Certifications': { type: 'array', fields: ["certificateTitle", "issuingOrganization", "issueDate", "expiryDate", "certificationId"] },
+  Publications: {
+    type: "array",
+    fields: [
+      "Publications / Presentations",
+      "Authors",
+      "Journal / Source",
+      "Publication Date",
+    ],
+  },
+  "Professional Experience": {
+    type: "array",
+    fields: [
+      "Job Title",
+      "Organization/Hospital Name",
+      "Start Date",
+      "End Date",
+      "City",
+      "State",
+    ],
+  },
+  "Professional Active Memberships": {
+    type: "array",
+    fields: ["Organization Name"],
+  },
+  "Psychometric Rating/Scales Experiences": {
+    type: "array",
+    fields: ["Scale / Rating Name"],
+  },
+  "Clinical Research Trials Conducted": {
+    type: "array",
+    fields: [
+      "Trial Title",
+      "Trial ID / Registration Number",
+      "Role / Position",
+      "Start Date",
+      "End Date",
+    ],
+  },
+  Training: {
+    type: "array",
+    fields: [
+      "Training Program / Course Name",
+      "Institution / Provider",
+      "Start",
+    ],
+  },
+  "Achievements or Awards": {
+    type: "array",
+    fields: ["Award / Achievement Name"],
+  },
+      };
+  
 
 interface ICVBuilderComposition {
   CVMainArea: React.FC<{ children?: React.ReactNode }>;
@@ -219,99 +312,7 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
         (async () => {
           setTimeout(() => {
             if (uploadedCVData?.data) {
-              const sectionFieldMap: Record<
-                string,
-                { type: "object" | "array" | "custom"; fields?: string[] }
-              > = {
-                "Personal Information": {
-                  type: "object",
-                  fields: [
-                    "First Name",
-                    "Last Name",
-                    "Business Email Address",
-                    "Degree Title",
-                    "Certifications",
-                    "Business Number",
-                  ],
-                },
-                Languages: { type: "array", fields: ["Language Name"] },
-                "Flourish Site Affiliations": {
-                  type: "array",
-                  fields: ["Site Name", "CTMS Site Name", "City", "State"],
-                },
-                "Hospital Affiliations": {
-                  type: "array",
-                  fields: ["Hospital Name", "From Date", "city", "state"],
-                },
-                "Research Affiliations": {
-                  type: "array",
-                  fields: ["institutionName", "position", "start"],
-                },
-                Education: {
-                  type: "array",
-                  fields: [
-                    "startYear",
-                    "endYear",
-                    "degree",
-                    "universityName",
-                    "city",
-                  ],
-                },
-                "Licenses & Certifications": { type: "custom" },
-                // 'License': { type: 'array', fields: ["licenseName", "issuingAuthority", "issueDate", "licenseNumber"] },
-                // 'Certifications': { type: 'array', fields: ["certificateTitle", "issuingOrganization", "issueDate", "expiryDate", "certificationId"] },
-                Publications: {
-                  type: "array",
-                  fields: [
-                    "Publications / Presentations",
-                    "Authors",
-                    "Journal / Source",
-                    "Publication Date",
-                  ],
-                },
-                "Professional Experience": {
-                  type: "array",
-                  fields: [
-                    "Job Title",
-                    "Organization/Hospital Name",
-                    "Start Date",
-                    "End Date",
-                    "City",
-                    "State",
-                  ],
-                },
-                "Professional Active Memberships": {
-                  type: "array",
-                  fields: ["Organization Name"],
-                },
-                "Psychometric Rating/Scales Experiences": {
-                  type: "array",
-                  fields: ["Scale / Rating Name"],
-                },
-                "Clinical Research Trials Conducted": {
-                  type: "array",
-                  fields: [
-                    "Trial Title",
-                    "Trial ID / Registration Number",
-                    "Role / Position",
-                    "Start Date",
-                    "End Date",
-                  ],
-                },
-                Training: {
-                  type: "array",
-                  fields: [
-                    "Training Program / Course Name",
-                    "Institution / Provider",
-                    "Start",
-                  ],
-                },
-                "Achievements or Awards": {
-                  type: "array",
-                  fields: ["Award / Achievement Name"],
-                },
-              };
-  
+
               const validateLicensesCertifications = (val: any) => {
                 const licensesValid = validateRequiredArrayField(val.License, [
                   "licenseName",
@@ -421,6 +422,8 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
   }, [searchParams, steps, navigate]);
   const handleStateChange = (data: any, keyName: string) => {
     if (keyName) {
+
+
       // Transform the data if it's Personal Information to add computed fields
       let transformedData = data;
       if (keyName === "Personal Information") {
@@ -455,6 +458,12 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
 
         return newCvData;
       });
+
+      if (steps.find(step => step.id === currentStep && step.completed)) {
+        setSteps(prev => prev.map(step =>
+          step.id === currentStep ? { ...step, completed: false } : step
+        ));
+      }
     }
   };
 
@@ -554,10 +563,72 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
   }, [steps]);
 
   const handleComplete = async () => {
+    
     try {
-      if (completedSteps.progressPercentage >= 100) {
+      const prevSteps = steps;
+      const validateLicensesCertifications = (val: any) => {
+        const licensesValid = validateRequiredArrayField(val.License, [
+          "licenseName",
+          "issuingAuthority",
+          "issueDate",
+          "licenseNumber",
+        ]);
+        const certificationsValid = validateRequiredArrayField(
+          val.Certifications,
+          ["certificateTitle", "issuingOrganization", "issueDate"]
+        );
+        return licensesValid && certificationsValid;
+      };
+
+      const updatedSteps = prevSteps.map((step) => {
+        const section = step.keyName;
+        const config = sectionFieldMap?.[section];
+        const sectionData = cvData?.[section];
+        let completed = false;
+        if (config && sectionData) {
+          if (config.type === "object") {
+            completed = validateRequiredField(
+              sectionData,
+              config.fields!
+            );
+          } else if (config.type === "array") {
+            completed = validateRequiredArrayField(
+              sectionData,
+              config.fields!
+            );
+          }
+        } else if (section === "Licenses & Certifications") {
+          completed = validateLicensesCertifications(cvData);
+        }
+        if (!completed) {
+          console.warn(
+            `Section '${section}' is incomplete or missing required fields.`
+          );
+        }
+        return { ...step, completed };
+      });
+      const firstIncomplete = updatedSteps.find(
+        (step) => !step.completed
+      );
+      if (firstIncomplete) {
+        setCurrentStep(firstIncomplete.id);
+        setTimeout(() => {
+          const stepElement = document.getElementById(
+            `cv-step-${firstIncomplete.id}`
+          );
+          if (stepElement) {
+            stepElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          }
+        }, 1400);
+      }
+      setSteps(updatedSteps);
+      const isInComplete = updatedSteps.some((step) => !step.completed);
+      if (isInComplete) {
         setIsBase64Request(true);
-      }else{
+      } else {
         const firstIncomplete = steps.find(
           (step) => !step.completed
         );
