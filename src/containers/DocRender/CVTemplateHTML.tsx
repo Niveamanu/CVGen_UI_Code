@@ -127,8 +127,6 @@ interface CVTemplateHTMLProps {
 
 const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
   const navigate = useNavigate();
-  console.log("CVTemplate line no 106");
-  console.log("data", data);
   const personalInfo = data["Personal Information"];
 
   // Function to handle section navigation
@@ -210,7 +208,6 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
     
     // Check if publications exists and is an array
     if (!publications || !Array.isArray(publications)) {
-      console.log("Publications data is not an array:", publications);
       return [];
     }
     
@@ -227,9 +224,6 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
   };
 
   const renderClinicalTrials = () => {
-    console.log("renderClinicalTrials line no 423");
-    console.log("data", data["Clinical Research Trials Conducted"]);
-    
     const trials = data["Clinical Research Trials Conducted"];
     if (!trials || !Array.isArray(trials)) return [];
 
@@ -247,9 +241,6 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
   };
 
   const renderLicenses = () => {
-    console.log("renderLicenses line no 220");
-    console.log("data", data["Licenses & Certifications"]);
-    
     const licensesData = data["Licenses & Certifications"]?.licenses;
     if (!licensesData || !Array.isArray(licensesData)) return [];
     

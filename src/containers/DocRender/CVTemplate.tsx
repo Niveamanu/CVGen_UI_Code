@@ -431,8 +431,6 @@ const styles = StyleSheet.create({
 });
 
 const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
-  console.log("CVTemplate line no 331");
-  console.log("data", data);
   const personalInfo = data["Personal Information"];
 
   const renderSiteAffiliations = () => {
@@ -452,7 +450,6 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
   };
 
   const renderEducation = () => {
-    console.log("Rendering education data:", data["Education"]);
     return data?.["Education"]
       ?.map((education, index) => (
         <View key={index} style={styles.listItem}>
@@ -493,7 +490,6 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
     
     // Check if publications exists and is an array
     if (!publications || !Array.isArray(publications)) {
-      console.log("Publications data is not an array:", publications);
       return [];
     }
     
@@ -528,8 +524,6 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
   };
 
   const renderClinicalTrials = () => {
-    console.log("renderClinicalTrials line no 423");
-    console.log("data", data["Clinical Research Trials Conducted"]);
     const trials = data["Clinical Research Trials Conducted"];
     if (!trials || !Array.isArray(trials)) return [];
 
@@ -546,9 +540,6 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
   };
 
   const renderLicenses = () => {
-    console.log("renderLicenses line no 220");
-    console.log("data", data["Licenses & Certifications"]);
-    
     const licensesData = data["Licenses & Certifications"]?.licenses;
     if (!licensesData || !Array.isArray(licensesData)) return [];
     
@@ -726,12 +717,6 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
         {(() => {
           try {
             const memberships = data["Professional Active Memberships"];
-            console.log("Professional Memberships data:", memberships);
-            console.log("Type of memberships:", typeof memberships);
-            console.log("Is Array:", Array.isArray(memberships));
-            
-
-            
             if (!memberships) {
               return (
                 <>
@@ -749,9 +734,6 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
                   <Text style={styles.sectionTitle}>PROFESSIONAL ACTIVE MEMBERSHIPS</Text>
                   <View style={styles.sectionContent}>
                     {memberships.map((membership, index) => {
-                      console.log(`Membership ${index}:`, membership);
-                      console.log(`Type of membership ${index}:`, typeof membership);
-                      
                       if (typeof membership !== 'object' || membership === null) {
                         return <Text key={index} style={{ fontSize: 10 }}>Invalid membership data</Text>;
                       }
@@ -786,7 +768,6 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
               );
             } else {
               // Handle case where it might be a string or other type
-              console.log("Memberships is not an array, converting to string:", memberships);
               return (
                 <>
                   <Text style={styles.sectionTitle}>PROFESSIONAL ACTIVE MEMBERSHIPS</Text>

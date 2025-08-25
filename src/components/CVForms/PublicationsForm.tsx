@@ -86,7 +86,6 @@ export default function PublicationsForm({
       trigger().then((isValid) => {
         if (isValid) {
           const currentValues = watch();
-          console.log("PublicationsForm - Current form values:", currentValues);
           onSubmit(currentValues?.publications ?? currentValues, "Publications");
         } else {
           console.log("PublicationsForm - Form validation failed, errors:", errors);
@@ -99,11 +98,6 @@ export default function PublicationsForm({
       setIsNextClick(false);
     }
   }, [isNextClick, trigger, errors, watch, onSubmit, setIsNextClick]);
-
-  // Debug: Log current form values
-  useEffect(() => {
-    console.log("PublicationsForm - Current form values:", fields);
-  }, [fields]);
 
   const addPublication = () => {
     append({

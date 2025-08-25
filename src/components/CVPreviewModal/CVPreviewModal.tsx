@@ -37,7 +37,6 @@ const CVPreviewModal: React.FC<CVPreviewModalProps> = ({
       },
     },
   };
-  console.log("CVPreviewModal rendered", { isOpen, onClose, onDownload, children });
 
   return (
     <AnimatePresence>

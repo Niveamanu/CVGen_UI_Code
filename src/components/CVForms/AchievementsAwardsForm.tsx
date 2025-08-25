@@ -47,25 +47,10 @@ export default function AchievementsAwardsForm({
 
   useEffect(() => {
     if (isNextClick) {
-      console.log("AchievementsAwardsForm - Next button clicked, submitting form...");
       setIsNextClick(false);
       handleSubmit((data) => onSubmit(data, "Achievements or Awards"))();
     }
   }, [isNextClick, handleSubmit, onSubmit, setIsNextClick]);
-
-  // Debug: Log default values to see what's being received
-  useEffect(() => {
-    console.log("AchievementsAwardsForm - defaultValues received:", defaultValues);
-    console.log("AchievementsAwardsForm - Achievements or Awards data:", defaultValues("Achievements or Awards"));
-  }, [defaultValues]);
-
-  // Debug: Log errors to see what's happening
-  useEffect(() => {
-    if (Object.keys(errors).length > 0) {
-      console.log("Form validation errors:", errors);
-      console.log("Achievements errors:", errors.achievements);
-    }
-  }, [errors]);
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -86,13 +71,7 @@ export default function AchievementsAwardsForm({
     <div className={styles.formSection}>
       <h2 className={styles.sectionTitle}>Achievements or Awards</h2>
       
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        console.log("Form submit event triggered");
-        console.log("Current form data:", fields);
-        console.log("Form errors:", errors);
-        console.log("Achievements errors:", errors.achievements);
-      }}>
+      <form>
         {fields.map((field, index) => (
           <div key={field.id} className={styles.affiliationCard}>
             <div className={styles.formGrid}>

@@ -40,7 +40,6 @@ export default function LicensesCertificationsForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmitWrapper: SubmitHandler<FormData> = (data) => {
-    console.log("Form data being submitted:", data);
     try {
       onSubmit(data, "Licenses & Certifications");
     } catch (error) {
@@ -128,9 +127,7 @@ export default function LicensesCertificationsForm({
       // Trigger validation and handle submission
       trigger()
         .then((isValid) => {
-          console.log("Validation result:", isValid);
           if (isValid) {
-            console.log("Form is valid, submitting...");
             handleSubmit(handleSubmitWrapper)();
           } else {
             console.log("Form validation failed");

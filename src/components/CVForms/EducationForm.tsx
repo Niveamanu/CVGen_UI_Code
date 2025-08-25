@@ -138,7 +138,6 @@ export default function EducationForm({
       setIsNextClick(false);
       // Trigger validation for all fields before submitting
       trigger().then((isValid) => {
-        console.log("Form validation result:", isValid);
         if (isValid) {
           handleSubmit((data) => {
             // Transform the data to match the expected format

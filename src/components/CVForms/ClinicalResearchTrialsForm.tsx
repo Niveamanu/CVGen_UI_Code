@@ -78,16 +78,11 @@ export default function ClinicalResearchTrialsForm({
   }, []);
   useEffect(() => {
     if (isNextClick) {
-      console.log("ClinicalResearchTrialsForm - Next button clicked, triggering validation...");
-      
       // Trigger validation for all fields before submitting
       trigger().then((isValid) => {
-        console.log("ClinicalResearchTrialsForm - Validation result:", isValid);
         if (isValid) {
-          console.log("ClinicalResearchTrialsForm - Form is valid, submitting...");
           // Get current form values using watch
           const currentValues = watch();
-          console.log("ClinicalResearchTrialsForm - Current form values:", currentValues);
           onSubmit(currentValues.trials, "Clinical Research Trials Conducted");
         } else {
           console.log("ClinicalResearchTrialsForm - Form validation failed, errors:", errors);

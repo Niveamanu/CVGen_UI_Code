@@ -10,16 +10,7 @@ export default function PsychometricRatingScalesExperienceForm({
   setIsNextClick,
   onChange
 }: IBaseFormProps) {
-  // Debug logging for default values
-  console.log("=== PSYCHOMETRIC FORM - DEFAULT VALUES DEBUG ===");
-  console.log("defaultValues function:", defaultValues);
-  console.log("defaultValues('Psychometric Rating/Scales Experiences'):", defaultValues?.("Psychometric Rating/Scales Experiences"));
-  console.log("All available keys:", defaultValues ? Object.keys(defaultValues) : "No defaultValues");
-  
-  // Get the existing data from defaultValues
   const existingData = defaultValues?.("Psychometric Rating/Scales Experiences") || [];
-  console.log("Existing data from defaultValues:", existingData);
-  
   // Create the initial experiences array
   const initialExperiences = existingData.length > 0 ? existingData : [
     {
