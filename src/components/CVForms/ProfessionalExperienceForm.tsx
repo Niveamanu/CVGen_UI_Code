@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useForm, useFieldArray, Controller, useWatch } from "react-hook-form";
 import styles from "./CVForms.module.scss";
 import { IBaseFormProps } from "./types";
-import { CustomSelect } from "../FormGroup";
+import { CustomInput, CustomSelect } from "../FormGroup";
 import { countryOptions, monthOptions, yearOptions } from "../FormGroup/selectOptions";
 
 export default function ProfessionalExperienceForm({
@@ -193,7 +193,7 @@ export default function ProfessionalExperienceForm({
                 )}
               </div>
 
-              <div className={styles.formGroup}>
+              {/* <div className={styles.formGroup}>
                 <label>
                   Start Date <span className={styles.required}>*</span>
                 </label>
@@ -212,9 +212,18 @@ export default function ProfessionalExperienceForm({
                     {String((errors.experiences as any)[index]["Start Date"]?.message)}
                   </span>
                 )}
-              </div>
+              </div> */}
+              <CustomInput
+                name={`experiences.${index}.Start Date`}
+                type="date"
+                label="Start Date"
+                showMonthYearPicker
+                control={control}
+                placeholder="Start Year"
+                error={(errors.experiences as any)?.[index]?.["Start Date"]}
+              />
 
-              <div className={styles.formGroup}>
+              {/* <div className={styles.formGroup}>
                 <label>
                   End Date <span className={styles.required}>*</span>
                 </label>
@@ -233,7 +242,16 @@ export default function ProfessionalExperienceForm({
                     {String((errors.experiences as any)[index]["End Date"]?.message)}
                   </span>
                 )}
-              </div>
+              </div> */}
+              <CustomInput
+                name={`experiences.${index}.End Date`}
+                type="date"
+                label="End Date"
+                showMonthYearPicker
+                control={control}
+                placeholder="End Year"
+                error={(errors.experiences as any)?.[index]?.["End Date"]}
+              />
 
               <div className={styles.formGroup}>
                 <label>

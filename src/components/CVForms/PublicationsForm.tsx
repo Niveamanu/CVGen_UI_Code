@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useForm, useFieldArray, useWatch } from "react-hook-form";
 import styles from "./CVForms.module.scss";
 import { IBaseFormProps } from "./types";
+import { CustomInput } from "../FormGroup";
 
 export default function PublicationsForm({
   defaultValues,
@@ -187,7 +188,7 @@ export default function PublicationsForm({
                 )}
               </div>
 
-              <div className={styles.formGroup}>
+              {/* <div className={styles.formGroup}>
                 <label>
                   Publication Date <span className={styles.required}>*</span>
                 </label>
@@ -206,7 +207,15 @@ export default function PublicationsForm({
                     {String((errors.publications as any)[index]["Publication Date"]?.message)}
                   </span>
                 )}
-              </div>
+              </div> */}
+              <CustomInput
+                name={`publications.${index}.Publication Date`}
+                type="date"
+                label="Publication Date"
+                control={control}
+                placeholder="Publication Date"
+                error={(errors.publications as any)?.[index]?.["Publication Date"]}
+              />
 
               <div className={styles.formGroup}>
                 <label>

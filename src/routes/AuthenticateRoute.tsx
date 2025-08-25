@@ -1,6 +1,7 @@
 import withErrorBoundary from '@/HOC/withErrorBoundary';
 import SkeletonPage from '@/components/Skeleton/SkeletonPage';
 import { useUser } from '@/contexts/UserContext';
+import { useMsalAuth } from '@/hooks/useMsal';
 import React, { Suspense } from 'react'
 import { Navigate } from 'react-router-dom';
 
@@ -11,6 +12,10 @@ function AuthenticateRoute({
 }) {
   // Use the new UserContext to get the authentication state
   const { user, isLoading } = useUser();
+  const {
+      isAuthenticated,
+      isLoading: msalLoading,
+  } = useMsalAuth();
 
   /**
    * useEffect that scrolls the window to the top corner of the page when the children of the component changes.
@@ -24,18 +29,14 @@ function AuthenticateRoute({
     })
   }, [children])
 
-  if (isLoading) {
+  if (isLoading || msalLoading) {
     // Show loading state while checking authentication
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
+      <SkeletonPage />
     );
   }
 
-  if (user) {
+  if (isAuthenticated) {
     // If the user is authenticated, render the children within a MainLayout component.
     return (
       <>

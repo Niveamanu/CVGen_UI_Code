@@ -123,7 +123,9 @@ export default function AchievementsAwardsForm({
 
                 <CustomInput
                   name={`achievements.${index}.Awarded / Achieved Year`}
-                  register={register}
+                  control={control}
+                  type="date"
+                  showYearPicker
                   label="Awarded / Achieved Year"
                   placeholder="e.g., 2023, 2024, etc."
                 />

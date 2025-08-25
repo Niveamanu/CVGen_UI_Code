@@ -226,7 +226,7 @@ export default function ResearchAffiliationsForm({
                 required
               />
 
-              <div className={styles.formGroup}>
+              {/* <div className={styles.formGroup}>
                 <Controller
                   name={`affiliations.${index}.start`}
                   control={control}
@@ -244,9 +244,22 @@ export default function ResearchAffiliationsForm({
                     />
                   )}
                 />
-              </div>
+              </div> */}
+              <CustomInput
+                label="Start"
+                type="date"
+                name={`affiliations.${index}.start`}
+                placeholder="Select Start Year"
+                showYearPicker
+                control={control}
+                validation={{
+                  required: "Start date is required"
+                }}
+                error={(errors.affiliations as any)?.[index]?.start}
+                required
+              />
 
-              <div className={styles.formGroup}>
+              {/* <div className={styles.formGroup}>
                 <Controller
                   name={`affiliations.${index}.end`}
                   control={control}
@@ -264,7 +277,20 @@ export default function ResearchAffiliationsForm({
                     />
                   )}
                 />
-              </div>
+              </div> */}
+              <CustomInput
+                label="End"
+                type="date"
+                name={`affiliations.${index}.end`}
+                placeholder="Select End Year"
+                showYearPicker
+                control={control}
+                validation={{
+                  required: "End date is required"
+                }}
+                error={(errors.affiliations as any)?.[index]?.end}
+                required
+              />
 
               {/* <div
                 className={styles.formGroup}

@@ -97,10 +97,12 @@ export default function TrainingForm({
 
                 <CustomInput
                   name={`training.${index}.Start`}
-                  register={register}
+                  control={control}
+                  type="date"
+                  showMonthYearPicker
                   label={"Start"}
                   required
-                  validation={{ required: "Duration is required" }}
+                  validation={{ required: "Start Month & Year is required" }}
                   placeholder="Select year and month"
                   error={(errors.training as any)?.[index]?.["Start"]}
                 />

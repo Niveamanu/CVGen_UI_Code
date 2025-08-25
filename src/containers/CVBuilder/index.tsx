@@ -1,12 +1,5 @@
 import React, { Suspense, useMemo } from "react";
-import {
-  buttonHover,
-  cardHover,
-  scaleTransitions,
-  staggerContainer,
-  staggerItem,
-  stepTransition,
-} from "@/utils/animations";
+import { stepTransition } from "@/utils/animations";
 import { cvBuilderContext } from "@/contexts/cv-builder.context";
 import {
   PersonalDetailsForm,
@@ -133,6 +126,8 @@ export default function () {
             onNext={() => {
               setIsNextClick(true);
             }}
+            currentStep={currentStep}
+            totalSteps={steps.length}
             onPrev={handlePrevious}
             onSkip={() => setCurrentStep(currentStep + 1)}
             isFirstStep={currentStep === 1}

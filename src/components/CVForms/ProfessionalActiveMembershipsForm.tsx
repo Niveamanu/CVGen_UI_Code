@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useForm, useFieldArray, Controller, useWatch } from "react-hook-form";
 import styles from "./CVForms.module.scss";
 import { IBaseFormProps } from "./types";
-import { CustomSelect } from "../FormGroup";
+import { CustomInput, CustomSelect } from "../FormGroup";
 import { yearOptionsForPrevPlus10Years as yearOptions } from "../FormGroup/selectOptions";
 
 export default function ProfessionalActiveMembershipsForm({
@@ -204,7 +204,7 @@ export default function ProfessionalActiveMembershipsForm({
                 </select>
               </div>
 
-              <div className={styles.formGroup}>
+              {/* <div className={styles.formGroup}>
                 <Controller
                   name={`memberships.${index}.Start Date`}
                   control={control}
@@ -219,9 +219,20 @@ export default function ProfessionalActiveMembershipsForm({
                     />
                   )}
                 />
-              </div>
+              </div> */}
+              <CustomInput
+                name={`memberships.${index}.Start Date`}
+                control={control}
+                type="date"
+                showYearPicker
+                label={"Start"}
+                required
+                validation={{ required: "Start Year is required" }}
+                placeholder="Select year"
+                error={(errors.memberships as any)?.[index]?.["Start Date"]}
+              />
 
-              <div className={styles.formGroup}>
+              {/* <div className={styles.formGroup}>
                 <Controller
                   name={`memberships.${index}.End Date`}
                   control={control}
@@ -236,7 +247,16 @@ export default function ProfessionalActiveMembershipsForm({
                     />
                   )}
                 />
-              </div>
+              </div> */}
+              <CustomInput
+                name={`memberships.${index}.End Date`}
+                control={control}
+                type="date"
+                showYearPicker
+                label={"End"}
+                placeholder="Select year"
+                error={(errors.memberships as any)?.[index]?.["End Date"]}
+              />
 
               {/* <div className={styles.formGroup} style={{ gridColumn: "1 / -1" }}>
                 <label>Notes / Comments</label>

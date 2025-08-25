@@ -205,7 +205,7 @@ export default function HospitalAffiliationsForm({
                 />
               </div> */}
 
-              <Controller
+              {/* <Controller
                 name={`affiliations.${index}."From Date"`}
                 control={control}
                 rules={{ required: "From date is required" }}
@@ -221,9 +221,22 @@ export default function HospitalAffiliationsForm({
                     error={(errors.affiliations as any)?.[index]?.["From Date"]?.message}
                   />
                 )}
+              /> */}
+              <CustomInput
+                label="From"
+                type="date"
+                name={`affiliations.${index}."From Date"`}
+                placeholder="Select From Year"
+                showYearPicker
+                control={control}
+                validation={{
+                  required: "From date is required"
+                }}
+                error={(errors.affiliations as any)?.[index]?.["From Date"]}
+                required
               />
 
-              <Controller
+              {/* <Controller
                 name={`affiliations.${index}."To Date"`}
                 control={control}
                 render={({ field }) => (
@@ -237,6 +250,19 @@ export default function HospitalAffiliationsForm({
                     error={(errors.affiliations as any)?.[index]?.["To Date"]?.message}
                   />
                 )}
+              /> */}
+              <CustomInput
+                label="To"
+                type="date"
+                name={`affiliations.${index}."To Date"`}
+                placeholder="Select To Year"
+                showYearPicker
+                control={control}
+                validation={{
+                  required: "To date is required"
+                }}
+                error={(errors.affiliations as any)?.[index]?.["To Date"]}
+                required
               />
 
               <CustomInput

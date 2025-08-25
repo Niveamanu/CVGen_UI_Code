@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import styles from "./CVPreviewModal.module.scss";
 import { cvBuilderContext } from "@/contexts/cv-builder.context";
 import DocumentViewer from "../DocRender";
+import { modalVariants, overlayVariants2 } from "@/utils/animations";
 
 interface CVPreviewModalProps {
   // isOpen: boolean;
@@ -12,39 +13,18 @@ interface CVPreviewModalProps {
 }
 
 const CVPreviewModal: React.FC = () => {
-  const modalVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.9,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-    },
-  };
-
-  const overlayVariants = {
-    hidden: {
-      opacity: 0,
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.2,
-      },
-    },
-  };
+  
   const { isPreviewModalOpen, handleCloseModal, handleDownload, isBase64Request, isSavingDraft } = cvBuilderContext();
   console.log("isPreviewModalOpen:", isPreviewModalOpen, "isBase64Request:", isBase64Request, "isSavingDraft:", isSavingDraft);
   return (
     <AnimatePresence>
-      {(isBase64Request || isSavingDraft) && (
+      {(isBase64Request || isSavingDraft) && !isPreviewModalOpen && (
         <DocumentViewer />
       )}
-      {isPreviewModalOpen && (
+      {isPreviewModalOpen &&   (
         <motion.div
           className={styles.overlay}
-          variants={overlayVariants}
+          variants={overlayVariants2}
           initial="hidden"
           animate="visible"
           exit="hidden"

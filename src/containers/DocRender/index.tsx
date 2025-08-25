@@ -76,13 +76,18 @@ const DocumentViewer: React.FC = () => {
   };
 
   useEffect(() => {
+    let cancelled = false;
     if ((isBase64Request || isSavingDraft) && !pdfInProgress.current) {
       pdfInProgress.current = true;
       generatePdfBase64().then((base64) => {
-        onBase64PdfReady(base64);
+        if (!cancelled) {
+          onBase64PdfReady(base64);
+        }
       }).catch((error) => {
-        console.error('Error generating PDF base64:', error);
-        if (onerror) onerror(error);
+        if (!cancelled) {
+          console.error('Error generating PDF base64:', error);
+          if (onerror) onerror(error);
+        }
       }).finally(() => {
         pdfInProgress.current = false;
       });
@@ -91,6 +96,11 @@ const DocumentViewer: React.FC = () => {
     if (!isBase64Request && !isSavingDraft) {
       pdfInProgress.current = false;
     }
+
+    return () => {
+      cancelled = true;
+      pdfInProgress.current = false;
+    };
   }, [isBase64Request, isSavingDraft]);
 
   useEffect(() => {
@@ -107,8 +117,8 @@ const DocumentViewer: React.FC = () => {
     const name = [personalInfo?.["First Name"], personalInfo?.["Middle Name"], personalInfo?.["Last Name"]].filter(Boolean).join('_') || 'CV';
     const date = new Date().toISOString().split('T')[0];
     return `${name}_CV_${date}.pdf`;
-  };
-  if (isBase64Request || isSavingDraft || !isPreviewModalOpen) {
+  };  
+  if (isBase64Request || isSavingDraft) {
     const handleCancel = () => {
       if (isBase64Request) setIsBase64Request(false);
       if (isSavingDraft) setIsSavingDraft(false);

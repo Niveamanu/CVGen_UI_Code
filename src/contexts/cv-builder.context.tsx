@@ -486,8 +486,6 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
           Credentials: credentials,
           "Full Name": fullName,
         };
-
-        console.log("Transformed data:", transformedData);
       }
 
       setCvData((prev) => {
@@ -498,34 +496,6 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
             ? { Languages: data.Languages || [] }
             : {}),
         };
-
-        // Debug logging for all form submissions
-        console.log(`=== FORM SUBMISSION: ${keyName} ===`);
-        console.log("Previous cvData:", prev);
-        console.log("New section data:", transformedData);
-        console.log("Updated cvData:", newCvData);
-
-        // If this is a draft save, log the data immediately after state update
-        if (isDraftSave) {
-          // Use setTimeout to ensure state update completes
-          setTimeout(() => {
-            console.log("=== SAVE DRAFT - ENTIRE CV DATA ===");
-            console.log("CV Data Object:", newCvData);
-            console.log("CV Data Keys:", Object.keys(newCvData));
-
-            // Log each section individually for better readability
-            Object.entries(newCvData).forEach(([sectionName, sectionData]) => {
-              console.log(`--- ${sectionName} ---`);
-              console.log(sectionData);
-            });
-
-            console.log("=== END CV DATA ===");
-
-            // Add subtle animation feedback
-            alert("Draft saved! Check console for CV data.");
-          }, 0);
-        }
-
         return newCvData;
       });
 

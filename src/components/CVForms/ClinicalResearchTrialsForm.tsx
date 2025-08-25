@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useForm, useFieldArray, useWatch } from "react-hook-form";
 import styles from "./CVForms.module.scss";
 import { IBaseFormProps } from "./types";
+import { CustomInput } from "../FormGroup";
 
 export default function ClinicalResearchTrialsForm({
   defaultValues,
@@ -219,7 +220,7 @@ export default function ClinicalResearchTrialsForm({
                   )}
                 </div>
 
-                <div className={styles.formGroup}>
+                {/* <div className={styles.formGroup}>
                   <label>Start Date <span className={styles.required}>*</span></label>
                   <input
                     type="date"
@@ -235,9 +236,33 @@ export default function ClinicalResearchTrialsForm({
                       {String((errors.trials as any)[index]["Start Date"]?.message)}
                     </span>
                   )}
-                </div>
+                </div> */}
+                <CustomInput
+                  label="Start Date"
+                  type="date"
+                  name={`trials.${index}["Start Date"]`}
+                  placeholder="Select start date"
+                  control={control}
+                  validation={{
+                    required: "Start date is required",
+                  }}
+                  error={(errors.trials as any)?.[index]?.["Start Date"]}
+                  required
+                />
 
-                <div className={styles.formGroup}>
+                <CustomInput
+                  label="End Date"
+                  type="date"
+                  name={`trials.${index}["End Date"]`}
+                  placeholder="Select end date"
+                  control={control}
+                  validation={{
+                    required: "End date is required",
+                  }}
+                  error={(errors.trials as any)?.[index]?.["End Date"]}
+                  required
+                />
+                {/* <div className={styles.formGroup}>
                   <label>End Date <span className={styles.required}>*</span></label>
                   <input
                     type="date"
@@ -253,7 +278,7 @@ export default function ClinicalResearchTrialsForm({
                       {String((errors.trials as any)[index]["End Date"]?.message)}
                     </span>
                   )}
-                </div>
+                </div> */}
 
                 {/* <div className={styles.formGroup} style={{ gridColumn: "1 / -1" }}>
                   <label>Brief Description / Outcome</label>

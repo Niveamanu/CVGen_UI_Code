@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import styles from "./CVFormNavigation.module.scss";
 
 interface CVFormNavigationProps {
+  currentStep: number;
   onNext: () => void;
   onPrev: () => void;
   onSkip: () => void;
@@ -12,6 +13,7 @@ interface CVFormNavigationProps {
   nextButtonText?: string;
   prevButtonText?: string;
   onComplete?: () => void;
+  totalSteps: number;
 }
 
 export default function CVFormNavigation({ 
@@ -23,8 +25,29 @@ export default function CVFormNavigation({
   showSkip = false,
   nextButtonText = "Next",
   prevButtonText = "Prev",
-  onComplete
+  onComplete,
+  currentStep,
+  totalSteps,
 }: CVFormNavigationProps) {
+  const [nextDisabled, setNextDisabled] = useState(false);
+  const [prevDisabled, setPrevDisabled] = useState(false);
+
+  const handleNext = () => {
+    setNextDisabled(true);
+    setTimeout(() => setNextDisabled(false), 400);
+    if (isLastStep) {
+      onComplete && onComplete();
+    } else {
+      onNext();
+    }
+  };
+
+  const handlePrev = () => {
+    setPrevDisabled(true);
+    setTimeout(() => setPrevDisabled(false), 400);
+    onPrev();
+  };
+
   return (
     <motion.div 
       className={styles.navigationContainer}
@@ -40,6 +63,7 @@ export default function CVFormNavigation({
               type="button" 
               className={styles.skipBtn} 
               onClick={onSkip}
+              disabled={nextDisabled || prevDisabled}
             >
               Skip &gt;&gt;
             </button>
@@ -47,7 +71,7 @@ export default function CVFormNavigation({
         </div>
 
         {/* Step Indicator */}
-        {/* <div className={styles.stepIndicator}>
+        <div className={styles.stepIndicator}>
           <span className={styles.stepText}>
             Step {currentStep} of {totalSteps}
           </span>
@@ -57,7 +81,7 @@ export default function CVFormNavigation({
               style={{ width: `${(currentStep / totalSteps) * 100}%` }}
             />
           </div>
-        </div> */}
+        </div>
 
         {/* Action Buttons */}
         <div className={styles.actionButtons}>
@@ -65,7 +89,8 @@ export default function CVFormNavigation({
             <button 
               type="button" 
               className={styles.prevBtn} 
-              onClick={onPrev}
+              onClick={handlePrev}
+              disabled={prevDisabled}
             >
               {prevButtonText}
             </button>
@@ -73,13 +98,8 @@ export default function CVFormNavigation({
           <button 
             type="button" 
             className={styles.nextBtn} 
-            onClick={() => {
-              if (isLastStep) {
-                onComplete && onComplete();
-              } else {
-                onNext();
-              }
-            }}
+            onClick={handleNext}
+            disabled={nextDisabled}
           >
             {isLastStep ? "Complete" : nextButtonText}
           </button>

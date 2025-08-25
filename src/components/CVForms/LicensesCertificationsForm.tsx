@@ -280,7 +280,7 @@ export default function LicensesCertificationsForm({
                           />
                         </div>
 
-                        <div className={styles.formGroup}>
+                        {/* <div className={styles.formGroup}>
                           <Controller
                             name={`licenses.${index}.issueDate`}
                             control={control}
@@ -298,7 +298,20 @@ export default function LicensesCertificationsForm({
                               />
                             )}
                           />
-                        </div>
+                        </div> */}
+                        <CustomInput
+                          label="Issue Year"
+                          type="date"
+                          name={`licenses.${index}.issueDate`}
+                          placeholder="Select Issue Year"
+                          showYearPicker
+                          control={control}
+                          validation={{
+                            required: "Issue date is required"
+                          }}
+                          error={(errors.licenses as any)?.[index]?.issueDate}
+                          required
+                        />
 
                         {/* <div className={styles.formGroup}>
                           <Controller
@@ -445,16 +458,18 @@ export default function LicensesCertificationsForm({
                       />
                       <CustomInput
                         name={`certifications.${index}.issueDate`}
-                        register={register}
-                        label={"Issue Year"}
+                        type="date"
+                        label="Issue Year"
+                        control={control}
+                        showYearPicker
                         required
-                        validation={{ required: "Duration is required" }}
+                        validation={{ required: "Issue Year is required" }}
                         placeholder="Issue Year"
                         error={(errors.certifications as any)?.[index]?.["issueDate"]}
                       />
 
 
-                        <Controller
+                        {/* <Controller
                           name={`certifications.${index}.expiryDate`}
                           control={control}
                           
@@ -470,6 +485,16 @@ export default function LicensesCertificationsForm({
                               error={(errors.certifications as any)?.[index]?.expiryDate?.message || (errors.certifications as any)?.[index]?.expiryDate}
                             />
                           )}
+                        /> */}
+
+                        <CustomInput
+                          name={`certifications.${index}.expiryDate`}
+                          type="date"
+                          label="Expiry Year"
+                          control={control}
+                          showYearPicker
+                          placeholder="Expiry Year"
+                          error={(errors.certifications as any)?.[index]?.["expiryDate"]}
                         />
 
                         <CustomInput

@@ -8,7 +8,9 @@ export interface CustomInputProps {
   name: string;
   type?: 'text' | 'email' | 'tel' | 'password' | 'number' | 'date';
   placeholder?: string;
-  register: UseFormRegister<any>;
+  register?: UseFormRegister<any>;
+  showYearPicker?: boolean;
+  showMonthYearPicker?: boolean;
   validation?: any;
   error?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
   required?: boolean;
@@ -36,10 +38,11 @@ const CustomInput: React.FC<CustomInputProps> = ({
   isTextarea = false,
   rows = 3,
   control,
+  showYearPicker,
+  showMonthYearPicker
 }) => {
   const errorMessage = getErrorMessage(error);
-
-  // If type is date and control is provided, use CustomDatePicker
+  // If type is date, use CustomDatePicker (supports both control and register)
   if (type === 'date' && control) {
     return (
       <CustomDatePicker
@@ -47,6 +50,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
         name={name}
         placeholder={placeholder || "Select date"}
         control={control}
+        showYearPicker={showYearPicker}
+        showMonthYearPicker={showMonthYearPicker}
         validation={validation}
         error={error}
         required={required}
@@ -55,7 +60,10 @@ const CustomInput: React.FC<CustomInputProps> = ({
   }
 
   const inputClassName = `${styles.input} ${errorMessage ? styles.error : ''}`;
-
+  if(!register) {
+    console.warn(`CustomInput: 'register' prop is missing for input name '${name}'.`);
+    return null;
+  }
   return (
     <div className={styles.formGroup}>
       {label && (

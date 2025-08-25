@@ -178,8 +178,8 @@ export default function EducationForm({
         {fields.map((field, index) => (
           <div key={field.id} className={styles.affiliationCard} data-error-path={`education.${index}`}>
             <div className={styles.formGrid}>
-              <div className={styles.formGroup}>
-                <Controller
+              {/* <div className={styles.formGroup}> */}
+                {/* <Controller
                   name={`education.${index}.startYear`}
                   control={control}
                   rules={{ required: "Start year is required" }}
@@ -196,9 +196,22 @@ export default function EducationForm({
                     />
                   )}
                 />
-              </div>
+              </div> */}
+              <CustomInput
+                label="Start Year"
+                type="date"
+                name={`education.${index}.startYear`}
+                placeholder="Select Start Year"
+                showYearPicker
+                control={control}
+                validation={{
+                  required: "Start date is required"
+                }}
+                error={(errors.education as any)?.[index]?.startYear}
+                required
+              />
 
-              <div className={styles.formGroup}>
+              {/* <div className={styles.formGroup}>
                 <Controller
                   name={`education.${index}.endYear`}
                   control={control}
@@ -216,7 +229,20 @@ export default function EducationForm({
                     />
                   )}
                 />
-              </div>
+              </div> */}
+              <CustomInput
+                label="End Year"
+                type="date"
+                name={`education.${index}.endYear`}
+                placeholder="Select End Year"
+                showYearPicker
+                control={control}
+                validation={{
+                  required: "End date is required"
+                }}
+                error={(errors.education as any)?.[index]?.endYear}
+                required
+              />
 
               <div style={{ gridColumn: "1 / -1" }}>
                 <CustomInput
