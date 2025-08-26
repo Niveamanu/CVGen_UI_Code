@@ -101,7 +101,7 @@ export default function CVFormNavigation({
             onClick={handleNext}
             disabled={nextDisabled}
           >
-            {isLastStep ? "Complete" : nextButtonText}
+            {isLastStep ? "Preview CV" : nextButtonText}
           </button>
         </div>
       </div>

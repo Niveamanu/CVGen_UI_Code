@@ -100,7 +100,7 @@ const CVPreviewModal: React.FC<CVPreviewModalProps> = ({
                 className={styles.downloadButton}
                 onClick={onDownload}
               >
-                Download
+                Generate CV
               </button>
             </div>
           </motion.div>

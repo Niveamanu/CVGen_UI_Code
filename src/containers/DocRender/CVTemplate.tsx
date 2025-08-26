@@ -10,6 +10,7 @@ interface PersonalInfo {
   "Certifications": string;
   "Business Number": string;
   "Business Email Address": string;
+  "Credentials": string;
 }
 
 interface SiteAffiliation {
@@ -631,6 +632,60 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
       )) || [];
   };
 
+  const renderProfessionalMemberships = () => {
+    const memberships = data["Professional Active Memberships"];
+    if (!memberships || !Array.isArray(memberships)) return [];
+
+    return memberships.map((membership, index) => {
+      if (typeof membership !== 'object' || membership === null) {
+        return <Text key={index} style={{ fontSize: 10 }}>Invalid membership data</Text>;
+      }
+      
+      const orgName = String(membership["Organization Name"] || '');
+      const membershipType = String(membership["Membership Type"] || '');
+      const status = String(membership["Status"] || '');
+      const startDate = String(membership["Start Date"] || '');
+      const endDate = String(membership["End Date"] || '');
+      
+      const displayText = [
+        orgName,
+        membershipType ? `(${membershipType})` : '',
+        status ? `- ${status}` : ''
+      ].filter(Boolean).join(' ');
+      
+      const dateText = `${startDate} - ${endDate}`;
+      
+      return (
+        <View key={index} style={styles.listItem}>
+          <View style={styles.dateColumn}>
+            <Text>{dateText}</Text>
+          </View>
+          <View style={styles.contentColumn}>
+            <Text>{displayText}</Text>
+          </View>
+        </View>
+      );
+    });
+  };
+
+  const renderAchievementsOrAwards = () => {
+    return data?.["Achievements or Awards"]
+      ?.map((award, index) => (
+        <View key={index} style={styles.listItem}>
+          <View style={styles.dateColumn}>
+            <Text>{award["Awarded / Achieved Year"] || ''}</Text>
+          </View>
+          <View style={styles.contentColumn}>
+            <Text>
+              {award["Award / Achievement Name"]}
+              {award["Awarding Organization/Institution"] && `, ${award["Awarding Organization/Institution"]}`}
+              {award["Description / Details"] && ` - ${award["Description / Details"]}`}
+            </Text>
+          </View>
+        </View>
+      )) || [];
+  };
+
   const renderHospitalAffiliations = () => {
     return data?.["Hospital Affiliations"]
       ?.map((affiliation, index) => (
@@ -660,7 +715,7 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
         <Text style={styles.title}>Curriculum Vitae</Text>
         {/* Name and Credentials */}
         <Text style={styles.name}>
-          {personalInfo?.["First Name"]} {personalInfo?.["Middle Name"]} {personalInfo?.["Last Name"]}, {Array.isArray(personalInfo?.["Degree Title"]) ? personalInfo?.["Degree Title"].join(", ") : personalInfo?.["Degree Title"]}
+          {personalInfo?.["First Name"]} {personalInfo?.["Middle Name"]} {personalInfo?.["Last Name"]}, {personalInfo?.["Credentials"]}
         </Text>
 
         {/* Divider */}
@@ -683,136 +738,98 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
         </View>
 
         {/* Flourish Site Affiliations */}
-        <Text style={styles.sectionTitle}>FLOURISH SITE AFFILIATIONS</Text>
-        <View style={styles.sectionContent}>
-          {renderSiteAffiliations()}
-        </View>
+        {data["Flourish Site Affiliations"] && data["Flourish Site Affiliations"].length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>FLOURISH SITE AFFILIATIONS</Text>
+            <View style={styles.sectionContent}>
+              {renderSiteAffiliations()}
+            </View>
+          </>
+        )}
 
-        {/* Education */}
-        <Text style={styles.sectionTitle}>EDUCATION</Text>
-        <View style={styles.sectionContent}>
-          {renderEducation()}
-        </View>
-
-        {/* Licenses */}
-        <Text style={styles.sectionTitle}>LICENSE(S)</Text>
-        <View style={styles.sectionContent}>
-          {renderLicenses()}
-        </View>
-
-        {/* Certifications */}
-        <Text style={styles.sectionTitle}>CERTIFICATION(S)</Text>
-        <View style={styles.sectionContent}>
-          {renderCertifications()}
-        </View>
-
-        {/* Professional Experience */}
-        <Text style={styles.sectionTitle}>PROFESSIONAL EXPERIENCE</Text>
-        <View style={styles.sectionContent}>
-          {renderProfessionalExperience()}
-        </View>
-
-         {/* Professional Memberships - Temporarily Disabled for Debugging */}
-        {(() => {
-          try {
-            const memberships = data["Professional Active Memberships"];
-            if (!memberships) {
-              return (
-                <>
-                  <Text style={styles.sectionTitle}>PROFESSIONAL ACTIVE MEMBERSHIPS</Text>
-                  <View style={styles.sectionContent}>
-                    <Text style={{ fontSize: 10 }}>No memberships listed</Text>
-                  </View>
-                </>
-              );
-            }
-            
-            if (Array.isArray(memberships) && memberships.length > 0) {
-              return (
-                <>
-                  <Text style={styles.sectionTitle}>PROFESSIONAL ACTIVE MEMBERSHIPS</Text>
-                  <View style={styles.sectionContent}>
-                    {memberships.map((membership, index) => {
-                      if (typeof membership !== 'object' || membership === null) {
-                        return <Text key={index} style={{ fontSize: 10 }}>Invalid membership data</Text>;
-                      }
-                      
-                      const orgName = String(membership["Organization Name"] || '');
-                      const membershipType = String(membership["Membership Type"] || '');
-                      const status = String(membership["Status"] || '');
-                      const startDate = String(membership["Start Date"] || '');
-                      const endDate = String(membership["End Date"] || '');
-                      
-                      const displayText = [
-                        orgName,
-                        membershipType ? `(${membershipType})` : '',
-                        status ? `- ${status}` : ''
-                      ].filter(Boolean).join(' ');
-                      
-                      const dateText = `${startDate} - ${endDate}`;
-                      
-                      return (
-                        <View key={index} style={styles.listItem}>
-                          <View style={styles.dateColumn}>
-                            <Text>{dateText}</Text>
-                          </View>
-                          <View style={styles.contentColumn}>
-                            <Text>{displayText}</Text>
-                          </View>
-                        </View>
-                      );
-                    })}
-                  </View>
-                </>
-              );
-            } else {
-              // Handle case where it might be a string or other type
-              return (
-                <>
-                  <Text style={styles.sectionTitle}>PROFESSIONAL ACTIVE MEMBERSHIPS</Text>
-                  <View style={styles.sectionContent}>
-                    <Text style={{ fontSize: 10 }}>Invalid membership data format</Text>
-                  </View>
-                </>
-              );
-            }
-          } catch (error) {
-            console.error("Error rendering Professional Memberships:", error);
-            return (
-              <>
-                <Text style={styles.sectionTitle}>PROFESSIONAL ACTIVE MEMBERSHIPS</Text>
-                <View style={styles.sectionContent}>
-                  <Text style={{ fontSize: 10 }}>Error rendering memberships</Text>
-                </View>
-              </>
-            );
-          }
-        })()}
-
-         {/* Awards */}
-        <Text style={styles.sectionTitle}>ACHIEVEMENT(S) AND/OR AWARD(S)</Text>
-        <View style={styles.sectionContent}>
-          {renderAwards()}
-        </View>
-
-         {/* Hospital Affiliations */}
-        <Text style={styles.sectionTitle}>HOSPITAL AFFILIATIONS</Text>
-        <View style={styles.sectionContent}>
-          {renderHospitalAffiliations()}
-        </View>
-
+        {/* Hospital Affiliations */}
+        {data["Hospital Affiliations"] && data["Hospital Affiliations"].length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>HOSPITAL AFFILIATIONS</Text>
+            <View style={styles.sectionContent}>
+              {renderHospitalAffiliations()}
+            </View>
+          </>
+        )}
 
         {/* Research Affiliations */}
-        <Text style={styles.sectionTitle}>RESEARCH AFFILIATIONS</Text>
-        <View style={styles.sectionContent}>
-          {renderResearchAffiliations()}
-        </View>
+        {data["Research Affiliations"] && data["Research Affiliations"].length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>RESEARCH AFFILIATIONS</Text>
+            <View style={styles.sectionContent}>
+              {renderResearchAffiliations()}
+            </View>
+          </>
+        )}
 
-         {/* Training */}
-        <Text style={styles.sectionTitle}>TRAINING</Text>
-        <View style={styles.sectionContent}>
-          {renderTraining()}
-        </View>
+        {/* Education */}
+        {data["Education"] && data["Education"].length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>EDUCATION</Text>
+            <View style={styles.sectionContent}>
+              {renderEducation()}
+            </View>
+          </>
+        )}
+
+        {/* Licenses & Certifications */}
+        {data["Licenses & Certifications"] && (
+          (data["Licenses & Certifications"].licenses && data["Licenses & Certifications"].licenses.length > 0) ||
+          (data["Licenses & Certifications"].certifications && data["Licenses & Certifications"].certifications.length > 0)
+        ) && (
+          <>
+            <Text style={styles.sectionTitle}>LICENSES & CERTIFICATIONS</Text>
+            <View style={styles.sectionContent}>
+              {renderLicenses()}
+              {renderCertifications()}
+            </View>
+          </>
+        )}
+
+        {/* Professional Experience */}
+        {data["Professional Experience"] && data["Professional Experience"].length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>PROFESSIONAL EXPERIENCE</Text>
+            <View style={styles.sectionContent}>
+              {renderProfessionalExperience()}
+            </View>
+          </>
+        )}
+
+        {/* Professional Active Memberships */}
+        {data["Professional Active Memberships"] && data["Professional Active Memberships"].length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>PROFESSIONAL ACTIVE MEMBERSHIPS</Text>
+            <View style={styles.sectionContent}>
+              {renderProfessionalMemberships()}
+            </View>
+          </>
+        )}
+
+        {/* Achievements or Awards */}
+        {data["Achievements or Awards"] && data["Achievements or Awards"].length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>ACHIEVEMENTS OR AWARDS</Text>
+            <View style={styles.sectionContent}>
+              {renderAchievementsOrAwards()}
+            </View>
+          </>
+        )}
+
+        {/* Training */}
+        {data["Training"] && data["Training"].length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>TRAINING</Text>
+            <View style={styles.sectionContent}>
+              {renderTraining()}
+            </View>
+          </>
+        )}
 
         {/* Psychometric Rating/Scales Experiences */}
         {data["Psychometric Rating/Scales Experiences"] && data["Psychometric Rating/Scales Experiences"].length > 0 && (
@@ -829,29 +846,40 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
         )}
 
         {/* Additional Skills / Languages */}
-        <Text style={styles.sectionTitle}>ADDITIONAL SKILLS</Text>
-        <View style={styles.sectionContent}>
-          {data["Languages"]
-            ?.filter(lang => lang["Language Name"])
-            .map((language, index) => (
-              <Text key={index} style={{ fontSize: 9 }}>
-                {language["Language Name"]}
-              </Text>
-            )) || [<Text key="no-languages" style={{ fontSize: 9 }}>Bilingual in English and Haitian-Creole</Text>]}
-        </View>
+        {data["Languages"] && data["Languages"].length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>ADDITIONAL SKILLS</Text>
+            <View style={styles.sectionContent}>
+              {data["Languages"]
+                .filter(lang => lang["Language Name"])
+                .map((language, index) => (
+                  <Text key={index} style={{ fontSize: 9 }}>
+                    {language["Language Name"]}
+                  </Text>
+                ))}
+            </View>
+          </>
+        )}
 
         {/* Publications */}
-        <Text style={styles.sectionTitle}>PUBLICATIONS/PRESENTATIONS</Text>
-        <View style={styles.sectionContent}>
-          {renderPublications()}
-        </View>
-
+        {data["Publications"] && data["Publications"].length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>PUBLICATIONS/PRESENTATIONS</Text>
+            <View style={styles.sectionContent}>
+              {renderPublications()}
+            </View>
+          </>
+        )}
 
         {/* Clinical Research Trials */}
-        <Text style={styles.sectionTitle}>CLINICAL RESEARCH TRIALS CONDUCTED:</Text>
-        <View style={styles.sectionContent}>
-          {renderClinicalTrials()}
-        </View>
+        {data["Clinical Research Trials Conducted"] && data["Clinical Research Trials Conducted"].length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>CLINICAL RESEARCH TRIALS CONDUCTED:</Text>
+            <View style={styles.sectionContent}>
+              {renderClinicalTrials()}
+            </View>
+          </>
+        )}
 
         {/* Footer */}
         <View style={styles.footer}>

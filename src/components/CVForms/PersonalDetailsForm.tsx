@@ -113,8 +113,6 @@ export default function PersonalDetailsForm({
       "Languages": [
         ...(defaultValues?.("Languages")?.length > 0 ?  defaultValues?.("Languages") : [{
           "Language Name": "",
-          "Proficiency Level": "",
-          "Certification / Qualification": "",
         }])
       ],
       "Degree Title": defaultDegreeTitles,
@@ -158,8 +156,6 @@ export default function PersonalDetailsForm({
   const languages = watch("Languages") || [
     {
       "Language Name": "",
-      "Proficiency Level": "",
-      "Certification / Qualification": "",
     },
   ];
 
@@ -168,8 +164,6 @@ export default function PersonalDetailsForm({
       ...languages,
       {
         "Language Name": "",
-        "Proficiency Level": "",
-        "Certification / Qualification": "",
       },
     ]);
   };
@@ -320,7 +314,7 @@ export default function PersonalDetailsForm({
         {/* Languages Section */}
         <div className={styles.languagesSection}>
           <div className={styles.languagesHeader}>
-            <h3>Languages <span className={styles.required}>*</span></h3>
+            <h3>Languages</h3>
             <div
             style={{
               cursor: 'pointer',
@@ -356,8 +350,6 @@ export default function PersonalDetailsForm({
                         name={`Languages.${index}."Language Name"`}
                         placeholder="Enter language name"
                         register={register}
-                        required
-                        validation={{ required: "Language name is required" }}
                         error={
                           (errors.Languages &&
                             Array.isArray(errors.Languages) &&

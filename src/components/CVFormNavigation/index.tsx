@@ -83,7 +83,7 @@ export default function CVFormNavigation({
               }
             }}
           >
-            {isLastStep ? "Complete" : nextButtonText}
+            {isLastStep ? "Preview CV" : nextButtonText}
           </button>
         </div>
       </div>

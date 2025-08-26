@@ -11,6 +11,7 @@ interface PersonalInfo {
   "Certifications": string;
   "Business Number": string;
   "Business Email Address": string;
+  "Credentials": string;
 }
 
 interface SiteAffiliation {
@@ -344,12 +345,11 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
         </div>
 
         {/* CV Title */}
-        <div className="cv-title">Curriculum Vitae</div>
-        console.log("hiiii",{personalInfo?.["Degree Title"]})
+        <div className="cv-title">Curriculum Vitae</div> 
 
         {/* Name and Credentials */}
         <div className="cv-name">
-          {personalInfo?.["First Name"]} {personalInfo?.["Middle Name"]} {personalInfo?.["Last Name"]}, {personalInfo?.["Degree Title"]}
+          {personalInfo?.["First Name"]} {personalInfo?.["Middle Name"]} {personalInfo?.["Last Name"]}, {personalInfo?.["Credentials"]}
         </div>
 
         {/* Divider */}
@@ -372,156 +372,212 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
         </div>
 
         {/* Flourish Site Affiliations */}
-        <div className="section-title" onClick={() => handleSectionClick('Flourish Site Affiliations')}>
-          FLOURISH SITE AFFILIATIONS
-        </div>
-        <div className="section-content">
-          {renderSiteAffiliations()}
-        </div>
+        {data?.["Flourish Site Affiliations"]?.length > 0 && (
+          <>
+            <div className="section-title" onClick={() => handleSectionClick('FLOURISH SITE AFFILIATIONS')}>
+              FLOURISH SITE AFFILIATIONS
+            </div>
+            <div className="section-content">
+              {renderSiteAffiliations()}
+            </div>
+          </>
+        )}
 
         {/* Education */}
-        <div className="section-title" onClick={() => handleSectionClick('EDUCATION')}>
-          EDUCATION
-        </div>
-        <div className="section-content">
-          {renderEducation()}
-        </div>
+        {data?.["Education"]?.length > 0 && (
+          <>
+            <div className="section-title" onClick={() => handleSectionClick('EDUCATION')}>
+              EDUCATION
+            </div>
+            <div className="section-content">
+              {renderEducation()}
+            </div>
+          </>
+        )}
 
         {/* Licenses */}
-        <div className="section-title" onClick={() => handleSectionClick('LICENSE(S)')}>
-          LICENSE(S)
-        </div>
-        <div className="section-content">
-          {renderLicenses()}
-        </div>
+        {data?.["Licenses & Certifications"]?.licenses?.length > 0 && (
+          <>
+            <div className="section-title" onClick={() => handleSectionClick('LICENSE(S)')}>
+              LICENSE(S)
+            </div>
+            <div className="section-content">
+              {renderLicenses()}
+            </div>
+          </>
+        )}
 
         {/* Certifications */}
-        <div className="section-title" onClick={() => handleSectionClick('CERTIFICATION(S)')}>
-          CERTIFICATION(S)
-        </div>
-        <div className="section-content">
-          {renderCertifications()}
-        </div>
+        {data?.["Licenses & Certifications"]?.certifications?.length > 0 && (
+          <>
+            <div className="section-title" onClick={() => handleSectionClick('CERTIFICATION(S)')}>
+              CERTIFICATION(S)
+            </div>
+            <div className="section-content">
+              {renderCertifications()}
+            </div>
+          </>
+        )}
 
         {/* Professional Experience */}
-        <div className="section-title" onClick={() => handleSectionClick('PROFESSIONAL EXPERIENCE')}>
-          PROFESSIONAL EXPERIENCE
-        </div>
-        <div className="section-content">
-          {renderProfessionalExperience()}
-        </div>
+        {data?.["Professional Experience"]?.length > 0 && (
+          <>
+            <div className="section-title" onClick={() => handleSectionClick('PROFESSIONAL EXPERIENCE')}>
+              PROFESSIONAL EXPERIENCE
+            </div>
+            <div className="section-content">
+              {renderProfessionalExperience()}
+            </div>
+          </>
+        )}
 
         {/* Professional Memberships */}
-        <div className="section-title" onClick={() => handleSectionClick('PROFESSIONAL ACTIVE MEMBERSHIPS')}>
-          PROFESSIONAL ACTIVE MEMBERSHIPS
-        </div>
-        <div className="section-content">
-          {(() => {
-            const memberships = data["Professional Active Memberships"];
-            if (!memberships) {
-              return <div className="membership-text">No memberships listed</div>;
-            }
-            
-            if (Array.isArray(memberships)) {
-              return memberships.map((membership, index) => (
-                <div key={index} className="list-item">
-                  <div className="date-column">
-                    <span>{membership["Start Date"] || ''} - {membership["End Date"] || ''}</span>
-                  </div>
-                  <div className="content-column">
-                    <span>
-                      {[
-                        membership["Organization Name"],
-                        membership["Membership Type"] ? `(${membership["Membership Type"]})` : '',
-                        membership["Status"] ? `- ${membership["Status"]}` : ''
-                      ].filter(Boolean).join(' ')}
-                    </span>
-                  </div>
-                </div>
-              ));
-            } else {
-              return <div className="membership-text">{String(memberships)}</div>;
-            }
-          })()}
-        </div>
+        {data?.["Professional Active Memberships"]?.length > 0 && (
+          <>
+            <div className="section-title" onClick={() => handleSectionClick('PROFESSIONAL ACTIVE MEMBERSHIPS')}>
+              PROFESSIONAL ACTIVE MEMBERSHIPS
+            </div>
+            <div className="section-content">
+              {(() => {
+                const memberships = data["Professional Active Memberships"];
+                if (!memberships) {
+                  return <div className="membership-text">No memberships listed</div>;
+                }
+                
+                if (Array.isArray(memberships)) {
+                  return memberships.map((membership, index) => (
+                    <div key={index} className="list-item">
+                      <div className="date-column">
+                        <span>{membership["Start Date"] || ''} - {membership["End Date"] || ''}</span>
+                      </div>
+                      <div className="content-column">
+                        <span>
+                          {[
+                            membership["Organization Name"],
+                            membership["Membership Type"] ? `(${membership["Membership Type"]})` : '',
+                            membership["Status"] ? `- ${membership["Status"]}` : ''
+                          ].filter(Boolean).join(' ')}
+                        </span>
+                      </div>
+                    </div>
+                  ));
+                } else {
+                  return <div className="membership-text">{String(memberships)}</div>;
+                }
+              })()}
+            </div>
+          </>
+        )}
 
         {/* Awards */}
-        <div className="section-title" onClick={() => handleSectionClick('ACHIEVEMENT(S) AND/OR AWARD(S)')}>
-          ACHIEVEMENT(S) AND/OR AWARD(S)
-        </div>
-        <div className="section-content">
-          {renderAwards()}
-        </div>
+        {data?.["Achievements or Awards"]?.length > 0 && (
+          <>
+            <div className="section-title" onClick={() => handleSectionClick('ACHIEVEMENT(S) AND/OR AWARD(S)')}>
+              ACHIEVEMENT(S) AND/OR AWARD(S)
+            </div>
+            <div className="section-content">
+              {renderAwards()}
+            </div>
+          </>
+        )}
 
         {/* Hospital Affiliations */}
-        <div className="section-title" onClick={() => handleSectionClick('HOSPITAL AFFILIATIONS')}>
-          HOSPITAL AFFILIATIONS
-        </div>
-        <div className="section-content">
-          {renderHospitalAffiliations()}
-        </div>
+        {data?.["Hospital Affiliations"]?.length > 0 && (
+          <>
+            <div className="section-title" onClick={() => handleSectionClick('HOSPITAL AFFILIATIONS')}>
+              HOSPITAL AFFILIATIONS
+            </div>
+            <div className="section-content">
+              {renderHospitalAffiliations()}
+            </div>
+          </>
+        )}
 
         {/* Research Affiliations */}
-        <div className="section-title" onClick={() => handleSectionClick('RESEARCH AFFILIATIONS')}>
-          RESEARCH AFFILIATIONS
-        </div>
-        <div className="section-content">
-          {renderResearchAffiliations()}
-        </div>
+        {data?.["Research Affiliations"]?.length > 0 && (
+          <>
+            <div className="section-title" onClick={() => handleSectionClick('RESEARCH AFFILIATIONS')}>
+              RESEARCH AFFILIATIONS
+            </div>
+            <div className="section-content">
+              {renderResearchAffiliations()}
+            </div>
+          </>
+        )}
 
         {/* Training */}
-        <div className="section-title" onClick={() => handleSectionClick('TRAINING')}>
-          TRAINING
-        </div>
-        <div className="section-content">
-          {renderTraining()}
-        </div>
+        {data?.["Training"]?.length > 0 && (
+          <>
+            <div className="section-title" onClick={() => handleSectionClick('TRAINING')}>
+              TRAINING
+            </div>
+            <div className="section-content">
+              {renderTraining()}
+            </div>
+          </>
+        )}
 
          {/* Psychometric Rating/Scales Experiences */}
-         <div className="section-title" onClick={() => handleSectionClick('Psychometric Rating/Scales Experiences')}>
-          PSYCHOMETRIC RATING/SCALES EXPERIENCES
-        </div>
-        <div className="section-content">
-          {data["Psychometric Rating/Scales Experiences"]
-            ?.filter(exp => exp["Scale / Rating Name"]?.trim())
-            .map((experience, index) => (
-              <div key={index} className="list-item">
-                <div className="content-column">
-                  <span>{experience["Scale / Rating Name"]}</span>
-                </div>
-              </div>
-            )) || [<div key="no-experiences" className="list-item">No experiences listed</div>]}
-        </div>
+         {data?.["Psychometric Rating/Scales Experiences"]?.length > 0 && (
+           <>
+             <div className="section-title" onClick={() => handleSectionClick('Psychometric Rating/Scales Experiences')}>
+               PSYCHOMETRIC RATING/SCALES EXPERIENCES
+             </div>
+             <div className="section-content">
+               {data["Psychometric Rating/Scales Experiences"]
+                 .filter(exp => exp["Scale / Rating Name"]?.trim())
+                 .map((experience, index) => (
+                   <div key={index} className="list-item">
+                     <div className="content-column">
+                       <span>{experience["Scale / Rating Name"]}</span>
+                     </div>
+                   </div>
+                 ))}
+             </div>
+           </>
+         )}
 
         {/* Additional Skills / Languages */}
-        <div className="section-title" onClick={() => handleSectionClick('ADDITIONAL SKILLS')}>
-          ADDITIONAL SKILLS
-        </div>
-        <div className="section-content">
-          {data["Languages"]
-            ?.filter(lang => lang["Language Name"])
-            .map((language, index) => (
-              <div key={index} className="language-item">
-                {language["Language Name"]}{language["Proficiency Level"] ? ` - ${language["Proficiency Level"]}` : ''}
-              </div>
-            )) || [<div key="no-languages" className="language-item">Bilingual in English and Haitian-Creole</div>]}
-        </div>
+        {data?.["Languages"]?.length > 0 && (
+          <>
+            <div className="section-title" onClick={() => handleSectionClick('ADDITIONAL SKILLS')}>
+              ADDITIONAL SKILLS
+            </div>
+            <div className="section-content">
+              {data["Languages"]
+                .filter(lang => lang["Language Name"])
+                .map((language, index) => (
+                  <div key={index} className="language-item">
+                    {language["Language Name"]}
+                  </div>
+                ))}
+            </div>
+          </>
+        )}
 
         {/* Publications */}
-        <div className="section-title" onClick={() => handleSectionClick('PUBLICATIONS/PRESENTATIONS')}>
-          PUBLICATIONS/PRESENTATIONS
-        </div>
-        <div className="section-content">
-          {renderPublications()}
-        </div>
+        {data?.["Publications"]?.length > 0 && (
+          <>
+            <div className="section-title" onClick={() => handleSectionClick('PUBLICATIONS/PRESENTATIONS')}>
+              PUBLICATIONS/PRESENTATIONS
+            </div>
+            <div className="section-content">
+              {renderPublications()}
+            </div>
+          </>
+        )}
 
         {/* Clinical Research Trials */}
-        <div className="section-title" onClick={() => handleSectionClick('CLINICAL RESEARCH TRIALS CONDUCTED')}>
-          CLINICAL RESEARCH TRIALS CONDUCTED
-        </div>
-        <div className="section-content">
-          {renderClinicalTrials()}
-        </div>
+        {data?.["Clinical Research Trials Conducted"]?.length > 0 && (
+          <>
+            <div className="section-title" onClick={() => handleSectionClick('CLINICAL RESEARCH TRIALS CONDUCTED')}>
+              CLINICAL RESEARCH TRIALS CONDUCTED
+            </div>
+            <div className="section-content">
+              {renderClinicalTrials()}
+            </div>
+          </>
+        )}
 
         {/* Footer */}
         <div className="cv-footer">

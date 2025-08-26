@@ -81,7 +81,7 @@ const CVPreviewModal: React.FC = () => {
                 className={styles.downloadButton}
                 onClick={handleDownload}
               >
-                Download
+                Generate CV
               </button>
             </div>
           </motion.div>

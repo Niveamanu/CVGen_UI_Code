@@ -70,7 +70,7 @@
 .body {
   flex: 1;
   padding: 0; // Remove padding to allow full size
-  overflow: hidden; // Prevent scrolling in modal body
+  overflow: auto; // Enable scrolling for CV content
   background: #f9fafb; // Light gray background to match screenshot
   min-height: 500px;
   height: 100%;

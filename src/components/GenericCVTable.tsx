@@ -23,6 +23,8 @@ interface GenericCVTableProps {
   clearSearch: () => void;
   title?: string;
   showStatusColumn?: boolean;
+  onPreview?: (cv: CVCollection) => void;
+  onEdit?: (cv: CVCollection) => void;
 }
 
 export default function GenericCVTable({
@@ -42,7 +44,9 @@ export default function GenericCVTable({
   handleSearch,
   clearSearch,
   title = "CV Data",
-  showStatusColumn = false
+  showStatusColumn = false,
+  onPreview,
+  onEdit
 }: GenericCVTableProps) {
   // Handle row selection
   const handleRowSelection = (index: number) => {
@@ -186,19 +190,19 @@ export default function GenericCVTable({
                   onChange={handleSelectAll}
                 />
               </th>
-              <th style={{ width: '20%' }}>Full Name</th>
-              <th style={{ width: '25%' }}>Site Name</th>
-              <th style={{ width: '20%' }}>Role</th>
+              <th style={{ width: onEdit ? '16%' : '18%' }}>Full Name</th>
+              <th style={{ width: onEdit ? '20%' : '22%' }}>Site Name</th>
+              <th style={{ width: onEdit ? '16%' : '18%' }}>Role</th>
               <th style={{ width: '15%' }}>Created At</th>
-               
-                <th style={{ width: '20%' }}>Created By</th>
-              
+              <th style={{ width: onEdit ? '16%' : '18%' }}>Created By</th>
+              <th style={{ width: '80px' }}>Preview</th>
+              {onEdit && <th style={{ width: '80px' }}>Edit</th>}
             </tr>
           </thead>
           <tbody>
             {cvCollections.length === 0 ? (
               <tr>
-                <td colSpan={6} style={{ textAlign: 'center', padding: '2rem', color: '#6f7171' }}>
+                <td colSpan={onEdit ? 8 : 7} style={{ textAlign: 'center', padding: '2rem', color: '#6f7171' }}>
                   {searchString ? 'No records found for your search. Try clearing the search or using different keywords.' : `No ${title} available.`}
                 </td>
               </tr>
@@ -216,9 +220,67 @@ export default function GenericCVTable({
                   <td>{cv["site_name"]}</td>
                   <td>{cv["role"] || 'N/A'}</td>
                   <td>{cv["created_at"] || 'N/A'}</td>
-                   
-                    <td>{cv["created_by"] || 'N/A'}</td>
-                  
+                  <td>{cv["created_by"] || 'N/A'}</td>
+                  <td style={{ textAlign: 'center' }}>
+                    {onPreview && (
+                      <button
+                        onClick={() => onPreview(cv)}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          padding: '4px',
+                          borderRadius: '4px',
+                          color: '#6b7280',
+                          transition: 'all 0.2s ease'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = '#374151';
+                          e.currentTarget.style.backgroundColor = '#f3f4f6';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = '#6b7280';
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                        }}
+                        title="Preview CV"
+                      >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                    )}
+                  </td>
+                  {onEdit && (
+                    <td style={{ textAlign: 'center' }}>
+                      <button
+                        onClick={() => onEdit(cv)}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          padding: '4px',
+                          borderRadius: '4px',
+                          color: '#3b82f6',
+                          transition: 'all 0.2s ease'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = '#1d4ed8';
+                          e.currentTarget.style.backgroundColor = '#eff6ff';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = '#3b82f6';
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                        }}
+                        title="Edit CV"
+                      >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                    </td>
+                  )}
                 </tr>
               ))
             )}
