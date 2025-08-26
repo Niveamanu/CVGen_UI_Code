@@ -53,6 +53,7 @@ import GenericCVTable from "./GenericCVTable";
 // Define the ref interface
 export interface CVTableRef {
   getSelectedRows: () => Set<number>;
+  getCVCollections: () => any[];
 }
 
 const CVTable = forwardRef<CVTableRef>((props, ref) => {
@@ -82,6 +83,10 @@ const CVTable = forwardRef<CVTableRef>((props, ref) => {
       console.log("CVTable ref: getSelectedRows called, selectedRows:", selectedRows);
       console.log("CVTable ref: selectedRows size:", selectedRows.size);
       return selectedRows;
+    },
+    getCVCollections: () => {
+      console.log("CVTable ref: getCVCollections called, cvCollections:", cvCollections);
+      return cvCollections;
     }
   }));
 

@@ -1,7 +1,13 @@
 import React from "react";
 import styles from "./Toolbar.module.scss";
 
-export default function Toolbar({ onCreate, onDownload }) {
+export default function Toolbar({ 
+  onCreate, 
+  onDownload
+}: { 
+  onCreate: () => void, 
+  onDownload: () => void
+}) {
   return (
     <div className={styles.toolbar}>
       <div className="col-7">

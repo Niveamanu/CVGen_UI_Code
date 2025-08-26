@@ -4,6 +4,6 @@
  *
  * @type {string}
  */
-const API_DOMAIN = "https://cvgen-dev.flourishresearch.com/api/v1";
+const API_DOMAIN = "http://localhost:8000/api/v1";
 
 export default API_DOMAIN;

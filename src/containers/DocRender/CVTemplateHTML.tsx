@@ -160,7 +160,7 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
       ?.map((affiliation, index) => (
         <div key={index} className="affiliation-item">
           <div className="affiliation-text">
-            {affiliation["CTMS Site Name"] && `${affiliation["CTMS Site Name"]} dba `}
+            {affiliation["CTMS Site Name"] && `${affiliation["CTMS Site Name"]} `}
             {affiliation["Site Name"]}, {affiliation["Site Address"]}, {affiliation["City"]}, {affiliation["State"]} {affiliation["Zipcode"]}
           </div>
         </div>
@@ -345,6 +345,7 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
 
         {/* CV Title */}
         <div className="cv-title">Curriculum Vitae</div>
+        console.log("hiiii",{personalInfo?.["Degree Title"]})
 
         {/* Name and Credentials */}
         <div className="cv-name">

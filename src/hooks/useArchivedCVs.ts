@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { CVCollection } from '../types/cv';
 import { useApiClient } from './useApiClient';
 import { PaginationParams } from '../api/services/cv';
@@ -26,6 +26,9 @@ interface UseArchivedCVsReturn {
 }
 
 export const useArchivedCVs = (): UseArchivedCVsReturn => {
+  const hookId = useRef(Math.random().toString(36).substr(2, 9));
+  console.log(`🔄 useArchivedCVs hook instantiated with ID: ${hookId.current}`);
+  
   const [cvCollections, setcvCollections] = useState<CVCollection[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -40,8 +43,21 @@ export const useArchivedCVs = (): UseArchivedCVsReturn => {
   const [activeSearchString, setActiveSearchString] = useState<string>('');
   
   const apiClient = useApiClient();
+  
+  console.log(`🔄 useArchivedCVs hook ${hookId.current} state initialized:`, { currentPage, pageSize, activeSearchString });
+  
+  // Flag to prevent duplicate API calls
+  const isFetchingRef = useRef(false);
 
   const fetchCVData = useCallback(async () => {
+    console.log(`🔄 useArchivedCVs ${hookId.current} fetchCVData called with:`, { currentPage, pageSize, activeSearchString });
+    
+    // Prevent duplicate API calls
+    if (isFetchingRef.current) {
+      console.log(`⚠️ useArchivedCVs ${hookId.current} fetchCVData: Already fetching, skipping duplicate call`);
+      return;
+    }
+    
     if (!apiClient) {
       setError('API client not initialized');
       setLoading(false);
@@ -49,6 +65,7 @@ export const useArchivedCVs = (): UseArchivedCVsReturn => {
     }
 
     try {
+      isFetchingRef.current = true;
       setLoading(true);
       setError(null);
       
@@ -59,35 +76,41 @@ export const useArchivedCVs = (): UseArchivedCVsReturn => {
         search_string: activeSearchString || ''
       };
       
+      console.log(`📡 useArchivedCVs ${hookId.current} API call with params:`, params);
       const data = await apiClient.cv.getArchivedCVs(params);
+      console.log(`✅ useArchivedCVs ${hookId.current} API response received:`, data.length, 'items');
       setcvCollections(data);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An error occurred while fetching archived CV data';
       setError(errorMessage);
-      console.error('Error fetching archived CV data:', err);
+      console.error(`❌ useArchivedCVs ${hookId.current} API error:`, err);
     } finally {
       setLoading(false);
+      isFetchingRef.current = false;
     }
-  }, [apiClient, currentPage, pageSize, activeSearchString]);
+  }, [apiClient, currentPage, pageSize, activeSearchString, hookId]);
 
   // Initial data fetch when component mounts
   useEffect(() => {
+    console.log(`🔄 useArchivedCVs ${hookId.current} initial useEffect triggered, apiClient:`, !!apiClient);
     if (apiClient) {
       fetchCVData();
     }
-  }, [apiClient]);
+  }, [apiClient, fetchCVData]);
 
   // Fetch data when pagination or search changes
   useEffect(() => {
+    console.log(`🔄 useArchivedCVs ${hookId.current} pagination/search useEffect triggered:`, { currentPage, pageSize, activeSearchString });
     if (apiClient) {
-      console.log('useArchivedCVs useEffect triggered:', { currentPage, pageSize, activeSearchString });
+      console.log(`useArchivedCVs ${hookId.current} useEffect triggered:`, { currentPage, pageSize, activeSearchString });
       fetchCVData();
     }
   }, [currentPage, pageSize, activeSearchString, fetchCVData]);
 
   const refetch = useCallback(async () => {
+    console.log(`🔄 useArchivedCVs ${hookId.current} refetch called`);
     await fetchCVData();
-  }, [fetchCVData]);
+  }, [fetchCVData, hookId]);
 
   // Pagination helpers
   const totalPages = Math.ceil(cvCollections.length / pageSize);

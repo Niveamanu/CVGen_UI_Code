@@ -658,10 +658,9 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
 
         {/* CV Title */}
         <Text style={styles.title}>Curriculum Vitae</Text>
-
         {/* Name and Credentials */}
         <Text style={styles.name}>
-          {personalInfo?.["First Name"]} {personalInfo?.["Middle Name"]} {personalInfo?.["Last Name"]}, {personalInfo?.["Degree Title"]}
+          {personalInfo?.["First Name"]} {personalInfo?.["Middle Name"]} {personalInfo?.["Last Name"]}, {Array.isArray(personalInfo?.["Degree Title"]) ? personalInfo?.["Degree Title"].join(", ") : personalInfo?.["Degree Title"]}
         </Text>
 
         {/* Divider */}

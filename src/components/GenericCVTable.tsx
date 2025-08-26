@@ -95,16 +95,7 @@ export default function GenericCVTable({
       );
     }
 
-    if (cvCollections.length === 0) {
-      return (
-        <div className={styles.tableWrapper}>
-          <div style={{ textAlign: 'center', padding: '2rem' }}>
-            No {title} available.
-          </div>
-        </div>
-      );
-    }
-
+    // Always show the search interface and table structure
     return (
       <div className={styles.tableWrapper}>
         {/* Search Input - Moved to extreme left */}
@@ -205,24 +196,32 @@ export default function GenericCVTable({
             </tr>
           </thead>
           <tbody>
-            {cvCollections.map((cv, idx) => (
-              <tr key={idx}>
-                <td>
-                  <input 
-                    type="checkbox" 
-                    checked={selectedRows.has(idx)}
-                    onChange={() => handleRowSelection(idx)}
-                  />
+            {cvCollections.length === 0 ? (
+              <tr>
+                <td colSpan={6} style={{ textAlign: 'center', padding: '2rem', color: '#6f7171' }}>
+                  {searchString ? 'No records found for your search. Try clearing the search or using different keywords.' : `No ${title} available.`}
                 </td>
-                <td>{cv["full_name"]}</td>
-                <td>{cv["site_name"]}</td>
-                <td>{cv["role"] || 'N/A'}</td>
-                <td>{cv["created_at"] || 'N/A'}</td>
-                 
-                  <td>{cv["created_by"] || 'N/A'}</td>
-              
               </tr>
-            ))}
+            ) : (
+              cvCollections.map((cv, idx) => (
+                <tr key={idx}>
+                  <td>
+                    <input 
+                      type="checkbox" 
+                      checked={selectedRows.has(idx)}
+                      onChange={() => handleRowSelection(idx)}
+                    />
+                  </td>
+                  <td>{cv["full_name"]}</td>
+                  <td>{cv["site_name"]}</td>
+                  <td>{cv["role"] || 'N/A'}</td>
+                  <td>{cv["created_at"] || 'N/A'}</td>
+                   
+                    <td>{cv["created_by"] || 'N/A'}</td>
+                  
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
 
@@ -257,7 +256,11 @@ export default function GenericCVTable({
           
           {/* Entry count - Moved to footer right */}
           <div style={{ fontSize: '0.875rem', color: '#6f7171' }}>
-            Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, cvCollections.length)} of {cvCollections.length} entries
+            {cvCollections.length === 0 ? (
+              'No entries to display'
+            ) : (
+              `Showing ${((currentPage - 1) * pageSize) + 1} to ${Math.min(currentPage * pageSize, cvCollections.length)} of ${cvCollections.length} entries`
+            )}
           </div>
         </div>
       </div>
