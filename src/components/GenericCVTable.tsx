@@ -190,11 +190,11 @@ export default function GenericCVTable({
                   onChange={handleSelectAll}
                 />
               </th>
-              <th style={{ width: onEdit ? '16%' : '18%' }}>Full Name</th>
-              <th style={{ width: onEdit ? '20%' : '22%' }}>Site Name</th>
-              <th style={{ width: onEdit ? '16%' : '18%' }}>Role</th>
-              <th style={{ width: '15%' }}>Created At</th>
-              <th style={{ width: onEdit ? '16%' : '18%' }}>Created By</th>
+              <th style={{ width: '200px' }}>Full Name</th>
+              <th style={{ width: '200px' }}>Site Name</th>
+              <th style={{ width: '150px' }}>Role</th>
+              <th style={{ width: '150px' }}>Created At</th>
+              <th style={{ width: '150px' }}>Created By</th>
               <th style={{ width: '80px' }}>Preview</th>
               {onEdit && <th style={{ width: '80px' }}>Edit</th>}
             </tr>

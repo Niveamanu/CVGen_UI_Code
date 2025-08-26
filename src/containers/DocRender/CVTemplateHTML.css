@@ -194,79 +194,7 @@
   margin-bottom: 2px;
 }
 
-/* Footer */
-.cv-footer {
-  margin-top: 40px;
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 10px;
-}
 
-.footer-divider {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.footer-line {
-  flex: 1;
-  border-bottom: 1px solid #000;
-}
-
-.footer-circle {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #000;
-}
-
-.footer-content {
-  text-align: center;
-}
-
-.page-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  width: 100%;
-}
-
-.page-info .page-number {
-  font-size: 10px;
-  color: #333;
-  flex: 1;
-  text-align: left;
-}
-
-.page-info .page-name {
-  font-size: 12px;
-  font-weight: bold;
-  color: #333;
-  text-align: center;
-  flex: 2;
-}
-
-.page-info .page-date {
-  font-size: 10px;
-  color: #333;
-  text-align: right;
-  flex: 1;
-}
-
-.footer-text {
-  font-size: 10px;
-  color: #666;
-  margin-bottom: 5px;
-  font-style: italic;
-}
-
-.footer-date {
-  font-size: 10px;
-  color: #666;
-  font-style: italic;
-}
 
 /* Signature Section */
 .signature-section {

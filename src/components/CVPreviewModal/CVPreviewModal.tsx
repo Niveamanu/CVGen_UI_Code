@@ -87,22 +87,6 @@ const CVPreviewModal: React.FC<CVPreviewModalProps> = ({
             <div className={styles.body}>
               {children}
             </div>
-
-            {/* Modal Footer */}
-            <div className={styles.footer}>
-              <button
-                className={styles.cancelButton}
-                onClick={onClose}
-              >
-                Cancel
-              </button>
-              <button
-                className={styles.downloadButton}
-                onClick={onDownload}
-              >
-                Generate CV
-              </button>
-            </div>
           </motion.div>
         </motion.div>
       )}

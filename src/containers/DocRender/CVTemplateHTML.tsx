@@ -579,27 +579,7 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
           </>
         )}
 
-        {/* Footer */}
-        <div className="cv-footer">
-          <div className="footer-divider">
-            <div className="footer-circle"></div>
-            <div className="footer-line"></div>
-            <div className="footer-circle"></div>
-          </div>
-          <div className="footer-content">
-            <div className="page-info">
-              <div className="page-number">Page 1 of 1</div>
-              <div className="page-name">{personalInfo?.["First Name"]} {personalInfo?.["Middle Name"]} {personalInfo?.["Last Name"]}</div>
-              <div className="page-date">{new Date().toLocaleDateString('en-US', { 
-                day: '2-digit', 
-                month: 'short', 
-                year: 'numeric' 
-              }).replace(',', '')}</div>
-            </div>
-            
-             
-          </div>
-        </div>
+
 
        
 

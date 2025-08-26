@@ -882,7 +882,7 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
         )}
 
         {/* Footer */}
-        <View style={styles.footer}>
+        {/* <View style={styles.footer}>
           <View style={styles.footerDivider}>
             <View style={styles.footerCircle} />
             <View style={styles.footerLine} />
@@ -904,7 +904,7 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
             </View>
           
           </View>
-        </View>
+        </View> */}
 
         {/* Signature Section */}
         {/* <View style={styles.signatureSection}>
