@@ -118,3 +118,36 @@
     background: rgba($dark, 0.1);
   }
 }
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+// Footer styles
+.cv-footer {
+  @media (max-width: 768px) {
+    .cv-footer > div > div {
+      flex-direction: column !important;
+      text-align: center !important;
+      gap: 1.5rem !important;
+    }
+    
+    .cv-footer > div > div > div {
+      text-align: center !important;
+    }
+  }
+}
+
+// Add bottom padding to prevent content from being hidden behind fixed footer
+.tableWrapper {
+  padding-bottom: 80px; // Adjusted for more compact footer height
+}

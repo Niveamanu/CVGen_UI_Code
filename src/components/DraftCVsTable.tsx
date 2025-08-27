@@ -7,6 +7,7 @@ import api from "../api";
 import CVTemplateHTML from "../containers/DocRender/CVTemplateHTML";
 import saveAs from "file-saver";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 export default function DraftCVsTable() {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ export default function DraftCVsTable() {
     pageSize,
     setPageSize,
     totalPages,
+    totalCount,
     // Search
     searchString,
     setSearchString,
@@ -158,6 +160,7 @@ export default function DraftCVsTable() {
         pageSize={pageSize}
         setPageSize={setPageSize}
         totalPages={totalPages}
+        totalCount={totalCount}
         searchString={searchString}
         setSearchString={setSearchString}
         handleSearch={handleSearch}
@@ -181,6 +184,8 @@ export default function DraftCVsTable() {
           </div>
         ) : null}
       </CVPreviewModal>
+      
+      <Footer />
     </>
   );
 }

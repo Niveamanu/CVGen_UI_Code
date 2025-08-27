@@ -54,6 +54,8 @@ import { CVCollection } from "../types/cv";
 import api from "../api";
 import CVTemplateHTML from "../containers/DocRender/CVTemplateHTML";
 import saveAs from "file-saver";
+import JSZip from "jszip";
+import Footer from "./Footer";
 
 // Define the ref interface
 export interface CVTableRef {
@@ -75,6 +77,7 @@ const CVTable = forwardRef<CVTableRef>((props, ref) => {
     pageSize,
     setPageSize,
     totalPages,
+    totalCount,
     // Search
     searchString,
     clearSearch,
@@ -85,6 +88,7 @@ const CVTable = forwardRef<CVTableRef>((props, ref) => {
   const [previewModalOpen, setPreviewModalOpen] = useState(false);
   const [previewCVData, setPreviewCVData] = useState<any>(null);
   const [previewLoading, setPreviewLoading] = useState(false);
+  const [bulkDownloadLoading, setBulkDownloadLoading] = useState(false);
 
   // Handle preview
   const handlePreview = async (cv: CVCollection) => {
@@ -175,6 +179,90 @@ const CVTable = forwardRef<CVTableRef>((props, ref) => {
     setPreviewCVData(null);
   };
 
+  // Handle bulk download
+  const handleBulkDownload = async (selectedCVs: CVCollection[]) => {
+    try {
+      setBulkDownloadLoading(true);
+      console.log('Starting bulk download for', selectedCVs.length, 'CVs');
+      
+      const zip = new JSZip();
+      let downloadCount = 0;
+      
+      // Process each selected CV
+      for (const cv of selectedCVs) {
+        try {
+          console.log(`Downloading CV for: ${cv.full_name} (${cv.email})`);
+          
+          // Fetch CV data for download
+          const response = await api.cv.getCVInformation(cv.email, cv.version);
+          
+          if (response && response["Encoded Content"]) {
+            const base64String = response["Encoded Content"];
+            
+            // Validate input
+            if (!base64String || typeof base64String !== 'string' || base64String.length === 0) {
+              console.warn(`Invalid CV data for ${cv.full_name}, skipping...`);
+              continue;
+            }
+
+            // Remove any potential data URL prefix
+            let cleanBase64 = base64String;
+            if (base64String.includes(',')) {
+              cleanBase64 = base64String.split(',')[1];
+            }
+
+            // Decode base64 to binary
+            const byteCharacters = atob(cleanBase64);
+            const byteNumbers = new Array(byteCharacters.length);
+
+            for (let i = 0; i < byteCharacters.length; i++) {
+              byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+
+            const byteArray = new Uint8Array(byteNumbers);
+            
+            // Generate filename
+            const fullName = cv.full_name || 
+              `${response["Personal Information"]?.["First Name"] || ""} ${response["Personal Information"]?.["Last Name"] || ""}`.trim();
+            
+            const fileName = fullName ? `${fullName}_Flourish_CV.pdf` : `${cv.email}_Flourish_CV.pdf`;
+            
+            // Add file to zip
+            zip.file(fileName, byteArray);
+            downloadCount++;
+            
+            console.log(`Successfully added ${fileName} to zip`);
+          } else {
+            console.warn(`No CV content found for ${cv.full_name}`);
+          }
+        } catch (error) {
+          console.error(`Error processing CV for ${cv.full_name}:`, error);
+        }
+      }
+      
+      if (downloadCount === 0) {
+        alert('No CVs were successfully processed for download.');
+        return;
+      }
+      
+      // Generate and download zip file
+      console.log(`Generating zip with ${downloadCount} CVs...`);
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+      
+      // Download the zip file
+      const zipFileName = `Flourish_CVs_${new Date().toISOString().split('T')[0]}.zip`;
+      saveAs(zipBlob, zipFileName);
+      
+      console.log(`Bulk download completed! Downloaded ${downloadCount} CVs as ${zipFileName}`);
+      
+    } catch (error) {
+      console.error('Error during bulk download:', error);
+      alert('An error occurred during bulk download. Please try again.');
+    } finally {
+      setBulkDownloadLoading(false);
+    }
+  };
+
   // Expose selectedRows to parent via ref
   useImperativeHandle(ref, () => ({
     getSelectedRows: () => {
@@ -202,12 +290,15 @@ const CVTable = forwardRef<CVTableRef>((props, ref) => {
         pageSize={pageSize}
         setPageSize={setPageSize}
         totalPages={totalPages}
+        totalCount={totalCount}
         searchString={searchString}
         clearSearch={clearSearch}
         setSearchString={setSearchString}
         handleSearch={handleSearch}
         title="CV Collection"
         onPreview={handlePreview}
+        onBulkDownload={handleBulkDownload}
+        bulkDownloadLoading={bulkDownloadLoading}
       />
       
       <CVPreviewModal
@@ -223,6 +314,8 @@ const CVTable = forwardRef<CVTableRef>((props, ref) => {
           </div>
         ) : null}
       </CVPreviewModal>
+      
+      <Footer />
     </>
   );
 });

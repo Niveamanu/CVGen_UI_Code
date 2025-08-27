@@ -21,11 +21,46 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.logoAndHome {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  
+  > div:first-child {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.homeBtn {
+  background: $primary;
+  color: $dark;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
   
   &:hover {
-    opacity: 0.8;
+    background: darken($primary, 10%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba($primary, 0.3);
+  }
+  
+  svg {
+    width: 18px;
+    height: 18px;
   }
 }
 .logo {

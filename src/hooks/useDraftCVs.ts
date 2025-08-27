@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { CVCollection, CVData } from '../types/cv';
 import { useApiClient } from './useApiClient';
-import { PaginationParams } from '../api/services/cv';
-import { set } from 'react-hook-form';
+import { PaginationParams, CVCollectionResponse } from '../api/services/cv';
 
 interface UseDraftCVsReturn {
   cvCollections: CVCollection[];
@@ -17,6 +16,7 @@ interface UseDraftCVsReturn {
   pageSize: number;
   setPageSize: (size: number) => void;
   totalPages: number;
+  totalCount: number;
   // Search
   searchString: string;
   setSearchString: (search: string) => void;
@@ -30,6 +30,7 @@ export const useDraftCVs = (): UseDraftCVsReturn => {
   console.log(`🔄 useDraftCVs hook instantiated with ID: ${hookId.current}`);
   
   const [cvCollections, setCvCollections] = useState<CVCollection[]>([]);
+  const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedRows, setSelectedRows] = useState<Set<number>>(new Set());
@@ -77,9 +78,10 @@ export const useDraftCVs = (): UseDraftCVsReturn => {
       };
       
       console.log(`📡 useDraftCVs ${hookId.current} API call with params:`, params);
-      const data = await apiClient.cv.getDraftCVs(params);
-      console.log(`✅ useDraftCVs ${hookId.current} API response received:`, data.length, 'items');
-      setCvCollections(data);
+      const response: CVCollectionResponse = await apiClient.cv.getDraftCVs(params);
+      console.log(`✅ useDraftCVs ${hookId.current} API response received:`, response.records.length, 'items, total:', response.total_count);
+      setCvCollections(response.records);
+      setTotalCount(response.total_count);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An error occurred while fetching draft CV data';
       setError(errorMessage);
@@ -113,7 +115,7 @@ export const useDraftCVs = (): UseDraftCVsReturn => {
   }, [fetchCVData, hookId]);
 
   // Pagination helpers
-  const totalPages = Math.ceil(cvCollections.length / pageSize);
+  const totalPages = Math.ceil(totalCount / pageSize);
 
   // Reset to first page when page size changes
   useEffect(() => {
@@ -150,6 +152,7 @@ export const useDraftCVs = (): UseDraftCVsReturn => {
     pageSize,
     setPageSize,
     totalPages,
+    totalCount,
     // Search
     searchString,
     setSearchString,

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { CVData ,CVCollection} from '../types/cv';
 import { useApiClient } from './useApiClient';
-import { PaginationParams } from '../api/services/cv';
+import { PaginationParams, CVCollectionResponse } from '../api/services/cv';
 
 interface UseCVReturn {
   //cv: CVData[];
@@ -17,6 +17,7 @@ interface UseCVReturn {
   pageSize: number;
   setPageSize: (size: number) => void;
   totalPages: number;
+  totalCount: number;
   // Search
   searchString: string;
   setSearchString: (search: string) => void;
@@ -31,6 +32,7 @@ export const useCV = (): UseCVReturn => {
   
   const [cvData, setCvData] = useState<CVData[]>([]);
   const [cvCollections, setCvCollections] = useState<CVCollection[]>([]);
+  const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedRows, setSelectedRows] = useState<Set<number>>(new Set());
@@ -78,9 +80,11 @@ export const useCV = (): UseCVReturn => {
       };
       
       console.log(`📡 useCV ${hookId.current} API call with params:`, params);
-      const data = await apiClient.cv.getCVCollection(params);
-      console.log(`✅ useCV ${hookId.current} API response received:`, data.length, 'items');
-      setCvCollections(data);
+      const response: CVCollectionResponse = await apiClient.cv.getCVCollection(params);
+      console.log(`✅ useCV ${hookId.current} API response received:`, response.records.length, 'items, total:', response.total_count);
+      console.log(`🔍 useCV ${hookId.current} Full response:`, response);
+      setCvCollections(response.records);
+      setTotalCount(response.total_count);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An error occurred while fetching CV data';
       setError(errorMessage);
@@ -94,8 +98,11 @@ export const useCV = (): UseCVReturn => {
   // Initial data fetch when component mounts
   useEffect(() => {
     console.log(`🔄 useCV ${hookId.current} initial useEffect triggered, apiClient:`, !!apiClient);
+    console.log(`🔄 useCV ${hookId.current} apiClient details:`, apiClient);
     if (apiClient) {
       fetchCVData();
+    } else {
+      console.log(`⚠️ useCV ${hookId.current} No API client available`);
     }
   }, [apiClient, fetchCVData]);
 
@@ -114,7 +121,8 @@ export const useCV = (): UseCVReturn => {
   }, [fetchCVData, hookId]);
 
   // Pagination helpers
-  const totalPages = Math.ceil(cvCollections.length / pageSize);
+  const totalPages = Math.ceil(totalCount / pageSize);
+  console.log(`📊 useCV ${hookId.current} Pagination calculation:`, { totalCount, pageSize, totalPages });
 
   // Reset to first page when page size changes
   useEffect(() => {
@@ -152,6 +160,7 @@ export const useCV = (): UseCVReturn => {
     pageSize,
     setPageSize,
     totalPages,
+    totalCount,
     // Search
     searchString,
     setSearchString,

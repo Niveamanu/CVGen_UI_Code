@@ -6,6 +6,7 @@ import { CVCollection } from "../types/cv";
 import api from "../api";
 import CVTemplateHTML from "../containers/DocRender/CVTemplateHTML";
 import saveAs from "file-saver";
+import Footer from "./Footer";
 
 export default function ArchivedCVsTable() {
   const { 
@@ -21,6 +22,7 @@ export default function ArchivedCVsTable() {
     pageSize,
     setPageSize,
     totalPages,
+    totalCount,
     // Search
     searchString,
     setSearchString,
@@ -135,6 +137,7 @@ export default function ArchivedCVsTable() {
         pageSize={pageSize}
         setPageSize={setPageSize}
         totalPages={totalPages}
+        totalCount={totalCount}
         searchString={searchString}
         setSearchString={setSearchString}
         handleSearch={handleSearch}
@@ -156,6 +159,8 @@ export default function ArchivedCVsTable() {
           </div>
         ) : null}
       </CVPreviewModal>
+      
+      <Footer />
     </>
   );
 }

@@ -8,6 +8,11 @@ export interface PaginationParams {
   search_string?: string;
 }
 
+export interface CVCollectionResponse {
+  records: CVCollection[];
+  total_count: number;
+}
+
 export interface UploadCVResponse {
   response: any;
 }
@@ -16,20 +21,33 @@ export class CVService extends ApiService {
   /**
    * Fetches the CV collection from the API with pagination
    * @param params - Pagination parameters (limit and offset)
-   * @returns Promise<CVData[]> - Array of CV data
+   * @returns Promise<CVCollectionResponse> - Response with records and total count
    */
-  async getCVCollection(params: PaginationParams): Promise<CVCollection[]> {
+  async getCVCollection(params: PaginationParams): Promise<CVCollectionResponse> {
     try {
       const url = `${this.apiDomain}/cv_landing_page/get_cv_collection`;
       const response = await http.post(url, params, this.store);
 
-      // Handle both response formats: direct array or wrapped response
+      // Handle the new response format with records and total_count
       const data = response.data;
-      if (Array.isArray(data)) {
-        return data;
-      } else if (data && 'data' in data && Array.isArray(data.data)) {
-        return data.data;
+      console.log('🔍 CV API response data:', data);
+      console.log('🔍 CV API response keys:', Object.keys(data || {}));
+      
+      if (data && 'records' in data && 'total_count' in data) {
+        console.log('✅ CV API: Using new format with records and total_count');
+        return {
+          records: data.records,
+          total_count: data.total_count
+        };
+      } else if (Array.isArray(data)) {
+        // Fallback for backward compatibility
+        console.log('⚠️ CV API: Using fallback format (array)');
+        return {
+          records: data,
+          total_count: data.length
+        };
       } else {
+        console.error('❌ CV API: Invalid response format:', data);
         throw new Error('Invalid response format from CV collection API');
       }
     } catch (error) {
@@ -41,20 +59,33 @@ export class CVService extends ApiService {
   /**
    * Fetches all draft CVs from the API with pagination and search
    * @param params - Pagination and search parameters
-   * @returns Promise<CVData[]> - Array of draft CV data
+   * @returns Promise<CVCollectionResponse> - Response with records and total count
    */
-  async getDraftCVs(params: PaginationParams): Promise<CVCollection[]> {
+  async getDraftCVs(params: PaginationParams): Promise<CVCollectionResponse> {
     try {
       const url = `${this.apiDomain}/cv_landing_page/drafts`;
       const response = await http.post(url, params, this.store);
 
-      // Handle both response formats: direct array or wrapped response
+      // Handle the new response format with records and total_count
       const data = response.data;
-      if (Array.isArray(data)) {
-        return data;
-      } else if (data && 'data' in data && Array.isArray(data.data)) {
-        return data.data;
+      console.log('🔍 Draft CVs API response data:', data);
+      console.log('🔍 Draft CVs API response keys:', Object.keys(data || {}));
+      
+      if (data && 'records' in data && 'total_count' in data) {
+        console.log('✅ Draft CVs API: Using new format with records and total_count');
+        return {
+          records: data.records,
+          total_count: data.total_count
+        };
+      } else if (Array.isArray(data)) {
+        // Fallback for backward compatibility
+        console.log('⚠️ Draft CVs API: Using fallback format (array)');
+        return {
+          records: data,
+          total_count: data.length
+        };
       } else {
+        console.error('❌ Draft CVs API: Invalid response format:', data);
         throw new Error('Invalid response format from draft CVs API');
       }
     } catch (error) {
@@ -66,20 +97,33 @@ export class CVService extends ApiService {
   /**
    * Fetches all archived CVs from the API with pagination and search
    * @param params - Pagination and search parameters
-   * @returns Promise<CVData[]> - Array of archived CV data
+   * @returns Promise<CVCollectionResponse> - Response with records and total count
    */
-  async getArchivedCVs(params: PaginationParams): Promise<CVCollection[]> {
+  async getArchivedCVs(params: PaginationParams): Promise<CVCollectionResponse> {
     try {
       const url = `${this.apiDomain}/cv_landing_page/archived`;
       const response = await http.post(url, params, this.store);
 
-      // Handle both response formats: direct array or wrapped response
+      // Handle the new response format with records and total_count
       const data = response.data;
-      if (Array.isArray(data)) {
-        return data;
-      } else if (data && 'data' in data && Array.isArray(data.data)) {
-        return data.data;
+      console.log('🔍 Archived CVs API response data:', data);
+      console.log('🔍 Archived CVs API response keys:', Object.keys(data || {}));
+      
+      if (data && 'records' in data && 'total_count' in data) {
+        console.log('✅ Archived CVs API: Using new format with records and total_count');
+        return {
+          records: data.records,
+          total_count: data.total_count
+        };
+      } else if (Array.isArray(data)) {
+        // Fallback for backward compatibility
+        console.log('⚠️ Archived CVs API: Using fallback format (array)');
+        return {
+          records: data,
+          total_count: data.length
+        };
       } else {
+        console.error('❌ Archived CVs API: Invalid response format:', data);
         throw new Error('Invalid response format from archived CVs API');
       }
     } catch (error) {

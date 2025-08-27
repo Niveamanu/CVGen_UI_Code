@@ -16,6 +16,7 @@ interface GenericCVTableProps {
   pageSize: number;
   setPageSize: (size: number) => void;
   totalPages: number;
+  totalCount: number;
   // Search
   searchString: string;
   setSearchString: (search: string) => void;
@@ -25,6 +26,8 @@ interface GenericCVTableProps {
   showStatusColumn?: boolean;
   onPreview?: (cv: CVCollection) => void;
   onEdit?: (cv: CVCollection) => void;
+  onBulkDownload?: (selectedCVs: CVCollection[]) => void;
+  bulkDownloadLoading?: boolean;
 }
 
 export default function GenericCVTable({
@@ -39,6 +42,7 @@ export default function GenericCVTable({
   pageSize,
   setPageSize,
   totalPages,
+  totalCount,
   searchString,
   setSearchString,
   handleSearch,
@@ -46,8 +50,21 @@ export default function GenericCVTable({
   title = "CV Data",
   showStatusColumn = false,
   onPreview,
-  onEdit
+  onEdit,
+  onBulkDownload,
+  bulkDownloadLoading = false
 }: GenericCVTableProps) {
+  
+  // Debug logging
+  console.log('🔍 GenericCVTable props:', { 
+    cvCollectionsLength: cvCollections.length, 
+    totalCount, 
+    totalPages, 
+    pageSize, 
+    currentPage,
+    loading,
+    error 
+  });
   // Handle row selection
   const handleRowSelection = (index: number) => {
     const newSelectedRows = new Set(selectedRows);
@@ -73,7 +90,7 @@ export default function GenericCVTable({
   };
 
   // Page size options
-  const pageSizeOptions = [5, 10, 20, 50, 100];
+  const pageSizeOptions = [1,5, 10, 20, 50, 100];
 
   // Render content based on state
   const renderContent = () => {
@@ -179,6 +196,8 @@ export default function GenericCVTable({
             </button>
           </div>
         </div>
+
+
 
         <table className={styles.table}>
           <thead>
@@ -318,13 +337,175 @@ export default function GenericCVTable({
           
           {/* Entry count - Moved to footer right */}
           <div style={{ fontSize: '0.875rem', color: '#6f7171' }}>
-            {cvCollections.length === 0 ? (
+            {totalCount === 0 ? (
               'No entries to display'
             ) : (
-              `Showing ${((currentPage - 1) * pageSize) + 1} to ${Math.min(currentPage * pageSize, cvCollections.length)} of ${cvCollections.length} entries`
+              `Showing ${((currentPage - 1) * pageSize) + 1} to ${Math.min(currentPage * pageSize, cvCollections.length)} of ${totalCount} entries`
             )}
           </div>
         </div>
+
+        {/* Debug Info */}
+        {/* <div style={{ 
+          padding: '0.5rem', 
+          marginTop: '1rem',
+          fontSize: '0.75rem',
+          color: '#6b7280',
+          backgroundColor: '#f9fafb',
+          borderRadius: '4px',
+          border: '1px solid #e5e7eb'
+        }}>
+          Debug: totalPages={totalPages}, totalCount={totalCount}, pageSize={pageSize}, currentPage={currentPage}, cvCollections.length={cvCollections.length}
+          {totalCount === 0 && ' - No data from API'}
+          {totalCount > 0 && totalPages <= 1 && ' - Only one page of results'}
+        </div> */}
+
+        {/* Pagination Navigation */}
+        {totalCount > 0 && (
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            gap: '0.5rem',
+            marginTop: '1rem',
+            padding: '1rem 0',
+            borderTop: '1px solid #e1e0e0'
+          }}>
+            {/* First Page */}
+            <button
+              onClick={() => setCurrentPage(1)}
+              disabled={currentPage === 1}
+              style={{
+                padding: '0.5rem 1rem',
+                border: '1px solid #d1d5db',
+                borderRadius: '6px',
+                background: currentPage === 1 ? '#f3f4f6' : '#ffffff',
+                color: currentPage === 1 ? '#9ca3af' : '#374151',
+                cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
+                fontSize: '0.875rem',
+                fontWeight: '500',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (currentPage !== 1) {
+                  e.currentTarget.style.background = '#f9fafb';
+                  e.currentTarget.style.borderColor = '#9ca3af';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (currentPage !== 1) {
+                  e.currentTarget.style.background = '#ffffff';
+                  e.currentTarget.style.borderColor = '#d1d5db';
+                }
+              }}
+            >
+              First
+            </button>
+
+            {/* Previous Page */}
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+              style={{
+                padding: '0.5rem 1rem',
+                border: '1px solid #d1d5db',
+                borderRadius: '6px',
+                background: currentPage === 1 ? '#f3f4f6' : '#ffffff',
+                color: currentPage === 1 ? '#9ca3af' : '#374151',
+                cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
+                fontSize: '0.875rem',
+                fontWeight: '500',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (currentPage !== 1) {
+                  e.currentTarget.style.background = '#f9fafb';
+                  e.currentTarget.style.borderColor = '#9ca3af';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (currentPage !== 1) {
+                  e.currentTarget.style.background = '#ffffff';
+                  e.currentTarget.style.borderColor = '#d1d5db';
+                }
+              }}
+            >
+              Previous
+            </button>
+
+            {/* Page Info */}
+            <span style={{ 
+              padding: '0.5rem 1rem',
+              fontSize: '0.875rem',
+              color: '#374151',
+              fontWeight: '500'
+            }}>
+              Page {currentPage} of {totalPages}
+            </span>
+
+            {/* Next Page */}
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              style={{
+                padding: '0.5rem 1rem',
+                border: '1px solid #d1d5db',
+                borderRadius: '6px',
+                background: currentPage === totalPages ? '#f3f4f6' : '#ffffff',
+                color: currentPage === totalPages ? '#9ca3af' : '#374151',
+                cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
+                fontSize: '0.875rem',
+                fontWeight: '500',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (currentPage !== totalPages) {
+                  e.currentTarget.style.background = '#f9fafb';
+                  e.currentTarget.style.borderColor = '#9ca3af';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (currentPage !== totalPages) {
+                  e.currentTarget.style.background = '#ffffff';
+                  e.currentTarget.style.borderColor = '#d1d5db';
+                }
+              }}
+            >
+              Next
+            </button>
+
+            {/* Last Page */}
+            <button
+              onClick={() => setCurrentPage(totalPages)}
+              disabled={currentPage === totalPages}
+              style={{
+                padding: '0.5rem 1rem',
+                border: '1px solid #d1d5db',
+                borderRadius: '6px',
+                background: currentPage === totalPages ? '#f3f4f6' : '#ffffff',
+                color: currentPage === totalPages ? '#9ca3af' : '#374151',
+                cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
+                fontSize: '0.875rem',
+                fontWeight: '500',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (currentPage !== totalPages) {
+                  e.currentTarget.style.background = '#f9fafb';
+                  e.currentTarget.style.borderColor = '#9ca3af';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (currentPage !== totalPages) {
+                  e.currentTarget.style.background = '#ffffff';
+                  e.currentTarget.style.borderColor = '#d1d5db';
+                }
+              }}
+            >
+              Last
+            </button>
+          </div>
+        )}
       </div>
     );
   };
