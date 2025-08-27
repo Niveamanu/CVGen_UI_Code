@@ -3,8 +3,13 @@ import { Configuration, PopupRequest, PublicClientApplication } from "@azure/msa
 // MSAL configuration
 export const msalConfig: Configuration = {
   auth: {
-    clientId: import.meta.env.VITE_AZURE_AD_CLIENT_ID || 'b7fb9a3b-efe3-418d-8fa8-243487a42530',
-    authority: `https://login.microsoftonline.com/${import.meta.env.VITE_AZURE_AD_TENANT_ID || 'b8869792-ee44-4a05-a4fb-b6323a34ca35'}`,
+    //"AZURE_TENANT_ID" = "3b039a3e-0b01-4b1c-955e-1ddc0c11a314"
+   //"AZURE_CLIENT_ID" = "50dd421a-4297-43fc-85df-8edee3b266a7" 
+   //clientId: import.meta.env.VITE_AZURE_AD_CLIENT_ID || 'b7fb9a3b-efe3-418d-8fa8-243487a42530',
+   //authority: `https://login.microsoftonline.com/${import.meta.env.VITE_AZURE_AD_TENANT_ID || 'b8869792-ee44-4a05-a4fb-b6323a34ca35'}`,
+   
+    clientId: import.meta.env.VITE_AZURE_AD_CLIENT_ID || '50dd421a-4297-43fc-85df-8edee3b266a7',
+    authority: `https://login.microsoftonline.com/${import.meta.env.VITE_AZURE_AD_TENANT_ID || '3b039a3e-0b01-4b1c-955e-1ddc0c11a314'}`,
     redirectUri: `${window.location.origin}/`,
     postLogoutRedirectUri: `${window.location.origin}/login`,
     navigateToLoginRequestUrl: false,
