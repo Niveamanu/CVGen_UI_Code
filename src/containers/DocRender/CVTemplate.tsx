@@ -715,7 +715,25 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
         <Text style={styles.title}>Curriculum Vitae</Text>
         {/* Name and Credentials */}
         <Text style={styles.name}>
-          {personalInfo?.["First Name"]} {personalInfo?.["Middle Name"]} {personalInfo?.["Last Name"]}, {personalInfo?.["Credentials"]}
+          {(() => {
+            const firstName = personalInfo?.["First Name"]?.trim();
+            const middleName = personalInfo?.["Middle Name"]?.trim();
+            const lastName = personalInfo?.["Last Name"]?.trim();
+            const credentials = personalInfo?.["Credentials"]?.trim();
+            
+            const nameParts = [firstName, middleName, lastName].filter(Boolean);
+            const fullName = nameParts.join(' ');
+            
+            if (fullName && credentials) {
+              return `${fullName}, ${credentials}`;
+            } else if (fullName) {
+              return fullName;
+            } else if (credentials) {
+              return credentials;
+            } else {
+              return '';
+            }
+          })()}
         </Text>
 
         {/* Divider */}

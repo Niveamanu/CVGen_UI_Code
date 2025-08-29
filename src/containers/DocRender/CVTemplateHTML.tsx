@@ -349,7 +349,25 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
 
         {/* Name and Credentials */}
         <div className="cv-name">
-          {personalInfo?.["First Name"]} {personalInfo?.["Middle Name"]} {personalInfo?.["Last Name"]}, {personalInfo?.["Credentials"]}
+          {(() => {
+            const firstName = personalInfo?.["First Name"]?.trim();
+            const middleName = personalInfo?.["Middle Name"]?.trim();
+            const lastName = personalInfo?.["Last Name"]?.trim();
+            const credentials = personalInfo?.["Credentials"]?.trim();
+            
+            const nameParts = [firstName, middleName, lastName].filter(Boolean);
+            const fullName = nameParts.join(' ');
+            
+            if (fullName && credentials) {
+              return `${fullName}, ${credentials}`;
+            } else if (fullName) {
+              return fullName;
+            } else if (credentials) {
+              return credentials;
+            } else {
+              return '';
+            }
+          })()}
         </div>
 
         {/* Divider */}
@@ -372,170 +390,364 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
         </div>
 
         {/* Flourish Site Affiliations */}
-        {data?.["Flourish Site Affiliations"]?.length > 0 && (
-          <>
-            <div className="section-title" onClick={() => handleSectionClick('FLOURISH SITE AFFILIATIONS')}>
-              FLOURISH SITE AFFILIATIONS
-            </div>
-            <div className="section-content">
-              {renderSiteAffiliations()}
-            </div>
-          </>
-        )}
+        {(() => {
+          const siteData = data?.["Flourish Site Affiliations"];
+          const validSiteAffiliations = siteData?.filter(affiliation => 
+            affiliation && 
+            (affiliation["Site Name"]?.trim() || 
+             affiliation["CTMS Site Name"]?.trim() ||
+             affiliation["Site Address"]?.trim())
+          ) || [];
+          
+          return validSiteAffiliations.length > 0 ? (
+            <>
+              <div className="section-title" onClick={() => handleSectionClick('FLOURISH SITE AFFILIATIONS')}>
+                FLOURISH SITE AFFILIATIONS
+                <span className="section-nav-icon">↗</span>
+              </div>
+              <div className="section-content">
+                {validSiteAffiliations.map((affiliation, index) => (
+                  <div key={index} className="affiliation-item">
+                    <div className="affiliation-text">
+                      {affiliation["CTMS Site Name"] && `${affiliation["CTMS Site Name"]} `}
+                      {affiliation["Site Name"]}, {affiliation["Site Address"]}, {affiliation["City"]}, {affiliation["State"]} {affiliation["Zipcode"]}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null;
+        })()}
 
         {/* Education */}
-        {data?.["Education"]?.length > 0 && (
-          <>
-            <div className="section-title" onClick={() => handleSectionClick('EDUCATION')}>
-              EDUCATION
-            </div>
-            <div className="section-content">
-              {renderEducation()}
-            </div>
-          </>
-        )}
+        {(() => {
+          const educationData = data?.["Education"];
+          const validEducation = educationData?.filter(edu => 
+            edu && 
+            (edu["degree"]?.trim() || 
+             edu["universityName"]?.trim() ||
+             edu["startYear"]?.trim() ||
+             edu["endYear"]?.trim())
+          ) || [];
+          
+          return validEducation.length > 0 ? (
+            <>
+              <div className="section-title" onClick={() => handleSectionClick('EDUCATION')}>
+                EDUCATION
+                <span className="section-nav-icon">↗</span>
+              </div>
+              <div className="section-content">
+                {validEducation.map((education, index) => (
+                  <div key={index} className="list-item">
+                    <div className="date-column">
+                      <span>{education["startYear"] || ''}-{education["endYear"] || ''}</span>
+                    </div>
+                    <div className="content-column">
+                      <span>
+                        {[education["degree"], education["universityName"], education["city"], education["state"], education["country"]]
+                          .filter(Boolean).join(", ")}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null;
+        })()}
 
         {/* Licenses */}
-        {data?.["Licenses & Certifications"]?.licenses?.length > 0 && (
-          <>
-            <div className="section-title" onClick={() => handleSectionClick('LICENSE(S)')}>
-              LICENSE(S)
-            </div>
-            <div className="section-content">
-              {renderLicenses()}
-            </div>
-          </>
-        )}
+        {(() => {
+          const licensesData = data?.["Licenses & Certifications"]?.licenses;
+          const validLicenses = licensesData?.filter(license => 
+            license && 
+            (license["licenseName"]?.trim() || license["licenseNumber"]?.trim())
+          ) || [];
+          
+          return validLicenses.length > 0 ? (
+            <>
+              <div className="section-title" onClick={() => handleSectionClick('LICENSE(S)')}>
+                LICENSE(S)
+                <span className="section-nav-icon">↗</span>
+              </div>
+              <div className="section-content">
+                {validLicenses.map((license, index) => (
+                  <div key={index} className="list-item">
+                    <div className="date-column">
+                      <span>{license["issueDate"] || ''}-{license["expiryDate"] || ''}</span>
+                    </div>
+                    <div className="content-column">
+                      <span>
+                        {[license["licenseName"], license["licenseNumber"]]
+                          .filter(Boolean).join(", ")}
+                        {license["issuingAuthority"] && `, ${license["issuingAuthority"]}`}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null;
+        })()}
 
         {/* Certifications */}
-        {data?.["Licenses & Certifications"]?.certifications?.length > 0 && (
-          <>
-            <div className="section-title" onClick={() => handleSectionClick('CERTIFICATION(S)')}>
-              CERTIFICATION(S)
-            </div>
-            <div className="section-content">
-              {renderCertifications()}
-            </div>
-          </>
-        )}
+        {(() => {
+          const certificationsData = data?.["Licenses & Certifications"]?.certifications;
+          const validCertifications = certificationsData?.filter(certification => 
+            certification && 
+            (certification["certificationTitle"]?.trim() || 
+             certification["issuingOrganization"]?.trim() ||
+             certification["certificationId"]?.trim())
+          ) || [];
+          
+          return validCertifications.length > 0 ? (
+            <>
+              <div className="section-title" onClick={() => handleSectionClick('CERTIFICATION(S)')}>
+                CERTIFICATION(S)
+                <span className="section-nav-icon">↗</span>
+              </div>
+              <div className="section-content">
+                {validCertifications.map((certification, index) => (
+                  <div key={index} className="list-item">
+                    <div className="date-column">
+                      <span>{certification["issueDate"] || ''}</span>
+                    </div>
+                    <div className="content-column">
+                      <span>
+                        {[certification["certificationTitle"], certification["issuingOrganization"]]
+                          .filter(Boolean).join(", ")}
+                        {certification["certificationId"] && `, ID: ${certification["certificationId"]}`}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null;
+        })()}
 
         {/* Professional Experience */}
-        {data?.["Professional Experience"]?.length > 0 && (
-          <>
-            <div className="section-title" onClick={() => handleSectionClick('PROFESSIONAL EXPERIENCE')}>
-              PROFESSIONAL EXPERIENCE
-            </div>
-            <div className="section-content">
-              {renderProfessionalExperience()}
-            </div>
-          </>
-        )}
+        {(() => {
+          const experiences = data?.["Professional Experience"];
+          const validExperiences = experiences?.filter(exp => 
+            exp && 
+            (exp["Job Title"]?.trim() || 
+             exp["Organization/Hospital Name"]?.trim() ||
+             exp["Start Date"]?.trim() ||
+             exp["End Date"]?.trim())
+          ) || [];
+          
+          return validExperiences.length > 0 ? (
+            <>
+              <div className="section-title" onClick={() => handleSectionClick('PROFESSIONAL EXPERIENCE')}>
+                PROFESSIONAL EXPERIENCE
+                <span className="section-nav-icon">↗</span>
+              </div>
+              <div className="section-content">
+                {validExperiences.map((experience, index) => (
+                  <div key={index} className="list-item">
+                    <div className="date-column">
+                      <span>{experience["Start Date"] || ''}-{experience["End Date"] || ''}</span>
+                    </div>
+                    <div className="content-column">
+                      <span>
+                        {[experience["Job Title"], experience["Organization/Hospital Name"], experience["City"], experience["State"], experience["Country"]]
+                          .filter(Boolean).join(", ")}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null;
+        })()}
 
         {/* Professional Memberships */}
-        {data?.["Professional Active Memberships"]?.length > 0 && (
-          <>
-            <div className="section-title" onClick={() => handleSectionClick('PROFESSIONAL ACTIVE MEMBERSHIPS')}>
-              PROFESSIONAL ACTIVE MEMBERSHIPS
-            </div>
-            <div className="section-content">
-              {(() => {
-                const memberships = data["Professional Active Memberships"];
-                if (!memberships) {
-                  return <div className="membership-text">No memberships listed</div>;
-                }
-                
-                if (Array.isArray(memberships)) {
-                  return memberships.map((membership, index) => (
-                    <div key={index} className="list-item">
-                      <div className="date-column">
-                        <span>{membership["Start Date"] || ''} - {membership["End Date"] || ''}</span>
-                      </div>
-                      <div className="content-column">
-                        <span>
-                          {[
-                            membership["Organization Name"],
-                            membership["Membership Type"] ? `(${membership["Membership Type"]})` : '',
-                            membership["Status"] ? `- ${membership["Status"]}` : ''
-                          ].filter(Boolean).join(' ')}
-                        </span>
-                      </div>
+        {(() => {
+          const memberships = data?.["Professional Active Memberships"];
+          // Only show section if there are valid memberships with meaningful data
+          const validMemberships = memberships?.filter(membership => 
+            membership && 
+            (membership["Organization Name"]?.trim() || 
+             membership["Membership Type"]?.trim() || 
+             membership["Status"]?.trim())
+          ) || [];
+          
+          return validMemberships.length > 0 ? (
+            <>
+              <div className="section-title" onClick={() => handleSectionClick('PROFESSIONAL ACTIVE MEMBERSHIPS')}>
+                PROFESSIONAL ACTIVE MEMBERSHIPS
+                <span className="section-nav-icon">↗</span>
+              </div>
+              <div className="section-content">
+                {validMemberships.map((membership, index) => (
+                  <div key={index} className="list-item">
+                    <div className="date-column">
+                      <span>{membership["Start Date"] || ''} - {membership["End Date"] || ''}</span>
                     </div>
-                  ));
-                } else {
-                  return <div className="membership-text">{String(memberships)}</div>;
-                }
-              })()}
-            </div>
-          </>
-        )}
+                    <div className="content-column">
+                      <span>
+                        {[
+                          membership["Organization Name"],
+                          membership["Membership Type"] ? `(${membership["Membership Type"]})` : '',
+                          membership["Status"] ? `- ${membership["Status"]}` : ''
+                        ].filter(Boolean).join(' ')}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null;
+        })()}
 
         {/* Awards */}
-        {data?.["Achievements or Awards"]?.length > 0 && (
-          <>
-            <div className="section-title" onClick={() => handleSectionClick('ACHIEVEMENT(S) AND/OR AWARD(S)')}>
-              ACHIEVEMENT(S) AND/OR AWARD(S)
-            </div>
-            <div className="section-content">
-              {renderAwards()}
-            </div>
-          </>
-        )}
+        {(() => {
+          const awardsData = data?.["Achievements or Awards"];
+          const validAwards = awardsData?.filter(award => 
+            award && 
+            (award["Award / Achievement Name"]?.trim() || 
+             award["Awarding Organization/Institution"]?.trim() ||
+             award["Awarded / Achieved Year"]?.trim())
+          ) || [];
+          
+          return validAwards.length > 0 ? (
+            <>
+              <div className="section-title" onClick={() => handleSectionClick('ACHIEVEMENT(S) AND/OR AWARD(S)')}>
+                ACHIEVEMENT(S) AND/OR AWARD(S)
+                <span className="section-nav-icon">↗</span>
+              </div>
+              <div className="section-content">
+                {validAwards.map((award, index) => (
+                  <div key={index} className="list-item">
+                    <div className="date-column">
+                      <span>{award["Awarded / Achieved Year"] || ''}</span>
+                    </div>
+                    <div className="content-column">
+                      <span>{award["Award / Achievement Name"] || award["Awarding Organization/Institution"]}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null;
+        })()}
 
         {/* Hospital Affiliations */}
-        {data?.["Hospital Affiliations"]?.length > 0 && (
-          <>
-            <div className="section-title" onClick={() => handleSectionClick('HOSPITAL AFFILIATIONS')}>
-              HOSPITAL AFFILIATIONS
-            </div>
-            <div className="section-content">
-              {renderHospitalAffiliations()}
-            </div>
-          </>
-        )}
+        {(() => {
+          const hospitalData = data?.["Hospital Affiliations"];
+          const validHospitalAffiliations = hospitalData?.filter(affiliation => 
+            affiliation && 
+            (affiliation["Hospital Name"]?.trim() || 
+             affiliation["From Date"]?.trim() ||
+             affiliation["To Date"]?.trim())
+          ) || [];
+          
+          return validHospitalAffiliations.length > 0 ? (
+            <>
+              <div className="section-title" onClick={() => handleSectionClick('HOSPITAL AFFILIATIONS')}>
+                HOSPITAL AFFILIATIONS
+                <span className="section-nav-icon">↗</span>
+              </div>
+              <div className="section-content">
+                {validHospitalAffiliations.map((affiliation, index) => (
+                  <div key={index} className="affiliation-item">
+                    <div className="affiliation-text">
+                      {affiliation["Hospital Name"]}, {affiliation["From Date"]} - {affiliation["To Date"]}, {affiliation["city"]}, {affiliation["state"]},{affiliation["country"]}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null;
+        })()}
 
         {/* Research Affiliations */}
-        {data?.["Research Affiliations"]?.length > 0 && (
-          <>
-            <div className="section-title" onClick={() => handleSectionClick('RESEARCH AFFILIATIONS')}>
-              RESEARCH AFFILIATIONS
-            </div>
-            <div className="section-content">
-              {renderResearchAffiliations()}
-            </div>
-          </>
-        )}
+        {(() => {
+          const researchData = data?.["Research Affiliations"];
+          const validResearchAffiliations = researchData?.filter(affiliation => 
+            affiliation && 
+            (affiliation["position"]?.trim() || 
+             affiliation["institutionName"]?.trim() ||
+             affiliation["start"]?.trim())
+          ) || [];
+          
+          return validResearchAffiliations.length > 0 ? (
+            <>
+              <div className="section-title" onClick={() => handleSectionClick('RESEARCH AFFILIATIONS')}>
+                RESEARCH AFFILIATIONS
+                <span className="section-nav-icon">↗</span>
+              </div>
+              <div className="section-content">
+                {validResearchAffiliations.map((affiliation, index) => (
+                  <div key={index} className="list-item">
+                    <div className="date-column">
+                      <span>{affiliation["start"] || ''}  </span>
+                    </div>
+                    <div className="content-column">
+                      <span>{[affiliation["position"], affiliation["institutionName"]].filter(Boolean).join(", ")}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null;
+        })()}
 
         {/* Training */}
-        {data?.["Training"]?.length > 0 && (
-          <>
-            <div className="section-title" onClick={() => handleSectionClick('TRAINING')}>
-              TRAINING
-            </div>
-            <div className="section-content">
-              {renderTraining()}
-            </div>
-          </>
-        )}
+        {(() => {
+          const trainingData = data?.["Training"];
+          const validTraining = trainingData?.filter(training => 
+            training && 
+            (training["Training Program / Course Name"]?.trim() || 
+             training["Institution / Provider"]?.trim() ||
+             training["Duration / Dates"]?.trim())
+          ) || [];
+          
+          return validTraining.length > 0 ? (
+            <>
+              <div className="section-title" onClick={() => handleSectionClick('TRAINING')}>
+                TRAINING
+                <span className="section-nav-icon">↗</span>
+              </div>
+              <div className="section-content">
+                {validTraining.map((training, index) => (
+                  <div key={index} className="list-item">
+                    <div className="date-column">
+                      <span>{training["Duration / Dates"] || ''}</span>
+                    </div>
+                    <div className="content-column">
+                      <span>{training["Training Program / Course Name"] || training["Institution / Provider"]}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null;
+        })()}
 
          {/* Psychometric Rating/Scales Experiences */}
-         {data?.["Psychometric Rating/Scales Experiences"]?.length > 0 && (
-           <>
-             <div className="section-title" onClick={() => handleSectionClick('Psychometric Rating/Scales Experiences')}>
-               PSYCHOMETRIC RATING/SCALES EXPERIENCES
-             </div>
-             <div className="section-content">
-               {data["Psychometric Rating/Scales Experiences"]
-                 .filter(exp => exp["Scale / Rating Name"]?.trim())
-                 .map((experience, index) => (
+         {(() => {
+           const experiences = data?.["Psychometric Rating/Scales Experiences"];
+           const validExperiences = experiences?.filter(exp => exp && exp["Scale / Rating Name"]?.trim()) || [];
+           
+           return validExperiences.length > 0 ? (
+             <>
+               <div className="section-title" onClick={() => handleSectionClick('Psychometric Rating/Scales Experiences')}>
+                 PSYCHOMETRIC RATING/SCALES EXPERIENCES
+                 <span className="section-nav-icon">↗</span>
+               </div>
+               <div className="section-content">
+                 {validExperiences.map((experience, index) => (
                    <div key={index} className="list-item">
                      <div className="content-column">
                        <span>{experience["Scale / Rating Name"]}</span>
                      </div>
                    </div>
                  ))}
-             </div>
-           </>
-         )}
+               </div>
+             </>
+           ) : null;
+         })()}
 
         {/* Additional Skills / Languages */}
         {(() => {
@@ -546,6 +758,7 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
             <>
               <div className="section-title" onClick={() => handleSectionClick('ADDITIONAL SKILLS')}>
                 ADDITIONAL SKILLS
+                <span className="section-nav-icon">↗</span>
               </div>
               <div className="section-content">
                 {validLanguages.map((language, index) => (
@@ -559,28 +772,58 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
         })()}
 
         {/* Publications */}
-        {data?.["Publications"]?.length > 0 && (
-          <>
-            <div className="section-title" onClick={() => handleSectionClick('PUBLICATIONS/PRESENTATIONS')}>
-              PUBLICATIONS/PRESENTATIONS
-            </div>
-            <div className="section-content">
-              {renderPublications()}
-            </div>
-          </>
-        )}
+        {(() => {
+          const publications = data?.["Publications"];
+          const validPublications = publications?.filter(pub => 
+            pub && pub["Publications / Presentations"]?.trim()
+          ) || [];
+          
+          return validPublications.length > 0 ? (
+            <>
+              <div className="section-title" onClick={() => handleSectionClick('PUBLICATIONS/PRESENTATIONS')}>
+                PUBLICATIONS/PRESENTATIONS
+                <span className="section-nav-icon">↗</span>
+              </div>
+              <div className="section-content">
+                {validPublications.map((publication, index) => (
+                  <div key={index} className="publication-item">
+                    <span className="publication-number">{index + 1}.</span>
+                    <span className="publication-text">
+                      {publication["Publications / Presentations"]}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null;
+        })()}
 
         {/* Clinical Research Trials */}
-        {data?.["Clinical Research Trials Conducted"]?.length > 0 && (
-          <>
-            <div className="section-title" onClick={() => handleSectionClick('CLINICAL RESEARCH TRIALS CONDUCTED')}>
-              CLINICAL RESEARCH TRIALS CONDUCTED
-            </div>
-            <div className="section-content">
-              {renderClinicalTrials()}
-            </div>
-          </>
-        )}
+        {(() => {
+          const trials = data?.["Clinical Research Trials Conducted"];
+          const validTrials = trials?.filter(trial => 
+            trial && trial["Trial Title"]?.trim()
+          ) || [];
+          
+          return validTrials.length > 0 ? (
+            <>
+              <div className="section-title" onClick={() => handleSectionClick('CLINICAL RESEARCH TRIALS CONDUCTED')}>
+                CLINICAL RESEARCH TRIALS CONDUCTED
+                <span className="section-nav-icon">↗</span>
+              </div>
+              <div className="section-content">
+                {validTrials.map((trial, index) => (
+                  <div key={index} className="trial-item">
+                    <div className="trial-header">
+                      <span className="trial-number">{index + 1}.</span>
+                      <span className="trial-title">{trial["Trial Title"]}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null;
+        })()}
 
 
 

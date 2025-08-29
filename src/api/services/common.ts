@@ -59,7 +59,7 @@ export class CommonService extends ApiService {
         updated_by: cvData.updated_by,
         updated_date: cvData.updated_date,
         content: { response: cvData.content },
-        file_encoded_content: cvData.file_encoded_content,
+        file_encoded_content: "",
       };
 
       const response = await http.post(url, formattedData, this.store);

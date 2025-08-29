@@ -5,6 +5,7 @@
  max-height: 100vh;
  width: 100vw;
  background: url('./BG_layer.png') center/cover no-repeat;
+ position: relative;
 }
 
 .container {
@@ -46,34 +47,6 @@
   margin-right: auto;
 }
 
-// Progress Bar
-.progressContainer {
-  margin-bottom: 2rem;
-}
-
-.progressBar {
-  width: 100%;
-  height: 8px;
-  background: $gray-medium;
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 1rem;
-}
-
-.progressFill {
-  height: 100%;
-  background: linear-gradient(90deg, $primary 0%, $accent 100%);
-  border-radius: 4px;
-  transition: width 0.3s ease;
-}
-
-.progressText {
-  color: $dark;
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin: 0;
-}
-
 .loadingSpinner {
   display: flex;
   justify-content: center;
@@ -92,6 +65,18 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+// Full-screen overlay to prevent user interaction
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  pointer-events: all;
 }
 
 .cardHeader {

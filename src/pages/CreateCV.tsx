@@ -12,7 +12,6 @@ export default function CreateCV() {
   const [file, setFile] = useState<File | null>(null);
   const [dragActive, setDragActive] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -70,30 +69,14 @@ export default function CreateCV() {
     // If file is uploaded, process it first
     try {
       setIsProcessing(true);
-      setUploadProgress(0);
-
-      // Simulate upload progress
-      const progressInterval = setInterval(() => {
-        setUploadProgress((prev) => {
-          if (prev >= 90) {
-            clearInterval(progressInterval);
-            return 90;
-          }
-          return prev + 10;
-        });
-      }, 200);
 
       // Upload the file to the API
       const response = await apiClient.cv.uploadCV(file);
-
-      clearInterval(progressInterval);
-      setUploadProgress(100);
 
       // Wait a moment to show completion
       setTimeout(() => {
         toast.success("CV uploaded successfully! Processing completed.");
         setIsProcessing(false);
-        setUploadProgress(0);
 
         // Navigate to CV builder with the processed data
         navigate("/cv-builder", {
@@ -107,7 +90,6 @@ export default function CreateCV() {
       console.error("Error uploading CV:", error);
       toast.error("Failed to upload CV. Please try again.");
       setIsProcessing(false);
-      setUploadProgress(0);
     }
   };
 
@@ -137,19 +119,6 @@ export default function CreateCV() {
                 Your file is currently being processed. This may take a moment.
                 Please stay on this page until the process is complete.
               </p>
-
-              {/* Progress Bar */}
-              <div className={styles.progressContainer}>
-                <div className={styles.progressBar}>
-                  <div
-                    className={styles.progressFill}
-                    style={{ width: `${uploadProgress}%` }}
-                  ></div>
-                </div>
-                <p className={styles.progressText}>
-                  {uploadProgress}% Complete
-                </p>
-              </div>
 
               <div className={styles.loadingSpinner}>
                 <div className={styles.spinner}></div>
@@ -275,6 +244,9 @@ export default function CreateCV() {
           )}
         </div>
       </div>
+      
+      {/* Full-screen overlay to prevent user interaction during upload */}
+      {isProcessing && <div className={styles.overlay} />}
     </div>
   );
 }

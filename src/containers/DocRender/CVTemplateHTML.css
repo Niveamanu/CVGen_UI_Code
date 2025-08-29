@@ -94,6 +94,24 @@
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.section-nav-icon {
+  font-size: 10px;
+  color: #4A90E2;
+  margin-left: 6px;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+  font-weight: normal;
+  line-height: 1;
+}
+
+.section-title:hover .section-nav-icon {
+  opacity: 1;
+  transform: translateX(1px);
 }
 
 .section-content {
@@ -278,7 +296,6 @@
 
 /* Interactive Elements (for future enhancements) */
 .section-title:hover {
-  cursor: pointer;
   color: #4A90E2;
   transition: color 0.2s ease;
 }
