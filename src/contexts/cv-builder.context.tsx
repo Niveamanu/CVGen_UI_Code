@@ -29,6 +29,8 @@ export const postContextDefaultValue: ICVBuilderContext = {
   handleCloseModal: () => {},
   handleDownload: () => {},
   handleStepClick: (stepId: number) => {},
+  handleSkip: (stepId: number) => {},
+  getFilteredCVData: () => ({}),
   currentStep: 1,
   setCurrentStep: () => {},
   steps: FlourishSteps,
@@ -47,6 +49,7 @@ export const postContextDefaultValue: ICVBuilderContext = {
     total: 0,
     progressPercentage: 0,
   },
+  skippedSections: new Set(),
 };
 const sectionFieldMap: Record<
   string,
@@ -170,6 +173,7 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
   const [isDownload, setIsDownload] = useState(false);
   const [isBase64Request, setIsBase64Request] = useState(false);
   const [isSavingDraft, setIsSavingDraft] = useState(false);
+  const [skippedSections, setSkippedSections] = useState<Set<number>>(new Set());
 
   const [searchParams] = useSearchParams();
   const location = useLocation();
@@ -616,6 +620,63 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
     setCurrentStep(stepId);
   }, []);
 
+  const handleSkip = useCallback((stepId: number) => {
+    console.log(`Skipping step ${stepId}`);
+    setSkippedSections(prev => new Set([...prev, stepId]));
+    
+    // Clear the data for the skipped section
+    const stepToSectionMap: Record<number, string> = {
+      3: "Hospital Affiliations",
+      4: "Research Affiliations", 
+      7: "Publications",
+      9: "Professional Active Memberships",
+      10: "Psychometric Rating/Scales Experiences",
+      11: "Clinical Research Trials Conducted",
+      13: "Achievements or Awards"
+    };
+    
+    const sectionName = stepToSectionMap[stepId];
+    if (sectionName) {
+      console.log(`Clearing data for section: ${sectionName}`);
+      setCvData(prev => {
+        const newData = { ...prev };
+        delete newData[sectionName];
+        console.log(`Updated CV data after skipping ${sectionName}:`, newData);
+        return newData;
+      });
+    }
+    
+    setCurrentStep(stepId + 1);
+  }, [setCvData]);
+
+  // Function to get CV data with skipped sections filtered out
+  const getFilteredCVData = useCallback(() => {
+    const filteredData = { ...cvData };
+    
+    // Map step numbers to section names
+    const stepToSectionMap: Record<number, string> = {
+      3: "Hospital Affiliations",
+      4: "Research Affiliations", 
+      7: "Publications",
+      9: "Professional Active Memberships",
+      10: "Psychometric Rating/Scales Experiences",
+      11: "Clinical Research Trials Conducted",
+      13: "Achievements or Awards"
+    };
+
+    // Remove skipped sections from the data
+    skippedSections.forEach(stepId => {
+      const sectionName = stepToSectionMap[stepId];
+      if (sectionName && filteredData[sectionName]) {
+        console.log(`Filtering out skipped section: ${sectionName} (step ${stepId})`);
+        delete filteredData[sectionName];
+      }
+    });
+
+    console.log('Filtered CV data:', filteredData);
+    return filteredData;
+  }, [cvData, skippedSections]);
+
 
   const memoizedValue = useMemo(
     () => ({
@@ -645,7 +706,10 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
       setIsBase64Request,
       isSavingDraft,
       setIsSavingDraft,
-      completedSteps
+      completedSteps,
+      skippedSections,
+      handleSkip,
+      getFilteredCVData
     }),
     [
       isLoading,
@@ -674,7 +738,10 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
       handleDownload,
       handleCloseModal,
       handlePreview,
-      completedSteps
+      completedSteps,
+      skippedSections,
+      handleSkip,
+      getFilteredCVData
     ]
   );
 

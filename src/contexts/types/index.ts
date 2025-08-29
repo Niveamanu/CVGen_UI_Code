@@ -11,6 +11,8 @@ export interface ICVBuilderContext {
   handleCloseModal: () => void;
   handleDownload: () => void;
   handleStepClick: (stepId: number) => void;
+  handleSkip: (stepId: number) => void;
+  getFilteredCVData: () => Record<string, any>;
   currentStep: number;
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   steps: Array<{
@@ -34,4 +36,5 @@ export interface ICVBuilderContext {
     total: number;
     progressPercentage: number;
   };
+  skippedSections: Set<number>;
 }

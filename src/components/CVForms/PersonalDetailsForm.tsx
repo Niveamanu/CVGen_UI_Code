@@ -110,11 +110,7 @@ export default function PersonalDetailsForm({
       "Business Number": "",
       "Business Email Address": "",
       ...(defaultValues?.("Personal Information") || {}),
-      "Languages": [
-        ...(defaultValues?.("Languages")?.length > 0 ?  defaultValues?.("Languages") : [{
-          "Language Name": "",
-        }])
-      ],
+      "Languages": defaultValues?.("Languages")?.filter((lang: any) => lang && lang["Language Name"] && lang["Language Name"].trim()) || [],
       "Degree Title": defaultDegreeTitles,
     },
     mode: "onChange",
@@ -150,14 +146,17 @@ export default function PersonalDetailsForm({
 
   const watchedValues = useWatch({ control });
   useEffect(() => {
-    if (onChange) onChange(watchedValues, "Personal Information");
-  }, [watchedValues]);
+    if (onChange) {
+      // Filter out empty languages before calling onChange
+      const filteredValues = {
+        ...watchedValues,
+        Languages: watchedValues.Languages?.filter((lang: any) => lang && lang["Language Name"] && lang["Language Name"].trim()) || []
+      };
+      onChange(filteredValues, "Personal Information");
+    }
+  }, [watchedValues, onChange]);
 
-  const languages = watch("Languages") || [
-    {
-      "Language Name": "",
-    },
-  ];
+  const languages = watch("Languages") || [];
 
   const addLanguage = () => {
     setValue("Languages", [
@@ -169,13 +168,11 @@ export default function PersonalDetailsForm({
   };
 
   const removeLanguage = (index: number) => {
-    // Prevent removing the first language if it's the only one
-    if (languages.length > 1) {
-      setValue(
-        "Languages",
-        languages.filter((_: any, i: any) => i !== index)
-      );
-    }
+    // Allow removing any language, including the last one
+    setValue(
+      "Languages",
+      languages.filter((_: any, i: any) => i !== index)
+    );
   };
 
   const [showLanguages, setShowLanguages] = useState(true);
@@ -185,7 +182,14 @@ export default function PersonalDetailsForm({
   useEffect(() => {
     if (isNextClick) {
       setIsNextClick(false);
-      handleSubmit((data) => onSubmit(data, "Personal Information"))();
+      handleSubmit((data) => {
+        // Filter out empty languages before submitting
+        const filteredData = {
+          ...data,
+          Languages: data.Languages?.filter((lang: any) => lang && lang["Language Name"] && lang["Language Name"].trim()) || []
+        };
+        onSubmit(filteredData, "Personal Information");
+      })();
     }
   }, [isNextClick, handleSubmit, onSubmit, setIsNextClick, languages]);
 
@@ -338,26 +342,30 @@ export default function PersonalDetailsForm({
           </div>
           {showLanguages && (
             <>
-              <div className={styles.nestedGrid}>
-                {languages.map((language: any, index: number) => (
-                  <div
-                    key={index}
-                    style={{ position: "relative" }}
-                  >
-                    <div className={styles.nestedRow}>
-                      <CustomInput
-                        label="Language Name"
-                        name={`Languages.${index}."Language Name"`}
-                        placeholder="Enter language name"
-                        register={register}
-                        error={
-                          (errors.Languages &&
-                            Array.isArray(errors.Languages) &&
-                            errors.Languages[index]?.["Language Name"]) ||
-                          undefined
-                        }
-                      />
-                      {languages.length > 1 && (
+              {languages.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '20px', color: '#666' }}>
+                  No languages added. Click "Add Language" to add your language skills.
+                </div>
+              ) : (
+                <div className={styles.nestedGrid}>
+                  {languages.map((language: any, index: number) => (
+                    <div
+                      key={index}
+                      style={{ position: "relative" }}
+                    >
+                      <div className={styles.nestedRow}>
+                        <CustomInput
+                          label="Language Name"
+                          name={`Languages.${index}."Language Name"`}
+                          placeholder="Enter language name"
+                          register={register}
+                          error={
+                            (errors.Languages &&
+                              Array.isArray(errors.Languages) &&
+                              errors.Languages[index]?.["Language Name"]) ||
+                            undefined
+                          }
+                        />
                         <div
                           style={{
                             position: "absolute",
@@ -385,11 +393,11 @@ export default function PersonalDetailsForm({
                             />
                           </svg>
                         </div>
-                      )}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
               <div className="d-flex justify-content-center align-items-center">
                 <button
                   type="button"

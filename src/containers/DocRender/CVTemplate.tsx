@@ -846,12 +846,12 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
         )}
 
         {/* Additional Skills / Languages */}
-        {data["Languages"] && data["Languages"].length > 0 && (
+        {data["Languages"] && data["Languages"].filter(lang => lang && lang["Language Name"] && lang["Language Name"].trim()).length > 0 && (
           <>
             <Text style={styles.sectionTitle}>ADDITIONAL SKILLS</Text>
             <View style={styles.sectionContent}>
               {data["Languages"]
-                .filter(lang => lang["Language Name"])
+                .filter(lang => lang && lang["Language Name"] && lang["Language Name"].trim())
                 .map((language, index) => (
                   <Text key={index} style={{ fontSize: 9 }}>
                     {language["Language Name"]}

@@ -538,22 +538,25 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
          )}
 
         {/* Additional Skills / Languages */}
-        {data?.["Languages"]?.length > 0 && (
-          <>
-            <div className="section-title" onClick={() => handleSectionClick('ADDITIONAL SKILLS')}>
-              ADDITIONAL SKILLS
-            </div>
-            <div className="section-content">
-              {data["Languages"]
-                .filter(lang => lang["Language Name"])
-                .map((language, index) => (
+        {(() => {
+          const validLanguages = data?.["Languages"]?.filter(lang => lang && lang["Language Name"] && lang["Language Name"].trim()) || [];
+          console.log('Languages data:', data?.["Languages"]);
+          console.log('Valid languages:', validLanguages);
+          return validLanguages.length > 0 ? (
+            <>
+              <div className="section-title" onClick={() => handleSectionClick('ADDITIONAL SKILLS')}>
+                ADDITIONAL SKILLS
+              </div>
+              <div className="section-content">
+                {validLanguages.map((language, index) => (
                   <div key={index} className="language-item">
-                    {language["Language Name"]}
+                    {language?.["Language Name"] || ''}
                   </div>
                 ))}
-            </div>
-          </>
-        )}
+              </div>
+            </>
+          ) : null;
+        })()}
 
         {/* Publications */}
         {data?.["Publications"]?.length > 0 && (

@@ -14,13 +14,13 @@ import { motion } from 'framer-motion';
 import { overlayVariants } from '@/utils/animations';
 
 const DocumentViewer: React.FC = () => {
-  const { isDownload, setIsDownload, cvData, isSavingDraft, setIsSavingDraft, setIsBase64Request, isBase64Request, isPreviewModalOpen } = cvBuilderContext();
+  const { isDownload, setIsDownload, cvData, getFilteredCVData, isSavingDraft, setIsSavingDraft, setIsBase64Request, isBase64Request, isPreviewModalOpen } = cvBuilderContext();
   const userProfile = useSelector((state: any) => state.authUser?.profile);
   const { user: msalUser } = useUser();
   const downloadLinkRef = useRef<any>(null);
   const pdfInProgress = useRef(false);
 
-  const mappedData = cvData
+  const mappedData = getFilteredCVData()
 
   const onBase64PdfReady = (base64Pdf: string) => {
     if(isSavingDraft){

@@ -30,7 +30,9 @@ export default function () {
     handleNext,
     handleStateChange,
     handleComplete,
+    handleSkip,
     cvData,
+    getFilteredCVData,
     isLoading,
     currentStep,
     setCurrentStep,
@@ -108,13 +110,14 @@ export default function () {
                   setIsNextClick={setIsNextClick}
                   onSubmit={handleNext}
                   defaultValues={(data: string) => {
+                    const filteredData = getFilteredCVData();
                     if (data === "Personal Information") {
                       return {
-                        ...cvData["Personal Information"],
-                        Languages: cvData["Languages"] || [],
+                        ...filteredData["Personal Information"],
+                        Languages: filteredData["Languages"] || [],
                       };
                     }
-                    return cvData[data as keyof typeof cvData] || [];
+                    return filteredData[data as keyof typeof filteredData] || [];
                   }}
                   onChange={handleStateChange}
                 />
@@ -129,10 +132,10 @@ export default function () {
             currentStep={currentStep}
             totalSteps={steps.length}
             onPrev={handlePrevious}
-            onSkip={() => setCurrentStep(currentStep + 1)}
+            onSkip={() => handleSkip(currentStep)}
             isFirstStep={currentStep === 1}
             isLastStep={currentStep === steps.length}
-            showSkip={currentStep < steps.length}
+            showSkip={[3, 4, 7, 9, 10, 11, 13].includes(currentStep)}
             onComplete={handleComplete}
           />
         </motion.div>
