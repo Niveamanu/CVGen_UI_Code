@@ -178,7 +178,15 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
   const [searchParams] = useSearchParams();
   const location = useLocation();
   const navigate = useNavigate();
-  console.log("CVBuilder - location.state:", location.state, isLoading);
+  
+  // Memoize location state to prevent unnecessary re-renders
+  const memoizedLocationState = useMemo(() => location.state, [
+    location.state?.uploadedCVData,
+    location.state?.cvData,
+    location.state?.isEditing,
+    location.state?.fileName
+  ]);
+  
   const validateRequiredField = (
     val: Record<string, any>,
     fields: string[]
@@ -242,19 +250,19 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
   };
 
   useEffect(() => {
-    if (location.state) {
+    if (memoizedLocationState) {
       // Handle both uploaded CV data and existing CV data for editing
-      const uploadedCVData = location.state?.uploadedCVData || {};
-      const existingCVData = location.state?.cvData || {};
-      const isEditing = location.state?.isEditing || false;
+      const uploadedCVData = memoizedLocationState?.uploadedCVData || {};
+      const existingCVData = memoizedLocationState?.cvData || {};
+      const isEditing = memoizedLocationState?.isEditing || false;
       
-      setFileName(location.state?.fileName || null);
+      setFileName(memoizedLocationState?.fileName || null);
       
       // If we have uploaded CV data (from file upload)
-      if (location.state.uploadedCVData && location.state.fileName) {
+      if (memoizedLocationState.uploadedCVData && memoizedLocationState.fileName) {
         setCvData(uploadedCVData?.data || {});
         toast.success(
-          `CV "${fileName}" processed successfully! Forms have been pre-populated with extracted information.`
+          `CV "${memoizedLocationState.fileName}" processed successfully! Forms have been pre-populated with extracted information.`
         );
       }
       // If we have existing CV data (from editing draft)
@@ -293,7 +301,8 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
           .filter((name) => name.trim())
           .join(" ");
 
-        setCvData({
+        // Batch all state updates together to prevent multiple re-renders
+        const newCvData = {
           "Personal Information": {
             "First Name": apiData["Personal Information"]?.["First Name"] || "",
             "Middle Name": apiData["Personal Information"]?.["Middle Name"] || "",
@@ -328,7 +337,10 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
           Training: apiData["Training"] || [],
           "Achievements or Awards": apiData["Achievements or Awards"] || [],
           Languages: apiData["Languages"] || [],
-        });
+        };
+
+        // Single setCvData call to prevent multiple re-renders
+        setCvData(newCvData);
 
         // Validate and set step completion for both uploaded and existing CV data
         if (Object.keys(apiData).length > 0) {
@@ -404,7 +416,7 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
     } else {
       setLoading(false);
     }
-  }, [location.state]);
+  }, [memoizedLocationState]);
 
   useEffect(() => {
     const sectionParam = searchParams.get('section');
@@ -415,7 +427,6 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
       );
       
       if (matchingStep) {
-        console.log('Matching step found:', matchingStep);
         setCurrentStep(matchingStep.id);
         setIsPreviewModalOpen(false); // Don't keep modal open, just navigate to step
         
@@ -425,9 +436,6 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
             stepElement.scrollIntoView({ behavior: "smooth", block: "center" });
           }
         }, 100);
-      } else {
-        console.log('No matching step found for section:', sectionParam);
-        console.log('Available steps:', steps.map(step => step.title));
       }
 
       // Remove section query parameter from URL after processing
@@ -437,8 +445,8 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
         navigate({ search: currentParams.toString() }, { replace: true });
       }
     }
-  }, [searchParams, steps, navigate]);
-  const handleStateChange = (data: any, keyName: string) => {
+  }, [steps, navigate]); // Removed searchParams from dependency array to prevent infinite loop
+  const handleStateChange = useCallback((data: any, keyName: string) => {
     if (keyName) {
       // Transform the data if it's Personal Information to add computed fields
       let transformedData = data;
@@ -462,8 +470,6 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
           Credentials: credentials,
           "Full Name": fullName,
         };
-
-        console.log("Transformed data:", transformedData);
       }
 
       setCvData((prev) => {
@@ -486,9 +492,9 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
         ));
       }
     }
-  };
+  }, [currentStep, steps]); // Added dependencies to prevent stale closures
 
-  const handleNext = (
+  const handleNext = useCallback((
     data: any,
     keyName: string,
     isDraftSave: boolean = false
@@ -551,30 +557,30 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
         stepElement.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     }
-  };
+  }, [currentStep, steps]); // Added dependencies to prevent stale closures
 
-  const handlePrevious = () => {
+  const handlePrevious = useCallback(() => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
-      const stepElement = document.getElementById(`cv-step-${currentStep + 1}`);
+      const stepElement = document.getElementById(`cv-step-${currentStep - 1}`);
       if (stepElement) {
         stepElement.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     }
-  };
+  }, [currentStep]); // Added dependencies to prevent stale closures
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     navigate("/create-cv");
-  };
+  }, [navigate]);
 
-  const handleSaveDraft = async () => {
+  const handleSaveDraft = useCallback(async () => {
     try {
       setIsSavingDraft(true);
     } catch (error) {
       console.error("Error saving CV draft:", error);
       alert("Error saving draft. Please check console for details.");
     }
-  };
+  }, []); // No dependencies needed for this function
 
 
   const completedSteps = useMemo(() => {
@@ -583,7 +589,7 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
     return { total, progressPercentage };
   }, [steps]);
 
-  const handleComplete = async () => {
+  const handleComplete = useCallback(async () => {
     try {
       // Automatically open the preview when Complete is clicked
       setIsPreviewModalOpen(true);
@@ -596,7 +602,7 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
       console.error("Error completing CV:", error);
       toast.error("Error completing CV. Please try again.");
     }
-  };
+  }, []); // No dependencies needed for this function
 
   const handlePreview = useCallback(() => {
     setIsPreviewModalOpen(true);
@@ -621,7 +627,6 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
   }, []);
 
   const handleSkip = useCallback((stepId: number) => {
-    console.log(`Skipping step ${stepId}`);
     setSkippedSections(prev => new Set([...prev, stepId]));
     
     // Clear the data for the skipped section
@@ -637,17 +642,15 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
     
     const sectionName = stepToSectionMap[stepId];
     if (sectionName) {
-      console.log(`Clearing data for section: ${sectionName}`);
       setCvData(prev => {
         const newData = { ...prev };
         delete newData[sectionName];
-        console.log(`Updated CV data after skipping ${sectionName}:`, newData);
         return newData;
       });
     }
     
     setCurrentStep(stepId + 1);
-  }, [setCvData]);
+  }, []); // Removed setCvData dependency to prevent infinite loops
 
   // Function to get CV data with skipped sections filtered out
   const getFilteredCVData = useCallback(() => {
@@ -668,12 +671,10 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
     skippedSections.forEach(stepId => {
       const sectionName = stepToSectionMap[stepId];
       if (sectionName && filteredData[sectionName]) {
-        console.log(`Filtering out skipped section: ${sectionName} (step ${stepId})`);
         delete filteredData[sectionName];
       }
     });
 
-    console.log('Filtered CV data:', filteredData);
     return filteredData;
   }, [cvData, skippedSections]);
 
