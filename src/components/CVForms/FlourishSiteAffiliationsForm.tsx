@@ -19,6 +19,7 @@ interface SiteData {
   City: string;
   State: string;
   ZipCode: number;
+  FlourishSite: string;
 }
  
 interface SitesResponse {
@@ -171,7 +172,7 @@ export default function FlourishSiteAffiliationsForm({
    
     if (selectedSite) {
       // Auto-populate the fields
-      setValue(`affiliations.${index}.CTMS Site Name`, selectedSite.CtmssiteName);
+      setValue(`affiliations.${index}.CTMS Site Name`, selectedSite.FlourishSite);
      
       // Combine Address1 and Address2 for the Site Address field
       const combinedAddress = selectedSite.Address2 && selectedSite.Address2.trim()
