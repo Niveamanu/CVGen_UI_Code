@@ -8,9 +8,11 @@ import CVTemplateHTML from "../containers/DocRender/CVTemplateHTML";
 import saveAs from "file-saver";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
+import { useUserRoles } from "../hooks/useUserRole";
 
 export default function DraftCVsTable() {
   const navigate = useNavigate();
+  const { isBusinessUser, loading: rolesLoading } = useUserRoles();
   const { 
     cvCollections, 
     loading, 
@@ -168,7 +170,7 @@ export default function DraftCVsTable() {
         title="Draft CVs"
         showStatusColumn={true}
         onPreview={handlePreview}
-        onEdit={handleEdit}
+        onEdit={!rolesLoading && !isBusinessUser ? handleEdit : undefined}
       />
       
       <CVPreviewModal

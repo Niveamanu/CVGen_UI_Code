@@ -12,6 +12,7 @@ import { useUser } from '@/contexts/UserContext';
 import styles from './DocRenderLoading.module.scss';
 import { motion } from 'framer-motion';
 import { overlayVariants } from '@/utils/animations';
+import { getCurrentDateInESTAlternative } from '@/utils/dateUtils';
 
 const DocumentViewer: React.FC = () => {
   const { isDownload, setIsDownload, cvData, getFilteredCVData, isSavingDraft, setIsSavingDraft, setIsBase64Request, isBase64Request, isPreviewModalOpen } = cvBuilderContext();
@@ -26,7 +27,7 @@ const DocumentViewer: React.FC = () => {
     if(isSavingDraft){
       api.Common.saveCVDraft({
         updated_by: userProfile?.username || userProfile?.Username || userProfile?.name || userProfile?.Name || msalUser?.name || userProfile?.email || userProfile?.Email || msalUser?.email || "unknown_user",
-        updated_date: new Date().toISOString().replace('T', ' ').replace(/\.\d+Z$/, ''),
+        updated_date: getCurrentDateInESTAlternative(),
         content: cvData,
         file_encoded_content: base64Pdf
       }).then(() => {
@@ -38,7 +39,7 @@ const DocumentViewer: React.FC = () => {
     }else{
       api.Common.saveCVComplete({
         updated_by: userProfile?.username || userProfile?.Username || userProfile?.name || userProfile?.Name || msalUser?.name || userProfile?.email || userProfile?.Email || msalUser?.email || "unknown_user",
-        updated_date: new Date().toISOString().replace('T', ' ').replace(/\.\d+Z$/, ''),
+        updated_date: getCurrentDateInESTAlternative(),
         content: cvData,
         base64_content: base64Pdf
       }).then(() => {
