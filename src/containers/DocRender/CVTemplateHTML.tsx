@@ -146,13 +146,21 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
       'TRAINING': 'Training',
       'ADDITIONAL SKILLS': 'Personal Information', // Languages are in Personal Information
       'PUBLICATIONS/PRESENTATIONS': 'Publications',
-      'CLINICAL RESEARCH TRIALS CONDUCTED:': 'Clinical Research Trials Conducted',
-      'PSYCHOMETRIC RATING/SCALES EXPERIENCES': 'Psychometric Rating/Scales Experiences'
+      'CLINICAL RESEARCH TRIALS CONDUCTED': 'Clinical Research Trials Conducted',
+      'PSYCHOMETRIC RATING/SCALES EXPERIENCES': 'Psychometric Rating/ Scales Experience' // Fixed: matches exact step title
     };
 
     const stepTitle = sectionMapping[sectionTitle] || sectionTitle;
     // Normalize the section title for URL parameter
     const normalizedSection = stepTitle.toLowerCase().replace(/[^a-z0-9]/g, '');
+    
+    console.log('🔄 Navigating to section:', {
+      originalSection: sectionTitle,
+      mappedStep: stepTitle,
+      normalizedSection: normalizedSection,
+      fullUrl: `/cv-builder?section=${normalizedSection}`
+    });
+    
     navigate(`/cv-builder?section=${normalizedSection}`);
   };
 
@@ -501,7 +509,7 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
           
           return validCertifications.length > 0 ? (
             <>
-              <div className="section-title" onClick={() => handleSectionClick('CERTIFICATION(S)')}>
+              <div className="section-title" onClick={() => handleSectionClick('LICENSE(S)')}>
                 CERTIFICATION(S)
                 <span className="section-nav-icon">↗</span>
               </div>
@@ -732,7 +740,7 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
            
            return validExperiences.length > 0 ? (
              <>
-               <div className="section-title" onClick={() => handleSectionClick('Psychometric Rating/Scales Experiences')}>
+               <div className="section-title" onClick={() => handleSectionClick('PSYCHOMETRIC RATING/SCALES EXPERIENCES')}>
                  PSYCHOMETRIC RATING/SCALES EXPERIENCES
                  <span className="section-nav-icon">↗</span>
                </div>
@@ -814,10 +822,10 @@ const CVTemplateHTML: React.FC<CVTemplateHTMLProps> = ({ data }) => {
               <div className="section-content">
                 {validTrials.map((trial, index) => (
                   <div key={index} className="trial-item">
-                    <div className="trial-header">
-                      <span className="trial-number">{index + 1}.</span>
-                      <span className="trial-title">{trial["Trial Title"]}</span>
-                    </div>
+                    <span className="trial-number">{index + 1}.</span>
+                    <span className="trial-text" style={{ fontWeight: 'normal !important', fontStyle: 'normal !important', fontFamily: 'inherit !important' }}>
+                      {trial["Trial Title"]}
+                    </span>
                   </div>
                 ))}
               </div>

@@ -173,13 +173,6 @@
   margin-bottom: 15px;
 }
 
-.trial-title {
-  font-size: 10px;
-  font-weight: bold;
-  font-style: italic;
-  margin-bottom: 8px;
-}
-
 .trial-item {
   margin-bottom: 12px;
   font-size: 10px;
@@ -196,7 +189,8 @@
   flex-shrink: 0;
 }
 
-.trial-text {
+.trial-text,
+.section-content .trial-item .trial-text {
   flex: 1;
   line-height: 1.3;
 }
@@ -292,6 +286,19 @@
   .cv-template-html {
     background: white;
   }
+  
+  /* Ensure trial content is not bold in print/PDF */
+  .trial-content-normal,
+  .trial-text {
+    font-weight: normal !important;
+    font-style: normal !important;
+  }
+  
+  .trial-item .trial-text,
+  .trial-item .trial-content-normal {
+    font-weight: normal !important;
+    font-style: normal !important;
+  }
 }
 
 /* Interactive Elements (for future enhancements) */
@@ -310,3 +317,31 @@
   padding: 2px;
   margin: -2px;
 } */
+
+/* Final override for trial content - highest priority */
+.cv-template-html .cv-page .section-content .trial-item .trial-text,
+.cv-template-html .cv-page .section-content .trial-item .trial-content-normal {
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-family: inherit !important;
+}
+
+/* Completely new class for trial content */
+.trial-content-plain {
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-family: 'Helvetica', Arial, sans-serif !important;
+  line-height: 1.3;
+  color: #000;
+}
+
+/* Override any default paragraph styling */
+.trial-item p.trial-content-plain {
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-family: 'Helvetica', Arial, sans-serif !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.3;
+  color: #000;
+}

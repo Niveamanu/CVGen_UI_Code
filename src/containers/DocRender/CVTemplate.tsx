@@ -533,7 +533,7 @@ const CVTemplate: React.FC<CVTemplateProps> = ({ data }) => {
         <Text style={styles.trialNumber}>{index + 1}.</Text>
         <Text style={styles.trialText}>
           {trial["Trial Title"] && (
-            <Text style={styles.bold}>{trial["Trial Title"]}</Text>
+            <Text style={styles.trialText}>{trial["Trial Title"]}</Text>
           )}
         </Text>
       </View>

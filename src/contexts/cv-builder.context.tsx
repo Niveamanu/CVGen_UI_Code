@@ -5,6 +5,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import { ICVBuilderContext } from "./types";
@@ -178,6 +179,9 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
   const [searchParams] = useSearchParams();
   const location = useLocation();
   const navigate = useNavigate();
+  
+  // Ref to track the current section parameter to prevent infinite loops
+  const currentSectionRef = useRef<string | null>(null);
   
   // Memoize location state to prevent unnecessary re-renders
   const memoizedLocationState = useMemo(() => location.state, [
@@ -420,13 +424,33 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
 
   useEffect(() => {
     const sectionParam = searchParams.get('section');
-    if (sectionParam) {
-      const matchingStep = steps.find(step => 
-        step.title.toLowerCase().replace(/[^a-z0-9]/g, '') === 
-        sectionParam.toLowerCase().replace(/[^a-z0-9]/g, '')
-      );
+    
+    // Only process if the section parameter has changed
+    if (sectionParam && sectionParam !== currentSectionRef.current) {
+      currentSectionRef.current = sectionParam;
+      
+      const matchingStep = steps.find(step => {
+        const normalizedStepTitle = step.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+        const normalizedSectionParam = sectionParam.toLowerCase().replace(/[^a-z0-9]/g, '');
+        
+        console.log('🔍 Comparing step:', {
+          stepTitle: step.title,
+          normalizedStepTitle,
+          sectionParam,
+          normalizedSectionParam,
+          matches: normalizedStepTitle === normalizedSectionParam
+        });
+        
+        return normalizedStepTitle === normalizedSectionParam;
+      });
       
       if (matchingStep) {
+        console.log('🎯 Found matching step for section:', {
+          sectionParam,
+          stepTitle: matchingStep.title,
+          stepId: matchingStep.id
+        });
+        
         setCurrentStep(matchingStep.id);
         setIsPreviewModalOpen(false); // Don't keep modal open, just navigate to step
         
@@ -436,6 +460,11 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
             stepElement.scrollIntoView({ behavior: "smooth", block: "center" });
           }
         }, 100);
+      } else {
+        console.log('❌ No matching step found for section:', {
+          sectionParam,
+          availableSteps: steps.map(step => step.title)
+        });
       }
 
       // Remove section query parameter from URL after processing
@@ -445,7 +474,7 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
         navigate({ search: currentParams.toString() }, { replace: true });
       }
     }
-  }, [steps, navigate]); // Removed searchParams from dependency array to prevent infinite loop
+  }, [searchParams, steps, navigate]); // Re-added searchParams but with ref-based logic to prevent infinite loops
   const handleStateChange = useCallback((data: any, keyName: string) => {
     if (keyName) {
       // Transform the data if it's Personal Information to add computed fields
