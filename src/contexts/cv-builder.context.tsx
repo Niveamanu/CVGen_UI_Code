@@ -143,7 +143,7 @@ const sectionFieldMap: Record<
     type: "array",
     fields: ["Award / Achievement Name"],
   },
-      };
+};
   
 
 interface ICVBuilderComposition {
@@ -678,8 +678,13 @@ const CVBuilderProvider: React.FC<{ children?: React.ReactNode }> &
       });
     }
     
-    setCurrentStep(stepId + 1);
-  }, []); // Removed setCvData dependency to prevent infinite loops
+    // If it's the last step, complete the CV instead of going to next step
+    if (stepId === steps.length) {
+      handleComplete();
+    } else {
+      setCurrentStep(stepId + 1);
+    }
+  }, [steps.length, handleComplete]); // Added dependencies
 
   // Function to get CV data with skipped sections filtered out
   const getFilteredCVData = useCallback(() => {
